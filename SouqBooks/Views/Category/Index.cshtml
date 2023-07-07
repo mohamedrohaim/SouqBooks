@@ -11,8 +11,10 @@
 <table class="table table-bordered table-striped w-100">
     <thead>
         <tr>
-            <th>Category Name</th>
-            <th>Display Order</th>
+            <th class="w-50">Category Name</th>
+            <th class="w-50">Display Order</t>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +26,16 @@
                 </td>
                 <td data="w-50">
                     @category.DisplayOrder
+                </td>
+                <td class="w-auto">
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">
+                        <i class="fa-regular fa-pen-to-square" style="color: #12ce31;"></i>
+                    </a>
+                </td>
+                <td >
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" >
+                    <i class="fa-regular fa-trash-can" style="color: #f21f07;"></i>
+                    </a>
                 </td>
             </tr>
         }

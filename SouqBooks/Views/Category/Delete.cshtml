@@ -1,0 +1,35 @@
+﻿@model Category
+
+
+
+
+<form method="post" asp-action="Delete">
+	<div class="border p-3 mt-4 d-flex flex-column align-items-center justify-content-center w-100">
+		<div class="row pb-2">
+			<h2>Delete Category</h2>
+			<hr />
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="Name" class="mb-1 fs-5"></label>
+			<input asp-for="Name" readonly class="form-control w-100" />
+			<span asp-validation-for="Name"  class="text-danger"></span>
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="DisplayOrder" class="mb-1 fs-5"></label>
+			<input asp-for="DisplayOrder" readonly class="form-control w-100" />
+			<span asp-validation-for="DisplayOrder" class="text-danger"></span>
+
+		</div>
+
+		<button type="submit" class="btn btn-warning mt-3">
+			<i class="fa-regular fa-trash-can"></i> Delete
+		</button>
+		<a class="btn btn-danger mt-3" asp-action="Index" >
+			<i class="fa-solid fa-arrow-left"></i> Back To lsit
+		</a>
+
+	</div>
+
+
+</form>
+
