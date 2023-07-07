@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SouqBooks.Data;
+using SouqBooks.DataAccess.Data;
 
 namespace SouqBooks
 {

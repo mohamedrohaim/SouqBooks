@@ -3816,6 +3816,32 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.19",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.19",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.19",
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccess.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
       }
     }
   },
@@ -10852,15 +10878,27 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../DataAccess/DataAccess.csproj",
+      "msbuildProject": "../DataAccess/DataAccess.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "DataAccess >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 6.0.19",
       "Microsoft.EntityFrameworkCore >= 6.0.19",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.19",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.19",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.14"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.14",
+      "Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -10895,7 +10933,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "F:\\DotNetProjects\\SouqBooks\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "F:\\DotNetProjects\\SouqBooks\\DataAccess\\DataAccess.csproj"
+            },
+            "F:\\DotNetProjects\\SouqBooks\\Models\\Models.csproj": {
+              "projectPath": "F:\\DotNetProjects\\SouqBooks\\Models\\Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SouqBooks.Data;
-using SouqBooks.Models;
+using Models;
+using SouqBooks.DataAccess.Data;
 
 namespace SouqBooks.Controllers
 {

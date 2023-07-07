@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SouqBooks.Models;
+using Models;
 using System.Diagnostics;
 
 namespace SouqBooks.Controllers
