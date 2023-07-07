@@ -29,6 +29,7 @@ namespace SouqBooks.Controllers
             {
                 _context.categories.Add(category);
                 _context.SaveChanges();
+                TempData["success"] = "category created successfully";
                 return RedirectToAction(nameof(Index));
             }
             else { 
@@ -59,6 +60,7 @@ namespace SouqBooks.Controllers
             {
                 _context.categories.Update(category);
                 _context.SaveChanges();
+                TempData["success"] = "category updated successfully";
                 return RedirectToAction(nameof(Index));
             }
             else { 
@@ -93,6 +95,7 @@ namespace SouqBooks.Controllers
             {
                 _context.categories.Remove(category);
                 _context.SaveChanges();
+                TempData["success"] = "category deleted successfully";
                 return RedirectToAction(nameof(Index));
             }
             else

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
 	<link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -43,6 +44,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_Toast" />
             @RenderBody()
         </main>
     </div>
