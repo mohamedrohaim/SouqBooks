@@ -18,5 +18,22 @@ namespace SouqBooks.Controllers
             IEnumerable<Category> categories = _context.categories.ToList();
             return View(categories);
         }
+
+        public IActionResult Create() {
+        return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category) {
+            if (ModelState.IsValid)
+            {
+                _context.categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else { 
+            return View(category);
+            }
+        }
     }
 }
