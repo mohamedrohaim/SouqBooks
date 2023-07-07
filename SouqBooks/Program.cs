@@ -15,7 +15,7 @@ namespace SouqBooks
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
             builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
             var app = builder.Build();
 

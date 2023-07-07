@@ -13,6 +13,6 @@ namespace SouqBooks.Data
 
 
 
-        DbSet<Category> categories { get; set; }
+        public DbSet<Category> categories { get; set; }
     }
 }
