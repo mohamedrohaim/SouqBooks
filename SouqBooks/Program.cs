@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SouqBooks.Data;
+
 namespace SouqBooks
 {
     public class Program
@@ -7,6 +10,10 @@ namespace SouqBooks
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")
+                ));
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
