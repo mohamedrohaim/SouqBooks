@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using SouqBooks.DataAccess.Data;
 
@@ -6,8 +7,8 @@ namespace SouqBooks.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public CategoryController(ApplicationDbContext context)
+        private readonly ICategoryRepository _context;
+        public CategoryController(ICategoryRepository context)
         {
             _context= context;
         }
@@ -15,7 +16,7 @@ namespace SouqBooks.Controllers
         public IActionResult Index()
         {
 
-            IEnumerable<Category> categories = _context.categories.ToList();
+            IEnumerable<Category> categories = _context.GetAll();
             return View(categories);
         }
 
@@ -27,8 +28,8 @@ namespace SouqBooks.Controllers
         public IActionResult Create(Category category) {
             if (ModelState.IsValid)
             {
-                _context.categories.Add(category);
-                _context.SaveChanges();
+                _context.Add(category);
+                _context.Save();
                 TempData["success"] = "category created successfully";
                 return RedirectToAction(nameof(Index));
             }
@@ -40,7 +41,8 @@ namespace SouqBooks.Controllers
         public IActionResult Edit(int? id)
         {
             if (id != null) {
-                var category= _context.categories.FirstOrDefault(c => c.Id == id);
+                // var category= _context.categories.FirstOrDefault(c => c.Id == id);
+                var category = _context.GetFirstOrDefault(c=>c.Id==id);
                 if (category != null)
                 {
                     return View(category);
@@ -58,8 +60,8 @@ namespace SouqBooks.Controllers
         {
             if (ModelState.IsValid )
             {
-                _context.categories.Update(category);
-                _context.SaveChanges();
+                _context.Update(category);
+                _context.Save();
                 TempData["success"] = "category updated successfully";
                 return RedirectToAction(nameof(Index));
             }
@@ -73,8 +75,8 @@ namespace SouqBooks.Controllers
         {
             if (id != null)
             {
-                var category = _context.categories.FirstOrDefault(c => c.Id == id);
-                if (category != null)
+                var category = _context.GetFirstOrDefault(c => c.Id == id);
+				if (category != null)
                 {
                     return View(category);
                 }
@@ -93,8 +95,8 @@ namespace SouqBooks.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.categories.Remove(category);
-                _context.SaveChanges();
+                _context.Delete(category);
+                _context.Save();
                 TempData["success"] = "category deleted successfully";
                 return RedirectToAction(nameof(Index));
             }

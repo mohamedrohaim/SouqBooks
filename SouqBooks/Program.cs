@@ -1,3 +1,5 @@
+using DataAccess.Repository;
+using DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using SouqBooks.DataAccess.Data;
 
@@ -14,6 +16,8 @@ namespace SouqBooks
             options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
+
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
@@ -24,7 +28,7 @@ namespace SouqBooks
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseHsts();     
             }
 
             app.UseHttpsRedirection();
