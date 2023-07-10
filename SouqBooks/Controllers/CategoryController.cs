@@ -7,16 +7,16 @@ namespace SouqBooks.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _context;
-        public CategoryController(ICategoryRepository context)
+        private readonly IUnitOfWork _unitOfWork;
+		public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context= context;
+           _unitOfWork= unitOfWork;
         }
 
         public IActionResult Index()
         {
 
-            IEnumerable<Category> categories = _context.GetAll();
+            IEnumerable<Category> categories = _unitOfWork.category.GetAll();
             return View(categories);
         }
 
@@ -28,8 +28,8 @@ namespace SouqBooks.Controllers
         public IActionResult Create(Category category) {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                _context.Save();
+				_unitOfWork.category.Add(category);
+				_unitOfWork.Save();
                 TempData["success"] = "category created successfully";
                 return RedirectToAction(nameof(Index));
             }
@@ -42,7 +42,7 @@ namespace SouqBooks.Controllers
         {
             if (id != null) {
                 // var category= _context.categories.FirstOrDefault(c => c.Id == id);
-                var category = _context.GetFirstOrDefault(c=>c.Id==id);
+                var category = _unitOfWork.category.GetFirstOrDefault(c=>c.Id==id);
                 if (category != null)
                 {
                     return View(category);
@@ -60,8 +60,8 @@ namespace SouqBooks.Controllers
         {
             if (ModelState.IsValid )
             {
-                _context.Update(category);
-                _context.Save();
+                _unitOfWork.category.Update(category);
+				_unitOfWork.Save();
                 TempData["success"] = "category updated successfully";
                 return RedirectToAction(nameof(Index));
             }
@@ -75,7 +75,7 @@ namespace SouqBooks.Controllers
         {
             if (id != null)
             {
-                var category = _context.GetFirstOrDefault(c => c.Id == id);
+                var category = _unitOfWork.category.GetFirstOrDefault(c => c.Id == id);
 				if (category != null)
                 {
                     return View(category);
@@ -95,8 +95,8 @@ namespace SouqBooks.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Delete(category);
-                _context.Save();
+                _unitOfWork.category.Delete(category);
+				_unitOfWork.Save();
                 TempData["success"] = "category deleted successfully";
                 return RedirectToAction(nameof(Index));
             }

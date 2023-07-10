@@ -1,5 +1,4 @@
 ﻿using DataAccess.Repository.IRepository;
-using Models;
 using SouqBooks.DataAccess.Data;
 using System;
 using System.Collections.Generic;
@@ -9,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-	public class CategoryRepository : Repository<Category> , ICategoryRepository
+	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly ApplicationDbContext _context;
-		public CategoryRepository(ApplicationDbContext context):base(context)
+		public UnitOfWork(ApplicationDbContext context)
 		{
 			_context = context;
+			this.category = new CategoryRepository(_context);
 		}
 
-	
-
-		public void Update(Category category)
+		public ICategoryRepository category { get; private set; }
+		
+		public void Save()
 		{
-			_context.Update(category);
+			_context.SaveChanges();
+			
 		}
 	}
 }
