@@ -1,0 +1,12 @@
+F:\DotNetProjects\SouqBooks\Utilities\bin\Debug\net6.0\Utilities.deps.json
+F:\DotNetProjects\SouqBooks\Utilities\bin\Debug\net6.0\Utilities.dll
+F:\DotNetProjects\SouqBooks\Utilities\bin\Debug\net6.0\Utilities.pdb
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.csproj.AssemblyReference.cache
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfoInputs.cache
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfo.cs
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.csproj.CoreCompileInputs.cache
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.dll
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\refint\Utilities.dll
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\Utilities.pdb
+F:\DotNetProjects\SouqBooks\Utilities\obj\Debug\net6.0\ref\Utilities.dll

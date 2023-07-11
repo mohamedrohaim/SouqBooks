@@ -9,6 +9,7 @@ namespace DataAccess.Repository.IRepository
 	public interface IUnitOfWork
 	{
 		ICategoryRepository category { get; }
+		ICoverTypeRepository coverType { get; }
 		void Save();
 	}
 }
