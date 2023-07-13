@@ -15,5 +15,6 @@ namespace SouqBooks.DataAccess.Data
 
         public DbSet<Category> categories { get; set; }
         public DbSet<CoverType> coverTypes { get; set; }
+        public DbSet<Product> products { get; set; }
     }
 }

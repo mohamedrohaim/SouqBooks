@@ -1,5 +1,6 @@
 ﻿using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using SouqBooks.DataAccess.Data;
 
@@ -9,6 +10,7 @@ namespace SouqBooks.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -18,6 +20,7 @@ namespace SouqBooks.Areas.Admin.Controllers
         {
 
             IEnumerable<Category> categories = _unitOfWork.category.GetAll();
+
             return View(categories);
         }
 
