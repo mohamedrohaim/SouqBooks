@@ -15,6 +15,7 @@ namespace SouqBooks.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+      
 
         public IActionResult Index()
         {
@@ -42,9 +43,6 @@ namespace SouqBooks.Areas.Admin.Controllers
                 Text = p.Name,
             }),
             
-
-
-
         };
             //projection using select
 
@@ -62,6 +60,19 @@ namespace SouqBooks.Areas.Admin.Controllers
                 return View(productVM);
             }
 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(ProductViewModel productViewModel, IFormFile file) {
+            if (ModelState.IsValid) {
+                
+                _unitOfWork.product.Add(productViewModel.product);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+
+            }
+            return View(productViewModel);
         }
 
         public IActionResult Edit(int? id)

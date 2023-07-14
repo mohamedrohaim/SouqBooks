@@ -2,50 +2,55 @@
 
 
 
-<form method="post" asp-action="Upsert">
-	<div class="border p-3 mt-4 d-flex flex-column align-items-center justify-content-center w-100">
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<div class="border p-3 mt-4 row">
 		<div class="row pb-2">
-			<h2>Edit Category</h2>
+			<h2>@(Model.product.Id!=0? "Update":"Create") Product</h2>
 			<hr />
 		</div>
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-12">
 			<label asp-for="product.Title" class="mb-1 fs-5"></label>
 			<input asp-for="product.Title" class="form-control w-100" />
 			<span asp-validation-for="product.Title" class="text-danger"></span>
 		</div>
 
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-12">
 			<label asp-for="product.Description" class="mb-1 fs-5"></label>
 			<textarea asp-for="product.Description" rows="3" class="form-control w-100"></textarea>
 			<span asp-validation-for="product.Description" class="text-danger"></span>
 		</div>
 
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-3">
 			<label asp-for="product.ISBN" class="mb-1 fs-5"></label>
 			<input asp-for="product.ISBN" class="form-control w-100" />
 			<span asp-validation-for="product.ISBN" class="text-danger"></span>
 		</div>
 
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-8">
 			<label asp-for="product.Author" class="mb-1 fs-5"></label>
 			<input asp-for="product.Author" class="form-control w-100" />
 			<span asp-validation-for="product.Author" class="text-danger"></span>
 		</div>
 
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-3">
 			<label asp-for="product.Price" class="mb-1 fs-5"></label>
 			<input asp-for="product.Price" class="form-control w-100" />
 			<span asp-validation-for="product.Price" class="text-danger"></span>
 		</div>
+		<div class="mt-3 col-8">
+			<label asp-for="product.ImageUrl" class="mb-1 fs-5"></label>
+			<input type="file" id="uploadBox" class="form-control w-100" />
+			<span asp-validation-for="product.Price" class="text-danger"></span>
+		</div>
 
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-6">
 			<label asp-for="product.CategoryId" class="mb-1 fs-5"></label>
 			<select asp-for="product.CategoryId" asp-items="ViewBag.categoryList" class="form-select">
 				<option disabled selected>--Select Category--</option>
 			</select>
 			<span asp-validation-for="product.CategoryId" class="text-danger"></span>
 		</div>
-		<div class="mt-3 w-75">
+		<div class="mt-3 col-6">
 			<label asp-for="product.CoverTypeId" class="mb-1 fs-5"></label>
 			<select asp-for="product.CoverTypeId" asp-items="ViewBag.coverType" class="form-select">
 				<option disabled selected>--Select cover Type--</option>
@@ -54,14 +59,50 @@
 		</div>
 
 
-		<button type="submit" class="btn btn-warning mt-3">
-			<i class="fas fa-save"></i> Save
-		</button>
-		<a class="btn btn-danger mt-3" asp-action="Index">
-			<i class="fa-solid fa-arrow-left"></i> Back To lsit
-		</a>
+
+		<div class="col-12 ">
+			
+			@if (Model.product.Id != 0)
+			{
+				<button type="submit" class="btn btn-warning mt-3 w-auto">
+					<i class="fas fa-save"></i> Update
+				</button>
+			}
+			else
+			{
+				<button type="submit" onclick="return checkImageInput()" class="btn btn-warning mt-3 w-auto" id="submitButton">
+					<i class="fas fa-save"></i> Create
+				</button>
+				
+			}
+			<a class="btn btn-danger mt-3 w-auto" asp-action="Index">
+					<i class="fa-solid fa-arrow-left"></i> Back To lsit
+				</a>
+			
+		</div>
 
 	</div>
 
 
 </form>
+
+@section scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+			<script>
+
+			function checkImageInput() {
+				const imageInput = document.getElementById('uploadBox');
+			if (document.getElementById("uploadBox").value == "") {
+				swal("Oops!", "please select image.!", "error");
+
+				return false;
+					}
+					return true;
+				
+
+			}
+		</script>
+
+}
