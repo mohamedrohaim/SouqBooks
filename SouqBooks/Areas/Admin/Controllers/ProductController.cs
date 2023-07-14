@@ -11,9 +11,11 @@ namespace SouqBooks.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        private IWebHostEnvironment _webHostEnvironment;
+        public ProductController(IUnitOfWork unitOfWork,IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
       
 
@@ -64,9 +66,21 @@ namespace SouqBooks.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductViewModel productViewModel, IFormFile file) {
+        public IActionResult Upsert(ProductViewModel productViewModel, IFormFile? file) {
             if (ModelState.IsValid) {
-                
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null) { 
+                 string fileName=Guid.NewGuid().ToString();
+                    var uploads =Path.Combine(wwwRootPath, @"Images\Products");
+                    var extention = Path.GetExtension(file.FileName);
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extention), FileMode.Create)) {
+                     file.CopyTo(fileStreams);
+                    }
+                    productViewModel.product.ImageUrl = @"\Images\Products\" + fileName + extention;
+
+
+
+				}
                 _unitOfWork.product.Add(productViewModel.product);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));

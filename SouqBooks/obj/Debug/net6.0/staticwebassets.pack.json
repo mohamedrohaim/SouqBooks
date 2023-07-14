@@ -97,6 +97,10 @@
       "PackagePath": "staticwebassets\\font-awesome\\js\\all.min.js"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\font-awesome\\js\\brands.min.js",
+      "PackagePath": "staticwebassets\\font-awesome\\js\\brands.min.js"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\font-awesome\\sprites\\brands.svg",
       "PackagePath": "staticwebassets\\font-awesome\\sprites\\brands.svg"
     },

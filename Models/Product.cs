@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -30,16 +33,19 @@ namespace Models
         [Range(1, 100000)]
 
         public double Price { get; set; }
-        public string ImageUrl { get; set; }
+		[ValidateNever]
+		public string ImageUrl { get; set; }
         [Required(ErrorMessage = "Category is Required")]
         [Display(Name = "Catrgory")]
         public int CategoryId { get; set; }
-
-        public Category category { get; set; }
+       
         [Required(ErrorMessage = "Cover Type is Required")]
 
         [Display(Name = "Cover Type")]
         public int CoverTypeId { get; set; }
-        public CoverType coverType { get; set; }
-    }
+		[ValidateNever]
+		public CoverType coverType { get; set; }
+		[ValidateNever]
+		public Category category { get; set; }
+	}
 }

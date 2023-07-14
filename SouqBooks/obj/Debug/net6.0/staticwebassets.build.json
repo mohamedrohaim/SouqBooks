@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Pwn2HGcNxvs8CixAjuFtFlM+Gi4LMbbuMW4ij+sZuZk=",
+  "Hash": "BLxVYBcRISItXUyVNJ+jn/EUpcJ1STy+Vtz1aMGt6TQ=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -440,6 +440,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\font-awesome\\js\\all.min.js"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\font-awesome\\js\\brands.min.js",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "font-awesome/js/brands.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\font-awesome\\js\\brands.min.js"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\font-awesome\\sprites\\brands.svg",
