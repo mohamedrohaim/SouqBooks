@@ -7,19 +7,24 @@
     <h2>Product List</h2>
     <a asp-controller="Product" asp-action="Upsert" class="btn btn-warning align-text-center mt-2"><i class="fa-solid fa-plus  "></i> Create Product</a>
 </div>
-<table class="table table-bordered table-striped w-100">
+<table id="productsTable" class="table table-bordered table-striped w-100">
     <thead>
         <tr>
             <th>Title</th>
-            <th>Authow</th>
+            <th>Author</th>
             <th>ISBN</th>
             <th>Price</th>
             <th>Category</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Price</th>
+            <th>Controll</th>
+           
         </tr>
     </thead>
     <tbody>
 
     </tbody>
 </table> 
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

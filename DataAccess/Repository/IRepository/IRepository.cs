@@ -9,8 +9,8 @@ namespace DataAccess.Repository.IRepository
 {
 	public interface IRepository<T> where T : class
 	{
-		IEnumerable<T> GetAll();
-		T GetFirstOrDefault(Expression<Func<T,bool>>filter);
+		T GetFirstOrDefault(Expression<Func<T,bool>>filter,string? includePropererities=null);
+		IEnumerable<T> GetAll(string? includePropererities=null);
 		void Add(T entity);
 		void Delete(T entity);
 

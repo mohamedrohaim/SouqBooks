@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\SouqBooks.bundle.scp.css"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\bootswatchTheme.css",
       "PackagePath": "staticwebassets\\css\\bootswatchTheme.css"
     },
@@ -143,6 +147,10 @@
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\font-awesome\\webfonts\\fa-v4compatibility.woff2",
       "PackagePath": "staticwebassets\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\js\\product.js",
+      "PackagePath": "staticwebassets\\js\\product.js"
     },
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\js\\site.js",

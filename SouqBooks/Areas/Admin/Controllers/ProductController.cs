@@ -22,8 +22,8 @@ namespace SouqBooks.Areas.Admin.Controllers
         public IActionResult Index()
         {
 
-            IEnumerable<Product> products = _unitOfWork.product.GetAll();
-            return View(products);
+          
+            return View();
         }
 
         public IActionResult Upsert(int? id)
@@ -159,5 +159,17 @@ namespace SouqBooks.Areas.Admin.Controllers
             }
         }
 
-    }
+        #region Api Calls
+
+        [HttpGet]
+        public IActionResult GetAll() { 
+            var producs=_unitOfWork.product.GetAll(includePropererities:"category,coverType");
+            return Json(new { data=producs});
+        }
+
+
+		#endregion
+
+	}
+
 }

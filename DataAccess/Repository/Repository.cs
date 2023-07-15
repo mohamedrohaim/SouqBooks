@@ -19,6 +19,7 @@ namespace DataAccess.Repository
 		{
 			_context=context;
 			this.dbSet=_context.Set<T>();
+
 		}
 
 		public void Add(T entity)
@@ -31,16 +32,28 @@ namespace DataAccess.Repository
 			dbSet.Remove(entity);
 		}
 
-		public IEnumerable<T> GetAll()
+		public IEnumerable<T> GetAll(string? includePropererities = null)
 		{
 			IQueryable<T> query = dbSet;
+			if (includePropererities != null) {
+				foreach (var includeProp in includePropererities.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) { 
+				query= query.Include(includeProp);
+				}
+			}
 			return query.ToList();
 		}
 
-		public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+		public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includePropererities = null)
 		{
 			IQueryable<T> query = dbSet;
-			query=query.Where(filter);
+            if (includePropererities != null)
+            {
+                foreach (var includeProp in includePropererities.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            query =query.Where(filter);
 
 			return query.FirstOrDefault();
 		}
