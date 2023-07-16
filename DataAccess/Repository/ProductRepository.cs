@@ -29,9 +29,10 @@ namespace DataAccess.Repository
 				dbProduct.CategoryId= product.CategoryId;
 				dbProduct.CoverTypeId= product.CoverTypeId;
 				dbProduct.Price= product.Price;
-				if (product.ImageUrl != null) { 
-				dbProduct.ImageUrl= product.ImageUrl;
-				 
+				if (product.ImageUrl != null)
+				{
+					dbProduct.ImageUrl = product.ImageUrl;
+
 				}
 			}
 		}

@@ -47,18 +47,17 @@ namespace SouqBooks.Areas.Admin.Controllers
             
         };
             //projection using select
-
+            ViewBag.categoryList = productVM.CatecoryList;
+            ViewBag.coverType = productVM.CoverTypeList;
             if (id == null || id == 0)
             {
                 //create product
-                ViewBag.categoryList = productVM.CatecoryList;
-                ViewBag.coverType = productVM.CoverTypeList;
                 return View(productVM);
             }
             else
             {
-                //Update product
-               
+                //update product
+                productVM.product = _unitOfWork.product.GetFirstOrDefault(p => p.Id==id);
                 return View(productVM);
             }
 
@@ -77,8 +76,6 @@ namespace SouqBooks.Areas.Admin.Controllers
                      file.CopyTo(fileStreams);
                     }
                     productViewModel.product.ImageUrl = @"\Images\Products\" + fileName + extention;
-
-
 
 				}
                 _unitOfWork.product.Add(productViewModel.product);
