@@ -2,12 +2,14 @@
 
 
 
-<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+<form method="post" asp-action=@(Model.product.Id!=0? "Edit":"Create") enctype="multipart/form-data">
 	<div class="border p-3 mt-4 row">
 		<div class="row pb-2">
-			<h2>@(Model.product.Id!=0? "Update":"Create") Product</h2>
+			<h2> Product</h2>
 			<hr />
 		</div>
+		<input hidden asp-for="product.Id" class="form-control w-100" />
+
 		<div class="mt-3 col-12">
 			<label asp-for="product.Title" class="mb-1 fs-5"></label>
 			<input asp-for="product.Title" class="form-control w-100" />
@@ -34,8 +36,8 @@
 
 		<div class="mt-3 col-8">
 			<label asp-for="product.ImageUrl" class="mb-1 fs-5"></label>
-			<input type="file" id="uploadBox" class="form-control w-100" name="file"/>
-			<span asp-validation-for="product.Price" class="text-danger"></span>
+			<input type="file" id="uploadBox"  class="form-control w-100" name="file"/>
+			<input hidden asp-for="product.ImageUrl"/>
 		</div>
 		<div class="mt-3 col-3">
 			<label asp-for="product.Price" class="mb-1 fs-5"></label>
@@ -105,5 +107,18 @@
 
 			}
 		</script>
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+			mergetags_list: [
+				{ value: 'First.Name', title: 'First Name' },
+				{ value: 'Email', title: 'Email' },
+			]
+		});
+	</script>
 
 }

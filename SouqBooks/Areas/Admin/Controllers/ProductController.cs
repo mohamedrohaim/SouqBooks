@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using Models.ViewModel;
+using SouqBooks.Utilities;
 
 namespace SouqBooks.Areas.Admin.Controllers
 {
@@ -12,10 +13,13 @@ namespace SouqBooks.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private IWebHostEnvironment _webHostEnvironment;
-        public ProductController(IUnitOfWork unitOfWork,IWebHostEnvironment webHostEnvironment)
+		private readonly ImageUploader _imageUploader;
+
+		public ProductController(IUnitOfWork unitOfWork,IWebHostEnvironment webHostEnvironment,ImageUploader imageUploader)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
+            _imageUploader = imageUploader;
         }
       
 
@@ -51,12 +55,10 @@ namespace SouqBooks.Areas.Admin.Controllers
             ViewBag.coverType = productVM.CoverTypeList;
             if (id == null || id == 0)
             {
-                //create product
                 return View(productVM);
             }
             else
             {
-                //update product
                 productVM.product = _unitOfWork.product.GetFirstOrDefault(p => p.Id==id);
                 return View(productVM);
             }
@@ -65,70 +67,70 @@ namespace SouqBooks.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductViewModel productViewModel, IFormFile? file) {
+        public IActionResult Create(ProductViewModel productViewModel, IFormFile? file) {
             if (ModelState.IsValid) {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null) { 
-                 string fileName=Guid.NewGuid().ToString();
-                    var uploads =Path.Combine(wwwRootPath, @"Images\Products");
-                    var extention = Path.GetExtension(file.FileName);
-                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extention), FileMode.Create)) {
-                     file.CopyTo(fileStreams);
-                    }
-                    productViewModel.product.ImageUrl = @"\Images\Products\" + fileName + extention;
-
+                productViewModel.product.ImageUrl = _imageUploader.UploadImage(file);
+                try
+                {
+					_unitOfWork.product.Add(productViewModel.product);
+					_unitOfWork.Save();
 				}
-                _unitOfWork.product.Add(productViewModel.product);
-                _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
+                catch(Exception error) {
+					TempData["error"] = error.Message;
+                    return View("Upsert",productViewModel);
+				}
 
-            }
-            return View(productViewModel);
+			}
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int? id)
-        {
-            if (id != null)
-            {
-                var product = _unitOfWork.product.GetFirstOrDefault(c => c.Id == id);
-                if (product != null)
-                {
-                    return View(product);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            return NotFound();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel productViewModel,IFormFile? file)
         {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "product updated successfully";
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                return View(product);
-            }
-        }
+            
+			if (ModelState.IsValid)
+			{
+                if (file != null ) {
+                    _imageUploader.DeleteFile(productViewModel.product.ImageUrl);
+					productViewModel.product.ImageUrl = _imageUploader.UploadImage(file);
+                }
+                try {
+					_unitOfWork.product.Update(productViewModel.product);
+					_unitOfWork.Save();
+					TempData["success"] = "product updated successfully";
+					return RedirectToAction(nameof(Index));
+				}
+				catch (Exception error)
+				{
+					TempData["error"] = error.Message;
+					return View("Upsert",productViewModel);
+				}
+			}
+			else
+			{
+				return View("Upsert",productViewModel);
+			}
+		}
 
 
         public IActionResult Delete(int id)
         {
             if (id != null)
             {
-                var product = _unitOfWork.product.GetFirstOrDefault(c => c.Id == id);
-                if (product != null)
+				var prductViewModel = new ProductViewModel()
                 {
-                    return View(product);
+                    product = _unitOfWork.product.GetFirstOrDefault(filter:c => c.Id == id,includePropererities: "category,coverType"),
+                    
+				    
+
+                };
+				ViewBag.categoryList = prductViewModel.CatecoryList;
+				ViewBag.coverType = prductViewModel.CoverTypeList;
+				if (prductViewModel.product != null)
+                {
+                    return View(prductViewModel);
                 }
                 else
                 {
@@ -141,18 +143,25 @@ namespace SouqBooks.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Product product)
+        public IActionResult Delete(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.product.Delete(product);
-                _unitOfWork.Save();
-                TempData["success"] = "product deleted successfully";
-                return RedirectToAction(nameof(Index));
-            }
+                try {
+					_unitOfWork.product.Delete(productViewModel.product);
+					_unitOfWork.Save();
+					TempData["success"] = "product deleted successfully";
+					return RedirectToAction(nameof(Index));
+				}
+				catch (Exception error)
+				{
+					TempData["error"] = error.Message;
+					return View( productViewModel);
+				}
+			}
             else
             {
-                return View(product);
+                return View(productViewModel);
             }
         }
 

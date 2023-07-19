@@ -34,6 +34,7 @@ namespace DataAccess.Repository
 					dbProduct.ImageUrl = product.ImageUrl;
 
 				}
+				_context.products.Update(dbProduct);
 			}
 		}
 	}

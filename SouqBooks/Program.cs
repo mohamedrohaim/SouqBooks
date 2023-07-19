@@ -2,6 +2,7 @@ using DataAccess.Repository;
 using DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using SouqBooks.DataAccess.Data;
+using SouqBooks.Utilities;
 
 namespace SouqBooks
 {
@@ -20,8 +21,9 @@ namespace SouqBooks
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+			builder.Services.AddScoped<ImageUploader,ImageUploader>(); // Register ImageUploader as a scoped service
 
-            var app = builder.Build();
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

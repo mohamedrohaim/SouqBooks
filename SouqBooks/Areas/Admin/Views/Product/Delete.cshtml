@@ -1,0 +1,76 @@
+﻿@using Models.ViewModel;
+
+@model ProductViewModel
+
+
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+	<div class="border p-3 mt-4 row">
+		<div class="row pb-2">
+			<h2>Are You Sure You Want To Delet This Product ?</h2>
+			<hr />
+		</div>
+		<input readonly hidden asp-for="product.Id" class="form-control w-100" />
+
+		<div class="mt-3 col-12">
+			<label asp-for="product.Title" class="mb-1 fs-5"></label>
+			<input readonly asp-for="product.Title" class="form-control w-100" />
+			<span asp-validation-for="product.Title" class="text-danger"></span>
+		</div>
+
+		<div class="mt-3 col-12">
+			<label asp-for="product.Description" class="mb-1 fs-5"></label>
+			<p class="text-secondary" >@Html.Raw(Model.product.Description)</p>
+			<span asp-validation-for="product.Description" class="text-danger"></span>
+		</div>
+
+		<div class="mt-3 col-3">
+			<label asp-for="product.ISBN" class="mb-1 fs-5"></label>
+			<input readonly asp-for="product.ISBN" class="form-control w-100" />
+			<span asp-validation-for="product.ISBN" class="text-danger"></span>
+		</div>
+
+		<div class="mt-3 col-8">
+			<label asp-for="product.Author" class="mb-1 fs-5"></label>
+			<input readonly asp-for="product.Author" class="form-control w-100" />
+			<span asp-validation-for="product.Author" class="text-danger"></span>
+		</div>
+
+		
+		<div class="mt-3 col-2">
+			<label asp-for="product.Price" class="mb-1 fs-5"></label>
+			<input readonly asp-for="product.Price" class="form-control w-100" />
+			<span asp-validation-for="product.Price" class="text-danger"></span>
+		</div>
+
+
+		<div class="mt-3 col-5">
+			<label asp-for="product.CategoryId" class="mb-1 fs-5"></label>
+			<select asp-for="product.CategoryId" asp-items="ViewBag.categoryList" class="form-select">
+				<option disabled selected>--Select Category--</option>
+			</select>
+			<span asp-validation-for="product.CategoryId" class="text-danger"></span>
+		</div>
+		<div class="mt-3 col-5">
+			<label asp-for="product.CoverTypeId" class="mb-1 fs-5"></label>
+			<select asp-for="product.CoverTypeId" asp-items="ViewBag.coverType" class="form-select">
+				<option disabled selected>--Select cover Type--</option>
+			</select>
+			<span asp-validation-for="product.CoverTypeId" class="text-danger"></span>
+		</div>
+
+
+
+		<div class="col-12 ">
+
+				<button type="submit"  class="btn btn-warning mt-3 w-auto" id="submitButton">
+				<i class="fa-regular fa-trash-can"></i> Delete
+				</button>
+
+		</div>
+
+	</div>
+
+
+</form>
+

@@ -25,7 +25,8 @@ function loadDataTable() {
                                              <a href="/Admin/Product/Upsert?id=${data}">
                                                 <i class="fa-regular fa-pen-to-square" style="color: #12ce31;"></i>
                                             </a>
-                                            <a href="/Admin/Product/Upsert?id=1" >
+                                              | 
+                                            <a href="/Admin/Product/Delete?id=${data}" >
                                             <i class="fa-regular fa-trash-can" style="color: #f21f07;"></i>
                                             </a>
                         </div>
