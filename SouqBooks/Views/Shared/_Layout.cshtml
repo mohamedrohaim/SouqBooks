@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SouqBooks</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
 	<link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" asp-area="Customer" asp-action="Index" asp-controller="Home">SouqBooks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-action="Index" asp-controller="Home" >
+                            <a class="nav-link active" asp-area="Customer" asp-action="Index" asp-controller="Home" >
                                 Home
                                 <span class="visually-hidden">(current)</span>
                             </a>
@@ -51,7 +52,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container w-100 main">
         <main role="main" class="pb-3">
             <partial name="_Toast" />
             @RenderBody()

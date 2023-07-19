@@ -29,7 +29,7 @@
 				file.CopyTo(fileStream);
 			}
 
-			return filePath;
+			return uniqueFileName;
 
 		}
 

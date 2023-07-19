@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\SouqBooks.bundle.scp.css"
     },
     {
-      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\46556cf8-38e7-4864-91a4-909187f93e44.jpg",
-      "PackagePath": "staticwebassets\\Images\\Products\\46556cf8-38e7-4864-91a4-909187f93e44.jpg"
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg",
+      "PackagePath": "staticwebassets\\Images\\Products\\0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg"
     },
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\4ab01a5b-63f3-425d-969b-f0c3ecb6ec07.jpeg",
       "PackagePath": "staticwebassets\\Images\\Products\\4ab01a5b-63f3-425d-969b-f0c3ecb6ec07.jpeg"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\54fa960d-4612-4249-81c5-12b8e73b36d0.gif",
+      "PackagePath": "staticwebassets\\Images\\Products\\54fa960d-4612-4249-81c5-12b8e73b36d0.gif"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\6a7d493c-650f-47bc-b04c-2feb7d69b05b.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\6a7d493c-650f-47bc-b04c-2feb7d69b05b.jpeg"
     },
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\70bb8614-e7ab-48f6-8d0b-c49fd84fb1a6.jpeg",
@@ -19,6 +27,14 @@
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\9caa071c-85a9-44bb-b203-460f8b50b40b.jpeg",
       "PackagePath": "staticwebassets\\Images\\Products\\9caa071c-85a9-44bb-b203-460f8b50b40b.jpeg"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Products\\f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg"
     },
     {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DKyKxVMgZFUJpRMA0oQO4TpM4DLi7hpN1IJvKoUUV2Q=",
+  "Hash": "SvvZwlvqbzWJovzAG4PeCk8G2yBuVdLftKhSVOze0oU=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -646,12 +646,12 @@
       "OriginalItemSpec": "wwwroot\\font-awesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
-      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\46556cf8-38e7-4864-91a4-909187f93e44.jpg",
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg",
       "SourceId": "SouqBooks",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
       "BasePath": "_content/SouqBooks",
-      "RelativePath": "Images/Products/46556cf8-38e7-4864-91a4-909187f93e44.jpg",
+      "RelativePath": "Images/Products/0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -660,7 +660,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Products\\46556cf8-38e7-4864-91a4-909187f93e44.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\4ab01a5b-63f3-425d-969b-f0c3ecb6ec07.jpeg",
@@ -678,6 +678,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\4ab01a5b-63f3-425d-969b-f0c3ecb6ec07.jpeg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\54fa960d-4612-4249-81c5-12b8e73b36d0.gif",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/54fa960d-4612-4249-81c5-12b8e73b36d0.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\54fa960d-4612-4249-81c5-12b8e73b36d0.gif"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\6a7d493c-650f-47bc-b04c-2feb7d69b05b.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/6a7d493c-650f-47bc-b04c-2feb7d69b05b.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\6a7d493c-650f-47bc-b04c-2feb7d69b05b.jpeg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\70bb8614-e7ab-48f6-8d0b-c49fd84fb1a6.jpeg",
@@ -712,6 +746,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\9caa071c-85a9-44bb-b203-460f8b50b40b.jpeg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg",
