@@ -1,0 +1,47 @@
+﻿@model ShoppingCart
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+        <h1>@Model.product.Title</h1>
+        <div class="row">
+            <div class="col-md-4">
+            <img src="~/Images/Products/@Model.product.ImageUrl" alt="Product Image" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <dl class="row">
+                    <dt class="col-sm-3">ISBN:</dt>
+                    <dd class="col-sm-9">@Model.product.ISBN</dd>
+                    <dt class="col-sm-3">Author:</dt>
+                    <dd class="col-sm-9">@Model.product.Author</dd>
+                    <dt class="col-sm-3">Details:</dt>
+                    <dd class="col-sm-9">@Html.Raw(Model.product.Description)</dd>
+                    <dt class="col-sm-3">Category:</dt>
+                    <dd class="col-sm-9">@Model.product.category.Name</dd>
+                </dl>
+               <form method="post" asp-action="#" class="w-100 d-flex flex-column justify-content-center">
+                    <div class="form-group w-100">
+                        <label for="orderCount">Order Count:</label>
+                         <input asp-for="Count" class="form-control" value="1">
+                         <span class="text-danger" asp-validation-for="Count"></span>
+                    </div>
+
+                <div class="w-100 d-flex ">
+                    <a type="button" class="btn btn-danger me-1 w-50 mt-3 " asp-controller="Home" asp-action="Index">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back To Home
+                    </a>
+                    <button type="submit" class="btn btn-success w-50 mt-3 ">
+                        <i class="fa-solid fa-cart-shopping me-2"> </i>
+                        Order Now
+                    </button>
+                </div>
+                
+               </form>
+            </div>
+        </div>
+    </div>
+

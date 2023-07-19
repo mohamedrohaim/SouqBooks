@@ -31,6 +31,29 @@ namespace SouqBooks.Areas.Customer.Controllers
             return View(producs);
         }
 
+        public IActionResult Details(int id)
+        {
+            ShoppingCart cart = new ShoppingCart() {
+             product= _unitOfWork.product.GetFirstOrDefault(filter: p => p.Id == id, "category,coverType"),
+             Count=1
+            };
+            if (cart.product != null)
+            {
+                return View(cart);
+            }
+            else { 
+            return NotFound();
+            }
+        }
+
+
+
+
+
+
+
+
+
 
         public IActionResult Privacy()
         {

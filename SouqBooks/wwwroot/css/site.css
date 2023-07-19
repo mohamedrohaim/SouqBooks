@@ -19,3 +19,10 @@ body {
   margin-bottom: 60px;
  
 }
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.hover-zoom:hover {
+        transform: scale(0.9);
+}
