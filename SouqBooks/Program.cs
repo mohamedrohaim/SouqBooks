@@ -1,8 +1,12 @@
 using DataAccess.Repository;
 using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using SouqBooks.DataAccess.Data;
 using SouqBooks.Utilities;
+using System;
 
 namespace SouqBooks
 {
@@ -17,7 +21,22 @@ namespace SouqBooks
             options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                        {
+                            options.LoginPath = new PathString("Account/Account/Login");
+                            options.AccessDeniedPath = new PathString("Customer/Home/Index");
+                        });
+            builder.Services.AddIdentity<ApplicationUsers, IdentityRole>(options =>
+            {
 
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 5;
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+                        .AddDefaultTokenProviders();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

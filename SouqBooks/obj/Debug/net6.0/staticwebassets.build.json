@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SvvZwlvqbzWJovzAG4PeCk8G2yBuVdLftKhSVOze0oU=",
+  "Hash": "jXZOtIn+rmtNe4gHO8IT8Ald92IzHC32TXyudfjqW0E=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -661,6 +661,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\0f40172b-b4b6-4bf0-a1c4-2574261fa128.jpg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\2867949d-1418-44c0-8238-0ee7ae3dc967.jpg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/2867949d-1418-44c0-8238-0ee7ae3dc967.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\2867949d-1418-44c0-8238-0ee7ae3dc967.jpg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\4ab01a5b-63f3-425d-969b-f0c3ecb6ec07.jpeg",

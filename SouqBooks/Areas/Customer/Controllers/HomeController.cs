@@ -48,13 +48,6 @@ namespace SouqBooks.Areas.Customer.Controllers
 
 
 
-
-
-
-
-
-
-
         public IActionResult Privacy()
         {
             return View();

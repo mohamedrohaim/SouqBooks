@@ -23,13 +23,23 @@
                     <dd class="col-sm-9">@Model.product.category.Name</dd>
                 </dl>
                <form method="post" asp-action="#" class="w-100 d-flex flex-column justify-content-center">
-                    <div class="form-group w-100">
-                        <label for="orderCount">Order Count:</label>
-                         <input asp-for="Count" class="form-control" value="1">
-                         <span class="text-danger" asp-validation-for="Count"></span>
+                    
+                   @{
+                    var priceAfterDiscount = Math.Round((Model.product.Price - Model.product.Price * 0.30), 2);
+                   }
+                    <div class="w-100 d-flex align-content-center ">
+                        <div class="form-group me-3  w-75">
+                            <label for="orderCount">Order Count:</label>
+                            <input asp-for="Count" class="form-control" value="1">
+                            <span class="text-danger" asp-validation-for="Count"></span>
+                        </div>
+                    <div class="form-group mt-2">
+                        <label for="orderCount">Order Price:</label>
+                        <h5 class="">@priceAfterDiscount    <del class="text-danger"> @Model.product.Price £E</del> </h5>
+                        </div>
+                    
                     </div>
-
-                <div class="w-100 d-flex ">
+                    <div class="w-100 d-flex ">
                     <a type="button" class="btn btn-danger me-1 w-50 mt-3 " asp-controller="Home" asp-action="Index">
                         <i class="fa-solid fa-arrow-left"></i>
                         Back To Home

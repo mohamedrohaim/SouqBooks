@@ -545,3 +545,4 @@ F:\DotNetProjects\SouqBooks\SouqBooks\bin\Debug\net6.0\Models.pdb
 F:\DotNetProjects\SouqBooks\SouqBooks\obj\Debug\net6.0\SouqBooks.MvcApplicationPartsAssemblyInfo.cs
 F:\DotNetProjects\SouqBooks\SouqBooks\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 F:\DotNetProjects\SouqBooks\SouqBooks\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+F:\DotNetProjects\SouqBooks\SouqBooks\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
