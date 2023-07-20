@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
+	<link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link href="~/css/accountlayout.css" rel="stylesheet" />
+
+</head>
+<body class="">
+  <div class="container mt-5">
+    <div class="row justify-content-center ">
+             
+      <div class="col-md-8 AccountCard">
+        <div class="w-100">
+            <h3 class="w-100 text-center bg-black p-2">
+                Welcome to SouqeBooks!
+           </h3>
+           <div class="justify-content-center align-items-center p-4">
+             @RenderBody()
+           </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/39n60yjjplstuc4hlty4507f9dp7ji3oe6n8q76h6rmw4uf0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+          <h3>Register</h3>
+          <form>
+            <div class="form-group">
+              <label for="FName">First Name</label>
+              <input type="text" class="form-control" id="FName" placeholder="Enter your First Name" required>
+            </div>
+            <div class="form-group">
+              <label for="LName">Last Name</label>
+              <input type="text" class="form-control" id="LName" placeholder="Enter your Last Name" required>
+            </div>
+            <div class="form-group">
+              <label for="Email">Email</label>
+              <input type="email" class="form-control" id="Email" placeholder="Enter your Email" required>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" class="form-control" id="Password" placeholder="Enter your Password" required>
+            </div>
+            <div class="form-group">
+              <label for="VerifyPassword">Verify Password</label>
+              <input type="password" class="form-control" id="VerifyPassword" placeholder="Verify your Password" required>
+            </div>
+            <div class="form-group form-check mt-2">
+              <input type="checkbox" class="form-check-input" id="Agree" required>
+              <label class="form-check-label" for="Agree">I agree to the Terms and Conditions</label>
+            </div>
+            <div class="d-flex justify-content-around mt-3">
+                <button type="submit" class="btn btn-danger w-25">Register</button>
+                <span>Have an account ? <a class="text-info text-decoration-none">Login Now</a></span>
+            </div>
+          </form>

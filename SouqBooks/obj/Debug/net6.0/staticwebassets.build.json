@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jXZOtIn+rmtNe4gHO8IT8Ald92IzHC32TXyudfjqW0E=",
+  "Hash": "tcAVr+pybYgfOBBcxtc0mBMML2EdInD0xsauMcmkxpM=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SouqBooks.bundle.scp.css"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\AccountLayout.css",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "css/AccountLayout.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\AccountLayout.css"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\bootswatchTheme.css",

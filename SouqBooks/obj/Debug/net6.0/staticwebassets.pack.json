@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\AccountLayout.css",
+      "PackagePath": "staticwebassets\\css\\AccountLayout.css"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\bootswatchTheme.css",
       "PackagePath": "staticwebassets\\css\\bootswatchTheme.css"
     },

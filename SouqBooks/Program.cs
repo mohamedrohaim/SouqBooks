@@ -29,7 +29,7 @@ namespace SouqBooks
                         });
             builder.Services.AddIdentity<ApplicationUsers, IdentityRole>(options =>
             {
-
+                
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 5;

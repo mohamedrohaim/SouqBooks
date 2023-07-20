@@ -30,12 +30,20 @@
                             </a>
                         </li>
                         
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="Customer" asp-action="Register" asp-controller="Account" >
+                                Account
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Managment</a>
                             <div class="dropdown-menu" data-bs-popper="static">
                                 <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Cover Type</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Product</a>
+                               
                             </div>
                         </li>
 
@@ -60,7 +68,6 @@
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<a href="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map">~/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map</a>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/39n60yjjplstuc4hlty4507f9dp7ji3oe6n8q76h6rmw4uf0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
