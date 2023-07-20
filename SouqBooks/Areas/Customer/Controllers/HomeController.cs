@@ -1,4 +1,5 @@
 ﻿using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace SouqBooks.Areas.Customer.Controllers
 {
 
     [Area("Customer")]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -2,11 +2,13 @@ using DataAccess.Repository;
 using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using SouqBooks.DataAccess.Data;
 using SouqBooks.Utilities;
 using System;
+using System.Security.Policy;
 
 namespace SouqBooks
 {
@@ -15,18 +17,23 @@ namespace SouqBooks
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var area = "Customer"; // Replace this with the actual area name
+            var loginPath = "/Account/Login"; // Replace this with the actual login path
 
             // Add services to the container.
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
+
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                         {
-                            options.LoginPath = new PathString("Customer/Account/Register");
-                            options.AccessDeniedPath = new PathString("Customer/Home/Index");
+                            options.AccessDeniedPath = new PathString("Customer/account/Login");
+                            options.LoginPath = new PathString("/Account/Login");
+                            options.AccessDeniedPath = new PathString("/Account/Login");
                         });
+
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 
@@ -64,6 +71,12 @@ namespace SouqBooks
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+           
+            var n=app.MapControllerRoute(
+                 name: "LoginRoute",
+                 pattern: "{area=Customer}/{controller=Account}/{action=Login}"
+                 );
+
 
             app.Run();
         }

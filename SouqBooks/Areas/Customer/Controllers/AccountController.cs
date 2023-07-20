@@ -28,6 +28,7 @@ namespace SouqBooks.Areas.Customer.Controllers
             _signInManger = signInManager;
 
         }
+        #region Register
         public IActionResult Register()
         {
             return View();
@@ -77,5 +78,54 @@ namespace SouqBooks.Areas.Customer.Controllers
             };
             return user;
         }
+        #endregion
+
+        #region Login
+        public IActionResult Login() {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    bool flag = await _userManager.CheckPasswordAsync(user, model.Password);
+                    if (flag)
+                    {
+                        var result = await _signInManger.PasswordSignInAsync(user, model.Password, model.IsAgree, false);
+                        if (result.Succeeded)
+                            return RedirectToAction("Index", "Home");
+                        else
+                            return View(model);
+
+                    }
+                    ModelState.AddModelError(string.Empty, "password is not correct");
+                    return View(model);
+                }
+                TempData["error"] = "Email Is Not Existing";
+                return View(model);
+            }
+            else
+                return View(model);
+        }
+#endregion
+
+        #region SignOut
+
+        public new async Task<IActionResult> Logout()
+        {
+            await _signInManger.SignOutAsync();
+
+            return RedirectToAction(nameof(Login));
+
+        }
+
+        #endregion
+
+
     }
 }

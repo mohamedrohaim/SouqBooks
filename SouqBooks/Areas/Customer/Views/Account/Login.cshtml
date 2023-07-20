@@ -1,0 +1,46 @@
+﻿@using Models.ViewModel;
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+
+          <h3>Login</h3>
+<form asp-action="Login" method="post" enctype="multipart/form-data">
+            
+            <div class="form-group">
+              <label for="Email">Email</label>
+              <input type="email" class="form-control" asp-for="Email" placeholder="Enter your Email" required>
+              <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            
+             
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" class="form-control" asp-for="Password" placeholder="Enter your Password" required>
+                <span class="text-danger" asp-validation-for="Password"></span>
+
+            </div>
+           
+
+               
+
+            <div class="form-group form-check mt-2">
+              <input type="checkbox" class="form-check-input" id="Agree" required>
+              <label class="form-check-label" asp-for="IsAgree">I agree to the Terms and Conditions</label>
+            </div>
+
+             
+            <div class="d-flex justify-content-around mt-3">
+        <button type="submit" onclick="return checkImageInput()" class="btn btn-danger w-25">Register</button>
+                <span>Dont't an account ? <a asp-action="Register" class="text-info text-decoration-none">Register Now</a></span>
+            </div>
+          </form>
+
+@section scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+
