@@ -24,10 +24,10 @@ namespace SouqBooks
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
                         {
-                            options.LoginPath = new PathString("Account/Account/Login");
+                            options.LoginPath = new PathString("Customer/Account/Register");
                             options.AccessDeniedPath = new PathString("Customer/Home/Index");
                         });
-            builder.Services.AddIdentity<ApplicationUsers, IdentityRole>(options =>
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 
                 options.Password.RequireLowercase = true;
@@ -37,11 +37,13 @@ namespace SouqBooks
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
                         .AddDefaultTokenProviders();
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 			builder.Services.AddScoped<ImageUploader,ImageUploader>(); // Register ImageUploader as a scoped service
-
+            builder.Services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
+            builder.Services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
 			var app = builder.Build();
 
             // Configure the HTTP request pipeline.

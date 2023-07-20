@@ -1,37 +1,83 @@
-﻿
+﻿@using Models.ViewModel;
+@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
           <h3>Register</h3>
-          <form>
+<form asp-action="Register" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
             <div class="form-group">
-              <label for="FName">First Name</label>
-              <input type="text" class="form-control" id="FName" placeholder="Enter your First Name" required>
+              <label >First Name</label>
+              <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter your First Name" required>
+              <span class="text-danger" asp-validation-for="FirstName"></span>
             </div>
             <div class="form-group">
-              <label for="LName">Last Name</label>
-              <input type="text" class="form-control" id="LName" placeholder="Enter your Last Name" required>
+              <label>Last Name</label>
+              <input type="text" class="form-control" asp-for="LastName"  placeholder="Enter your Last Name" required>
+              <span class="text-danger" asp-validation-for="LastName"></span>
+
             </div>
             <div class="form-group">
               <label for="Email">Email</label>
-              <input type="email" class="form-control" id="Email" placeholder="Enter your Email" required>
+              <input type="email" class="form-control" asp-for="Email" placeholder="Enter your Email" required>
+              <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+              <label >Address</label>
+              <input type="text" class="form-control" asp-for="Address" placeholder="Enter your Address" required>
+              <span class="text-danger" asp-validation-for="Address"></span>
             </div>
             <div class="form-group">
               <label for="Password">Password</label>
-              <input type="password" class="form-control" id="Password" placeholder="Enter your Password" required>
+              <input type="password" class="form-control" asp-for="Password" placeholder="Enter your Password" required>
+                <span class="text-danger" asp-validation-for="Password"></span>
+
             </div>
             <div class="form-group">
               <label for="VerifyPassword">Verify Password</label>
-              <input type="password" class="form-control" id="VerifyPassword" placeholder="Verify your Password" required>
+              <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Verify your Password" required>
+                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+
             </div>
+
+                <div class="mt-3 col-8">
+                    <label >Profile Image</label>
+                    <input type="file" id="uploadBox" class="form-control w-100" name="file" />
+                    <input hidden asp-for="ProfileimageUrl" />
+                </div>
+
             <div class="form-group form-check mt-2">
               <input type="checkbox" class="form-check-input" id="Agree" required>
-              <label class="form-check-label" for="Agree">I agree to the Terms and Conditions</label>
+              <label class="form-check-label" asp-for="IsAgree">I agree to the Terms and Conditions</label>
             </div>
+
+             
             <div class="d-flex justify-content-around mt-3">
-                <button type="submit" class="btn btn-danger w-25">Register</button>
+        <button type="submit" onclick="return checkImageInput()" class="btn btn-danger w-25">Register</button>
                 <span>Have an account ? <a class="text-info text-decoration-none">Login Now</a></span>
             </div>
           </form>
+
+@section scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+			<script>
+
+			function checkImageInput() {
+				const imageInput = document.getElementById('uploadBox');
+			if (document.getElementById("uploadBox").value == "") {
+				swal("Oops!", "please select image.!", "error");
+
+				return false;
+					}
+					return true;
+				
+
+			}
+		</script>
+
+
+   }

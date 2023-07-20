@@ -69,7 +69,7 @@ namespace SouqBooks.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProductViewModel productViewModel, IFormFile? file) {
             if (ModelState.IsValid) {
-                productViewModel.product.ImageUrl = _imageUploader.UploadImage(file);
+                productViewModel.product.ImageUrl = _imageUploader.UploadImage(file,"Products");
                 try
                 {
 					_unitOfWork.product.Add(productViewModel.product);
@@ -94,7 +94,7 @@ namespace SouqBooks.Areas.Admin.Controllers
 			{
                 if (file != null ) {
                     _imageUploader.DeleteFile(productViewModel.product.ImageUrl);
-					productViewModel.product.ImageUrl = _imageUploader.UploadImage(file);
+					productViewModel.product.ImageUrl = _imageUploader.UploadImage(file, "Products");
                 }
                 try {
 					_unitOfWork.product.Update(productViewModel.product);

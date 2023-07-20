@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tcAVr+pybYgfOBBcxtc0mBMML2EdInD0xsauMcmkxpM=",
+  "Hash": "5umrUaFF8UX97nh1CUgWl/yNZXL50tIBbYiPsGWH6Gk=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -799,6 +799,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\Products\\ae4aa447-4aa7-4143-aa62-f3ce8bc91861.jpeg"
     },
     {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\ca3f5869-6274-43ee-b188-be4e2351ef17.jpg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Products/ca3f5869-6274-43ee-b188-be4e2351ef17.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\ca3f5869-6274-43ee-b188-be4e2351ef17.jpg"
+    },
+    {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Products\\f246971b-e2d7-4b68-ab34-fda6fcd1a1ff.jpeg",
       "SourceId": "SouqBooks",
       "SourceType": "Discovered",
@@ -831,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\fa7fec76-8127-4224-82ab-2f113fae8c89.jpg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\1402d1bf-ba2e-440c-bed2-bfa324b049b2.jpg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Users/1402d1bf-ba2e-440c-bed2-bfa324b049b2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Users\\1402d1bf-ba2e-440c-bed2-bfa324b049b2.jpg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\js\\product.js",

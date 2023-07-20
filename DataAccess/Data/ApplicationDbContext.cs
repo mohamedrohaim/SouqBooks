@@ -23,6 +23,6 @@ namespace SouqBooks.DataAccess.Data
         public DbSet<CoverType> coverTypes { get; set; }
         public DbSet<Product> products { get; set; }
 
-        public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

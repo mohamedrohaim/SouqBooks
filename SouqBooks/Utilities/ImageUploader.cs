@@ -17,12 +17,12 @@
 		}
 
 
-		public string UploadImage(IFormFile file) {
+		public string UploadImage(IFormFile file,string folder) {
 
 			//Guid create unique file name
 			var uniqueFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(file.FileName)}";
 			var webRootPath = _webHostEnvironment.WebRootPath;
-			var imagePath = Path.Combine(webRootPath, @"Images\Products");
+			var imagePath = Path.Combine(webRootPath, "Images", folder);
 			var filePath = Path.Combine(imagePath, uniqueFileName);
 			using (var fileStream = new FileStream(filePath, FileMode.Create))
 			{
