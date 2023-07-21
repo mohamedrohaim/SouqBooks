@@ -19,6 +19,5 @@ namespace Models
         public string Address { get; set; }
         public bool IsAgree { get; set; }
 
-
     }
 }

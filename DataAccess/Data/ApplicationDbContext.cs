@@ -24,5 +24,6 @@ namespace SouqBooks.DataAccess.Data
         public DbSet<Product> products { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> companies { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace DataAccess.Repository
 			this.category = new CategoryRepository(_context);
 			this.coverType= new CoverTypeRepository(_context);
 			this.product=new ProductRepository(_context);
+			this.company= new CompanyRepository(_context);
 			
 		}
 
@@ -24,9 +25,11 @@ namespace DataAccess.Repository
 
 		public ICoverTypeRepository coverType { get; private set; }
 		public IProductRepository product { get; private set; }
-		
 
-		public void Save()
+        public ICompanyRepository company { get; private set; }
+
+
+        public void Save()
 		{
 			_context.SaveChanges();
 			

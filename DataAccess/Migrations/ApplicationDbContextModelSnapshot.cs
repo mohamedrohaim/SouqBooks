@@ -246,7 +246,36 @@ namespace SouqBooks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("categories");
+                    b.ToTable("categories", (string)null);
+                });
+
+            modelBuilder.Entity("Models.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("companies", (string)null);
                 });
 
             modelBuilder.Entity("Models.CoverType", b =>
@@ -264,7 +293,7 @@ namespace SouqBooks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("coverTypes");
+                    b.ToTable("coverTypes", (string)null);
                 });
 
             modelBuilder.Entity("Models.Product", b =>
@@ -310,10 +339,10 @@ namespace SouqBooks.Migrations
 
                     b.HasIndex("CoverTypeId");
 
-                    b.ToTable("products");
+                    b.ToTable("products", (string)null);
                 });
 
-            modelBuilder.Entity("Models.ApplicationUsers", b =>
+            modelBuilder.Entity("Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -338,7 +367,7 @@ namespace SouqBooks.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("ApplicationUsers");
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

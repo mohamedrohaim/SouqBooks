@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Company> 
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="mt-5 pb-3 pt-5 d-flex justify-content-between">
+    <h2>Categories List</h2>
+    <a asp-action="Create" class="btn btn-warning align-text-center mt-2"><i class="fa-solid fa-plus  "></i> Create Company</a>
+</div>
+<table class="table table-bordered table-striped w-100">
+    <thead>
+        <tr>
+            <th class="w-50">Company Name</th>
+            <th class="w-50">Email</th>
+            <th class="w-50">Address</th>
+            <th class="w-50">Phone Number</t>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td data="w-50">
+                    @company.CompanyName
+                </td>
+                <td data="w-50">
+                    @company.Email
+                </td>
+                <td data="w-50">
+                    @company.Address
+                </td>
+                <td data="w-50">
+                    @company.PhoneNumber
+                </td>
+                <td class="w-auto">
+                    <a asp-controller="Company" asp-action="Edit" asp-route-id="@company.Id">
+                        <i class="fa-regular fa-pen-to-square" style="color: #12ce31;"></i>
+                    </a>
+                </td>
+                <td >
+                    <a asp-controller="Company" asp-action="Delete" asp-route-id="@company.Id" >
+                    <i class="fa-regular fa-trash-can" style="color: #f21f07;"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

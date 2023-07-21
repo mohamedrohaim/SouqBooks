@@ -1,0 +1,42 @@
+﻿@model Company
+
+
+<form method="post" asp-action="Create">
+	<div class="border p-3 mt-4 d-flex flex-column align-items-center justify-content-center w-100">
+		<div class="row pb-2">
+			<h2>Create Company</h2>
+			<hr />
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="CompanyName" class="mb-1 fs-5"></label>
+			<input asp-for="CompanyName" class="form-control w-100" />
+			<span asp-validation-for="CompanyName" class="text-danger"></span>
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="Email" class="mb-1 fs-5"></label>
+			<input type="email" asp-for="Email" class="form-control w-100" />
+			<span asp-validation-for="Email" class="text-danger"></span>
+
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="Address" class="mb-1 fs-5"></label>
+			<input asp-for="Address" class="form-control w-100" />
+			<span asp-validation-for="Address" class="text-danger"></span>
+		</div>
+		<div class="mt-3 w-75">
+			<label asp-for="PhoneNumber" class="mb-1 fs-5"></label>
+			<input asp-for="PhoneNumber" class="form-control w-100" />
+			<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-warning mt-3">
+			<i class="fa-solid fa-plus  "></i> Create          
+		</button>
+		<a class="btn btn-danger mt-3" asp-action="Index" >
+			<i class="fa-solid fa-arrow-left"></i> Back To lsit
+		</a>
+		
+	</div>
+
+
+</form>
