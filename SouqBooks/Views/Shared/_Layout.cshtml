@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject SignInManager<ApplicationUser> _sm
+
+@inject UserManager<ApplicationUser> _um
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,12 +38,6 @@
                             </a>
                         </li>
                         
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="Customer" asp-action="Register" asp-controller="Account" >
-                                Account
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Managment</a>
@@ -47,16 +49,49 @@
                             </div>
                         </li>
 
-                        
-                       
-                       
-                        
                     </ul>
-                    <div class="d-flex">
-                        <a class="nav-link active" asp-area="Customer" asp-action="Logout" asp-controller="Account">
-                            Logout
-                        </a>
                     </div>
+
+
+                    @{
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                         var user =await _um.FindByIdAsync(userId);
+                         
+
+                    }
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    @user.FirstName @user.LastName
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link active" asp-area="Customer" asp-action="Logout" asp-controller="Account">
+                                    Logout
+                                </a>
+                            </li>
+
+                        </ul>
+                    }else{
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="Customer" asp-action="Register" asp-controller="Account" >
+                                Register
+                            </a>
+                        </li>
+                        <li>
+                                <a class="nav-link active" asp-area="Customer" asp-action="Login" asp-controller="Account">
+                                Login
+                            </a>
+                        </li>
+
+                    </ul>
+                    }
+                   
                 </div>
             </div>
         </nav>

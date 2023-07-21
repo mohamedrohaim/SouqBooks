@@ -11,7 +11,6 @@ namespace SouqBooks.Areas.Customer.Controllers
 {
 
     [Area("Customer")]
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -35,6 +34,7 @@ namespace SouqBooks.Areas.Customer.Controllers
             return View(producs);
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
             ShoppingCart cart = new ShoppingCart() {

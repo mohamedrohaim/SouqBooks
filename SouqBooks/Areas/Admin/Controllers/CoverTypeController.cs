@@ -1,4 +1,5 @@
 ﻿using DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SouqBooks.DataAccess.Data;
@@ -6,6 +7,7 @@ using SouqBooks.DataAccess.Data;
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class CoverTypeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
