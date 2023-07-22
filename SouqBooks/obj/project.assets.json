@@ -4597,6 +4597,16 @@
         "runtime": {
           "bin/placeholder/Models.dll": {}
         }
+      },
+      "Utilities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Utilities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utilities.dll": {}
+        }
       }
     }
   },
@@ -12318,6 +12328,11 @@
       "type": "project",
       "path": "../Models/Models.csproj",
       "msbuildProject": "../Models/Models.csproj"
+    },
+    "Utilities/1.0.0": {
+      "type": "project",
+      "path": "../Utilities/Utilities.csproj",
+      "msbuildProject": "../Utilities/Utilities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -12328,7 +12343,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.19",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.19",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.15",
-      "Models >= 1.0.0"
+      "Models >= 1.0.0",
+      "Utilities >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -12369,6 +12385,9 @@
             },
             "F:\\DotNetProjects\\SouqBooks\\Models\\Models.csproj": {
               "projectPath": "F:\\DotNetProjects\\SouqBooks\\Models\\Models.csproj"
+            },
+            "F:\\DotNetProjects\\SouqBooks\\Utilities\\Utilities.csproj": {
+              "projectPath": "F:\\DotNetProjects\\SouqBooks\\Utilities\\Utilities.csproj"
             }
           }
         }

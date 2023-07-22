@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ur//xG9ucLp1Af9EBWKPcyJbNF9aoIHXmGBfLQicCBI=",
+  "Hash": "xCa12kH5vipBS4kIXq1/mb9xLraYdskWu0Ugf8jaNfg=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -882,6 +882,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Users\\1402d1bf-ba2e-440c-bed2-bfa324b049b2.jpg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Users/a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Users\\a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Users/f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\js\\product.js",

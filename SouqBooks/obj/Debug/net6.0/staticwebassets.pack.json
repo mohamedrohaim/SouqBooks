@@ -57,6 +57,14 @@
       "PackagePath": "staticwebassets\\Images\\Users\\1402d1bf-ba2e-440c-bed2-bfa324b049b2.jpg"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Users\\a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg",
+      "PackagePath": "staticwebassets\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\AccountLayout.css",
       "PackagePath": "staticwebassets\\css\\AccountLayout.css"
     },

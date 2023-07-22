@@ -1,0 +1,67 @@
+﻿@model IEnumerable<UserViewModel>
+
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="mt-5 pb-3 pt-5 d-flex justify-content-between">
+    <h2>SouqBooks Users</h2>
+    <a asp-action="Create" class="btn btn-warning align-text-center mt-2"><i class="fa-solid fa-plus  "></i> Create User</a>
+</div>
+<table class="table table-bordered table-striped w-100">
+    <thead>
+        <tr>
+            <th class="">Name</th>
+            <th class="">Address</th>
+            <th class="">Email</th>
+            <th class="">Role</th>
+            <th class="">Show</th>
+            <th class="">Edit</th>
+
+           
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td data="">
+                    @{
+                        var name = $"{user.FirstName} {user.LastName}";
+                    }
+                    @name
+                </td>
+                <td data="">
+                    @user.Address
+                </td>
+                <td data="">
+                    @user.Email
+                </td>
+                <td data="">
+                    @{
+                        var role = user.UserRoles.Count > 0 ? user.UserRoles[0] : "No Rule";
+                    }
+                    @role 
+                </td>
+                <td>
+                    <div class="text-center d-flex justify-content-around">
+                        <a href="#">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="text-center d-flex justify-content-around">
+                        <a href="#">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table> 

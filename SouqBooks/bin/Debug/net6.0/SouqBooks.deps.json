@@ -41,6 +41,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.19",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.15",
           "Models": "1.0.0",
+          "Utilities": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies.Reference": "6.0.0.0",
@@ -3348,6 +3349,14 @@
         },
         "compile": {
           "Models.dll": {}
+        }
+      },
+      "Utilities/1.0.0": {
+        "runtime": {
+          "Utilities.dll": {}
+        },
+        "compile": {
+          "Utilities.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery.Reference/6.0.0.0": {
@@ -6913,6 +6922,11 @@
       "sha512": ""
     },
     "Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

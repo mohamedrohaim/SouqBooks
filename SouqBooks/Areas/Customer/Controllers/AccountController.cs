@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.ViewModel;
 using SouqBooks.Utilities;
+using Utilities;
 
 namespace SouqBooks.Areas.Customer.Controllers
 {
@@ -44,7 +45,8 @@ namespace SouqBooks.Areas.Customer.Controllers
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
-                    return View();
+                    await _userManager.AddToRoleAsync(user, StaticDetails.UserRole);
+                    return View(nameof(Login));
                 }
                 else
                 {
