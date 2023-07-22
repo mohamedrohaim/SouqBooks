@@ -7,7 +7,7 @@ using SouqBooks.DataAccess.Data;
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    [Authorize(Roles = "Admin,Employee")]
     public class CoverTypeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

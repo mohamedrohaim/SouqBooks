@@ -16,8 +16,7 @@
             <th class="">Address</th>
             <th class="">Email</th>
             <th class="">Role</th>
-            <th class="">Show</th>
-            <th class="">Edit</th>
+            <th class="">Manage Roles</th>
 
            
 
@@ -46,17 +45,11 @@
                     }
                     @role 
                 </td>
+               
                 <td>
                     <div class="text-center d-flex justify-content-around">
-                        <a href="#">
-                            <i class="fa-solid fa-circle-info"></i>
-                        </a>
-                    </div>
-                </td>
-                <td>
-                    <div class="text-center d-flex justify-content-around">
-                        <a href="#">
-                            <i class="fa-solid fa-user-pen"></i>
+                        <a asp-action="ManagUsereRoles" asp-route-id="@user.Id">
+                            <i class="fa-solid fa-list-check"></i>
                         </a>
                     </div>
                 </td>

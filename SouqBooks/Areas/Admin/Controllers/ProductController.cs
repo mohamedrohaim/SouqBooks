@@ -10,7 +10,7 @@ using SouqBooks.Utilities;
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin,Employee")]
 
     public class ProductController : Controller
     {

@@ -1,0 +1,66 @@
+﻿@using Utilities;
+@model UserViewModel
+@using Microsoft.AspNetCore.Identity
+@inject RoleManager<IdentityRole> RoleManager
+
+
+@{
+    var allRoles = RoleManager.Roles.ToList();
+}
+<h1>All Roles</h1>
+
+
+
+@{
+    ViewData["Title"] = "ManagUsereRoles";
+}
+
+<div class="container">
+   
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/Images/Users/@Model.ProfileimageUrl" alt="Product Image" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-3">User Name :</dt>
+                <dd class="col-sm-9">@Model.FirstName @Model.LastName</dd>
+                <dt class="col-sm-3">Address:</dt>
+                <dd class="col-sm-9">@Model.Address</dd>
+                <dt class="col-sm-3">Email:</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+                <dt class="col-sm-3">Roles:</dt>
+                <dd class="col-sm-9">
+                    <ul>
+                        @foreach(var role in Model.UserRoles)
+                        {
+                           <li class="list-group-item">@role</li>
+                        }
+                    </ul>
+                </dd>
+                <dt class="col-sm-3">Select Roles</dt>
+                <dd class="col-sm-9">
+                    <form method="post" asp-action="ManagUsereRoles" class="w-100 d-flex flex-column justify-content-center">
+						<div class="form-group">
+							<div class="d-flex flex-column mt-0">
+                                @foreach (var role in allRoles)
+								{
+                                    bool isChecked = Model.UserRoles.Contains(role.Name);
+
+									<div class="d-flex ">
+                                        <input class="me-1" type="checkbox" name="selectedRoles" checked="@isChecked" value="@role.Name" /> @role.Name
+                                    </div>
+								}
+							</div>
+
+						</div>
+                        <button type="submit" class="btn btn-warning mt-3 w-auto">
+                            <i class="fas fa-save"></i> Update Roles
+                        </button>
+					</form>
+                </dd>
+            </dl>
+            
+        </div>
+    </div>
+</div>

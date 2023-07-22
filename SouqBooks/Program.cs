@@ -36,6 +36,7 @@ namespace SouqBooks
                         .AddDefaultTokenProviders();
             builder.Services.ConfigureApplicationCookie(cke => { 
                 cke.LoginPath = "/Customer/Account/Login";
+                cke.AccessDeniedPath = "/Customer/Account/Login";
             });
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, cke =>

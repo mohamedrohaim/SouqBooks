@@ -26,6 +26,8 @@ namespace Models.ViewModel
         [RegularExpression(@"^[0-9]{1,3}-[a-zA-Z]{4,10}-[a-zA-Z]{5,10}$", ErrorMessage = "Address must be like 123-City-Country")]
         public string Address { get; set; }
         public List<string>? UserRoles { get; set; }
+        [ValidateNever]
+        public string ProfileimageUrl { get; set; }
         //[ValidateNever]
         //public IEnumerable<SelectListItem> RolesList { get; set; }
 
