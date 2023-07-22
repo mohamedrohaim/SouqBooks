@@ -39,16 +39,20 @@
                         </li>
                         
                         
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Managment</a>
-                            <div class="dropdown-menu" data-bs-popper="static">
-                                <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Covers Type</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Company">Companies</a>
-                               
-                            </div>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Managment</a>
+                                <div class="dropdown-menu" data-bs-popper="static">
+                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Covers Type</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Company">Companies</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Roles">Roles</a>
+
+                                </div>
+                            </li>
+                        }
 
                     </ul>
                     </div>
