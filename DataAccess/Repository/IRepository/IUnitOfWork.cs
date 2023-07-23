@@ -12,6 +12,8 @@ namespace DataAccess.Repository.IRepository
 		ICoverTypeRepository coverType { get; }
 		IProductRepository product { get; }
 		ICompanyRepository company { get; }
+        IShopingCartRepository shopingCart { get; }
+		IApplicationUserRepository applicationUser { get; }
 		void Save();
 	}
 }

@@ -18,6 +18,8 @@ namespace DataAccess.Repository
 			this.coverType= new CoverTypeRepository(_context);
 			this.product=new ProductRepository(_context);
 			this.company= new CompanyRepository(_context);
+			this.shopingCart=new ShopingCartRepository(_context);
+			this.applicationUser=new ApplicationUserRepository(_context);
 			
 		}
 
@@ -27,6 +29,8 @@ namespace DataAccess.Repository
 		public IProductRepository product { get; private set; }
 
         public ICompanyRepository company { get; private set; }
+        public IShopingCartRepository shopingCart { get; private set; }
+		public IApplicationUserRepository applicationUser { get; private set; }
 
 
         public void Save()

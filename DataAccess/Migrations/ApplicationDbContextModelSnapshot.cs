@@ -246,7 +246,7 @@ namespace SouqBooks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("categories", (string)null);
+                    b.ToTable("categories");
                 });
 
             modelBuilder.Entity("Models.Company", b =>
@@ -275,7 +275,7 @@ namespace SouqBooks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("companies", (string)null);
+                    b.ToTable("companies");
                 });
 
             modelBuilder.Entity("Models.CoverType", b =>
@@ -293,7 +293,7 @@ namespace SouqBooks.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("coverTypes", (string)null);
+                    b.ToTable("coverTypes");
                 });
 
             modelBuilder.Entity("Models.Product", b =>
@@ -339,7 +339,34 @@ namespace SouqBooks.Migrations
 
                     b.HasIndex("CoverTypeId");
 
-                    b.ToTable("products", (string)null);
+                    b.ToTable("products");
+                });
+
+            modelBuilder.Entity("Models.ShopingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("shopingCarts");
                 });
 
             modelBuilder.Entity("Models.ApplicationUser", b =>
@@ -438,6 +465,25 @@ namespace SouqBooks.Migrations
                     b.Navigation("category");
 
                     b.Navigation("coverType");
+                });
+
+            modelBuilder.Entity("Models.ShopingCart", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "applicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("applicationUser");
+
+                    b.Navigation("product");
                 });
 #pragma warning restore 612, 618
         }
