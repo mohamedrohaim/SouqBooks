@@ -1,19 +1,29 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Models
 {
     public class ShoppingCart
     {
         public int Id { get; set; }
-        public Product product { get; set; }
 
-        [Required(ErrorMessage = "Enter Number Of copies!"), Range(1, 100, ErrorMessage = "Number Of copies between 1 to 100")]
+        public int ProductId { get; set; }
+        [ValidateNever]
+        public Product product { get; set; }
+        [Range(0, 500)]
         public int Count { get; set; }
 
+        public string ApplicationUserId { get; set; }
+
+        [ValidateNever]
+        public ApplicationUser applicationUser { get; set; }
+    
+    
     }
 }

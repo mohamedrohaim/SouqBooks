@@ -14,7 +14,7 @@
 
             <div class="card col-lg-3 col-md-6">
 
-                <div class="card hover-zoom" onclick="location.href='@Url.Action("Details", "Home", new { id = product.Id })'">
+                <div class="card hover-zoom" >
                     <img src="~/Images/Products/@product.ImageUrl" alt="product Image" style="height:200px">
                     <div class="card-body w-100">
                         <h5 class="card-title">@product.Title</h5>
@@ -27,9 +27,9 @@
                         <p class="card-text">
                             Price: @priceAfterDiscount   <del> @product.Price£E</del>
                         </p>
-                        <div class="d-flex justify-content-between align-content-center">
-                            <a href="#" class="btn btn-primary">
-                                <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="d-flex justify-content-between align-content-center" >
+                            <a  class="btn btn-primary" asp-action="Details" asp-route-productId="@product.Id">
+                                <i  class="fa-solid fa-cart-shopping"></i>
                                 Add To Cart
                             </a>
                             <i class="fa-regular fa-heart mt-2"></i>

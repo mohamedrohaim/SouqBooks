@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-	public class ShopingCartRepository : Repository<ShopingCart>, IShopingCartRepository
+	public class ShopingCartRepository : Repository<ShoppingCart>, IShopingCartRepository
     {
 		private readonly ApplicationDbContext _context;
 		public ShopingCartRepository(ApplicationDbContext context):base(context)
@@ -17,9 +17,12 @@ namespace DataAccess.Repository
 			_context = context;
 		}
 
-	
+        public int IncrementCount(ShoppingCart shoppingCart, int count)
+        {
+           return shoppingCart.Count+count;
+        }
 
-		public void Update(ShopingCart shopingCart)
+        public void Update(ShoppingCart shopingCart)
 		{
 			_context.Update(shopingCart);
 		}

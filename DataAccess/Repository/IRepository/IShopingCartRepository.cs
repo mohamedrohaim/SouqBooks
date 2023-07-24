@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository.IRepository
 {
-	public interface IShopingCartRepository : IRepository<ShopingCart>
+	public interface IShopingCartRepository : IRepository<ShoppingCart>
 	{
-		void Update(ShopingCart category);
+		void Update(ShoppingCart category);
+		int IncrementCount(ShoppingCart shoppingCart, int count);
 	}
 }

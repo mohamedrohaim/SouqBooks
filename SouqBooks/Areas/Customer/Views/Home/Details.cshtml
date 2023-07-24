@@ -4,7 +4,8 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<form method="post" asp-action="Details" class="w-100 d-flex flex-column justify-content-center">
+    <input hidden asp-for="ProductId" />
 <div class="container">
         <h1>@Model.product.Title</h1>
         <div class="row">
@@ -22,7 +23,7 @@
                     <dt class="col-sm-3">Category:</dt>
                     <dd class="col-sm-9">@Model.product.category.Name</dd>
                 </dl>
-               <form method="post" asp-action="#" class="w-100 d-flex flex-column justify-content-center">
+
                     
                    @{
                     var priceAfterDiscount = Math.Round((Model.product.Price - Model.product.Price * 0.30), 2);
@@ -50,8 +51,8 @@
                     </button>
                 </div>
                 
-               </form>
             </div>
         </div>
     </div>
 
+</form>
