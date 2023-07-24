@@ -133,6 +133,19 @@ namespace SouqBooks.Areas.Customer.Controllers
 
         #endregion
 
+        public IActionResult LoginPath()
+        {
+            TempData["error"] = "You Have To Login!..";
+            return View(nameof(Login));
+        }
+        
+        public IActionResult AccessDeniedPath()
+        {
+            TempData["error"] = "Access Denied Path You Dont Have Permitions!..";
+            return View(nameof(Login));
+        }
+
+
 
     }
 }
