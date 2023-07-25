@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,11 @@ namespace Models
 
         [ValidateNever]
         public ApplicationUser applicationUser { get; set; }
-    
-    
+
+        [NotMapped]
+        [ValidateNever]
+        public double PriceBasedOnCount { get; set; }
+
+
     }
 }

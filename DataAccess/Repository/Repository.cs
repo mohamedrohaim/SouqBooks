@@ -33,9 +33,13 @@ namespace DataAccess.Repository
 			dbSet.Remove(entity);
 		}
 
-		public IEnumerable<T> GetAll(string? includePropererities = null)
+		public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null,string? includePropererities = null)
 		{
 			IQueryable<T> query = dbSet;
+			if (filter != null)
+			{
+				query = query.Where(filter);
+			}
 			if (includePropererities != null) {
 				foreach (var includeProp in includePropererities.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) { 
 				query= query.Include(includeProp);
@@ -44,7 +48,9 @@ namespace DataAccess.Repository
 			return query.ToList();
 		}
 
-		public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includePropererities = null)
+
+
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includePropererities = null)
 		{
 			IQueryable<T> query = dbSet;
             if (includePropererities != null)

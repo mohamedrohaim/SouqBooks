@@ -17,14 +17,30 @@ namespace DataAccess.Repository
 			_context = context;
 		}
 
+		
+
         public int IncrementCount(ShoppingCart shoppingCart, int count)
         {
-           return shoppingCart.Count+count;
+            if (shoppingCart.Count <= 500)
+            {
+                shoppingCart.Count += count;
+            }
+
+           return shoppingCart.Count;
+
         }
 
         public void Update(ShoppingCart shopingCart)
 		{
 			_context.Update(shopingCart);
 		}
-	}
+
+       
+
+        public double GetPriceOfOrderBasedOnQuantity(int quantity, double price)
+        {
+            return quantity*price;
+        }
+
+    }
 }

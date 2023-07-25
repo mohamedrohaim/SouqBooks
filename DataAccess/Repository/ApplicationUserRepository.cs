@@ -33,7 +33,7 @@ namespace DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        IEnumerable<ApplicationUser> IRepository<ApplicationUser>.GetAll(string? includePropererities)
+        IEnumerable<ApplicationUser> IRepository<ApplicationUser>.GetAll(Expression<Func<ApplicationUser, bool>> filter,string? includePropererities)
         {
             throw new NotImplementedException();
         }

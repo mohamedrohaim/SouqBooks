@@ -11,5 +11,7 @@ namespace DataAccess.Repository.IRepository
 	{
 		void Update(ShoppingCart category);
 		int IncrementCount(ShoppingCart shoppingCart, int count);
+
+		double GetPriceOfOrderBasedOnQuantity(int quantity, double price);
 	}
 }

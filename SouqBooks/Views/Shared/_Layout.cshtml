@@ -69,7 +69,14 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
+
                         <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="ShoppingCart" asp-area="Customer">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Cart
+                            </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">
                                     @user.FirstName @user.LastName
