@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Models;
 using Models.ViewModel;
 using SouqBooks.Utilities;
@@ -60,9 +61,22 @@ namespace SouqBooks.Areas.Customer.Controllers
             var claimsIdentity=(ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             shoppingCart.ApplicationUserId = claim.Value;
+            
             ShoppingCart shoppingCartFromDb = _unitOfWork.shopingCart.GetFirstOrDefault(
                filter: (s=>s.ApplicationUserId == claim.Value && s.ProductId==shoppingCart.ProductId)
                 );
+            if (!ModelState.IsValid) {
+                ShoppingCart cart = new ShoppingCart()
+                {
+                    product = _unitOfWork.product.GetFirstOrDefault(filter: p => p.Id == shoppingCart.ProductId, includePropererities: "category,coverType"),
+                    Count = 1,
+                    ProductId = shoppingCart.ProductId
+                };
+
+                return View(cart);
+
+            }
+
             if (shoppingCartFromDb == null)
             {
                 return CreateShoppingCartItem(shoppingCart);

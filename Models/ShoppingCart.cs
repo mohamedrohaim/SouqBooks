@@ -16,9 +16,9 @@ namespace Models
         public int ProductId { get; set; }
         [ValidateNever]
         public Product product { get; set; }
-        [Range(0, 500)]
+        [Range(1, 500)]
         public int Count { get; set; }
-
+        [ValidateNever]
         public string ApplicationUserId { get; set; }
 
         [ValidateNever]
