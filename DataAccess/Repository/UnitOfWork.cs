@@ -20,18 +20,26 @@ namespace DataAccess.Repository
 			this.company= new CompanyRepository(_context);
 			this.shopingCart=new ShopingCartRepository(_context);
 			this.applicationUser=new ApplicationUserRepository(_context);
+			this.orderHeader=new OrderHeaderRepository(_context);
+			this.orderDtails=new OrderDetailsRepository(_context);
 			
 		}
 
 		public ICategoryRepository category { get; private set; }
 
 		public ICoverTypeRepository coverType { get; private set; }
+
 		public IProductRepository product { get; private set; }
 
         public ICompanyRepository company { get; private set; }
+
         public IShopingCartRepository shopingCart { get; private set; }
+
 		public IApplicationUserRepository applicationUser { get; private set; }
 
+		public IOrderHeaderRepository orderHeader { get; private set; }
+
+        public IOrderDtailsRepository orderDtails { get; private set; }
 
         public void Save()
 		{
