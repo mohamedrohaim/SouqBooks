@@ -1,4 +1,5 @@
-﻿
+﻿@using Models.ViewModel;
+@model ShoppingCartViewModel
 <form method="post">
 	<br />
 	<div class="container">
@@ -30,67 +31,54 @@
 									<label>Name</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input class="form-control"  asp-for="@Model.OrderHeader.Name"/>
+									<span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+
 								</div>
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Phone</label>
+									<label>PhoneNumber</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input class="form-control" asp-for="@Model.OrderHeader.PhoneNumber"/>
+									<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+
 								</div>
 							</div>
 							<div class="row my-1">
 								<div class="col-3">
-									<label>Street Address</label>
+									<label>Address</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" />
+									<input class="form-control" asp-for="@Model.OrderHeader.Address"/>
+									<span asp-validation-for="OrderHeader.Address" class="text-danger"></span>
 								</div>
 							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>City</label>
-								</div>
-								<div class="col-9">
-									<input class="form-control" />
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>State</label>
-								</div>
-								<div class="col-9">
-									<input class="form-control" />
-								</div>
-							</div>
-							<div class="row my-1">
-								<div class="col-3">
-									<label>Postal Code</label>
-								</div>
-								<div class="col-9">
-									<input class="form-control" />
-								</div>
-							</div>
+							
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
 								<span class="text-info">Order Summary:</span>
 							</h4>
 							<ul class="list-group mb-3">
-								<li class="list-group-item d-flex justify-content-between">
-									<div>
-										<h6 class="my-0">Title</h6>
-										<small class="text-muted">Quantity: Count</small>
-									</div>
-									<span class="text-muted">Price * Count </span>
-								</li>
-
+								@foreach (var item in Model.ShoppingCartItems)
+								{
+									
+									<li class="list-group-item d-flex justify-content-between">
+										<div>
+											<p class="my-0">@item.product.Title</p>
+											<small class="text-muted">Quantity: @item.Count</small>
+										</div>
+										<span class="text-muted">@item.PriceBasedOnCount.ToString("c", new System.Globalization.CultureInfo("en-EG")) </span>
+										
+										
+									</li>
+								}
 
 								<li class="list-group-item d-flex justify-content-between bg-light">
-									<small class="text-info">Total (USD)</small>
-									<strong class="text-info">$$</strong>
+									<small class="text-info">Total (EGP)</small>
+									<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-EG")) </strong>
 								</li>
 							</ul>
 						</div>
@@ -100,13 +88,13 @@
 			<div class="card-footer">
 				<div class="row">
 					<div class="col-12 col-md-8 pt-2">
-						<p style="color:maroon; font-size:14px;">
-							Estimate Arrival Date:
+						<p>
+							Estimate Arrival Date: @DateTime.Now.AddDays(5).ToShortDateString() - @DateTime.Now.AddDays(10).ToShortDateString()
 
 						</p>
 					</div>
 					<div class="col-12 col-md-4">
-						<button type="submit" value="Place Order" class="btn btn-primary form-control">Place Order</button>
+						<button type="submit" value="Place Order" class="btn btn-primary form-control">Submit Order</button>
 					</div>
 				</div>
 			</div>

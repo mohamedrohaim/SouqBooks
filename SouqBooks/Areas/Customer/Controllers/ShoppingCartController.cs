@@ -23,23 +23,54 @@ namespace SouqBooks.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             shoppingCartViewModel = new ShoppingCartViewModel() {
-                shoppingCartItems = _unitOfWork.shopingCart.GetAll(
+                ShoppingCartItems = _unitOfWork.shopingCart.GetAll(
                     s=>s.ApplicationUserId==claim.Value,
                     includePropererities:"product"
-                    )
+                    ),
+                OrderHeader=new OrderHeader(){ }
             };
             double TotalPrice = 0;
-            foreach (var item in shoppingCartViewModel.shoppingCartItems) {
+            foreach (var item in shoppingCartViewModel.ShoppingCartItems) {
                 item.PriceBasedOnCount = _unitOfWork.shopingCart.GetPriceOfOrderBasedOnQuantity(item.Count, item.product.Price);
                 TotalPrice += item.PriceBasedOnCount;
             }
-            shoppingCartViewModel.TotalPrice= TotalPrice;
+            shoppingCartViewModel.OrderHeader.OrderTotal= TotalPrice;
             
             return View(shoppingCartViewModel);
         }
         public IActionResult Summary()
         {
-            
+            double TotalPrice = 0;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCartViewModel = new ShoppingCartViewModel()
+            {
+                ShoppingCartItems = _unitOfWork.shopingCart.GetAll(
+                    s => s.ApplicationUserId == claim.Value,
+                    includePropererities: "product"
+                    ),
+                OrderHeader = new OrderHeader() { }
+            };
+
+            var user = _unitOfWork.applicationUser.GetFirstOrDefault(
+                o=>o.Id==claim.Value
+                );
+            shoppingCartViewModel.OrderHeader.ApplicationUser = user;
+            shoppingCartViewModel.OrderHeader.Name = $"{user.FirstName} {user.LastName}";
+            shoppingCartViewModel.OrderHeader.Address = user.Address;
+            shoppingCartViewModel.OrderHeader.PhoneNumber = user.PhoneNumber;
+                
+
+
+            foreach (var item in shoppingCartViewModel.ShoppingCartItems)
+            {
+                item.PriceBasedOnCount = _unitOfWork.shopingCart.GetPriceOfOrderBasedOnQuantity(item.Count, item.product.Price);
+                TotalPrice += item.PriceBasedOnCount;
+            }
+            shoppingCartViewModel.OrderHeader.OrderTotal = TotalPrice;
+
+            return View(shoppingCartViewModel);
+
             return View();
         }
 
