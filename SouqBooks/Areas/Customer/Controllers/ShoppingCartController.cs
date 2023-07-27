@@ -1,8 +1,10 @@
 ﻿using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Models.ViewModel;
 using System.Security.Claims;
+using Utilities;
 
 namespace SouqBooks.Areas.Customer.Controllers
 {
@@ -71,7 +73,66 @@ namespace SouqBooks.Areas.Customer.Controllers
 
             return View(shoppingCartViewModel);
 
-            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Summary")]
+
+        public IActionResult SummaryPost(ShoppingCartViewModel shoppingCartViewModel)
+        {
+            double TotalPrice = 0;
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var cart = new ShoppingCartViewModel()
+            {
+                ShoppingCartItems = _unitOfWork.shopingCart.GetAll(
+                    s => s.ApplicationUserId == claim.Value,
+                    includePropererities: "product"
+                    ),
+
+				OrderHeader = new OrderHeader() { }
+			};
+            cart.OrderHeader.PaymentStatus = StaticDetails.PaymentStautsPending;
+            cart.OrderHeader.OrderStatus = StaticDetails.StautsPending;
+            cart.OrderHeader.ApplicationUserId = claim.Value;
+            cart.OrderHeader.OrderDate = DateTime.Now;
+            cart.OrderHeader.Address = shoppingCartViewModel.OrderHeader.Address;
+            cart.OrderHeader.PhoneNumber = shoppingCartViewModel.OrderHeader.PhoneNumber;
+            cart.OrderHeader.Name = shoppingCartViewModel.OrderHeader.Name;
+
+
+            
+
+            foreach (var item in cart.ShoppingCartItems)
+            {
+                item.PriceBasedOnCount = _unitOfWork.shopingCart.GetPriceOfOrderBasedOnQuantity(item.Count, item.product.Price);
+                TotalPrice += item.PriceBasedOnCount;
+            }
+            cart.OrderHeader.OrderTotal = TotalPrice;
+
+            _unitOfWork.orderHeader.Add(cart.OrderHeader);
+            _unitOfWork.Save();
+
+            foreach (var item in cart.ShoppingCartItems)
+            {
+                OrderDetails orderDetails = new OrderDetails() {
+                
+                    ProductId= item.ProductId,
+                    OrderId= cart.OrderHeader.Id,
+                    Count= item.Count,
+                    Price=item.PriceBasedOnCount
+                };
+                _unitOfWork.orderDtails.Add(orderDetails);
+                _unitOfWork.Save();
+            }
+            _unitOfWork.shopingCart.RemoveRange(cart.ShoppingCartItems);
+            _unitOfWork.Save();
+
+            ViewData["success"] = "Order Submitted Successfully";
+                return RedirectToAction(nameof(Index));
+
+            
         }
 
         public IActionResult incrementOrderCount(int CartId) {

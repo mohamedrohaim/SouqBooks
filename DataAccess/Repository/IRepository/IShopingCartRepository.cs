@@ -13,5 +13,6 @@ namespace DataAccess.Repository.IRepository
 		int IncrementCount(ShoppingCart shoppingCart, int count);
 
 		double GetPriceOfOrderBasedOnQuantity(int quantity, double price);
+		void RemoveRange(IEnumerable<ShoppingCart> carts);
 	}
 }

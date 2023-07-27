@@ -42,5 +42,9 @@ namespace DataAccess.Repository
             return quantity*price;
         }
 
+        public void RemoveRange(IEnumerable<ShoppingCart> carts)
+        {
+           _context.RemoveRange(carts);
+        }
     }
 }

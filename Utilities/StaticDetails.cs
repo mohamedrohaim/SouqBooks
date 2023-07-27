@@ -20,7 +20,22 @@ namespace Utilities
 		public const string CompanyRole = "Company";
 		public const string UserRole = "User";
 		public const string EmployeeRole = "Employee";
+        
+        //order managment
+        public const string StautsPending = "Pending";
+		public const string StatusaApproved = "Approved";
+		public const string StatusInProcess = "InProcess";
+		public const string StatusShipped = "Shipped";
+		public const string StatusCanceled= "Canceled";
+		public const string StatusRefused = "Refused";
 
 
-	}
+        //payment status
+
+        public const string PaymentStautsPending = "Pending";
+        public const string PaymentStatusaApproved = "Approved";
+        public const string PaymentStatusDelayedPayment = "ApprovedForDelayPayment";
+        public const string PaymentStatusRejected = "Rejected";
+
+    }
 }
