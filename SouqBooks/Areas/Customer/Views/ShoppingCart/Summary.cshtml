@@ -1,5 +1,10 @@
-﻿@using Models.ViewModel;
+﻿
+@using Models.ViewModel;
 @model ShoppingCartViewModel
+@using Microsoft.Extensions.Options;
+@using Utilities;
+@inject IOptions<StripeSettings> Stripe
+
 <form method="post" asp-action="Summary">
 	<br />
 	<div class="container">
@@ -70,7 +75,7 @@
 											<p class="my-0">@item.product.Title</p>
 											<small class="text-muted">Quantity: @item.Count</small>
 										</div>
-										<span class="text-muted">@item.PriceBasedOnCount.ToString("c", new System.Globalization.CultureInfo("en-EG")) </span>
+										<span class="text-muted">@item.PriceBasedOnCount.ToString("c", new System.Globalization.CultureInfo("en-US")) </span>
 										
 										
 									</li>
@@ -78,7 +83,7 @@
 
 								<li class="list-group-item d-flex justify-content-between bg-light">
 									<small class="text-info">Total (EGP)</small>
-									<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-EG")) </strong>
+									<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US")) </strong>
 								</li>
 							</ul>
 						</div>

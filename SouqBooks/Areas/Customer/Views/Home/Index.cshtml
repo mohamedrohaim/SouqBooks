@@ -25,7 +25,7 @@
                             Author: @product.Author
                         </p>
                         <p class="card-text">
-                            Price: @priceAfterDiscount   <del> @product.Price£E</del>
+                            Price: @priceAfterDiscount.ToString("c", new System.Globalization.CultureInfo("en-US"))   <del> @product.Price</del>
                         </p>
                         <div class="d-flex justify-content-between align-content-center" >
                             <a  class="btn btn-primary" asp-action="Details" asp-route-productId="@product.Id">

@@ -548,3 +548,4 @@ F:\DotNetProjects\SouqBooks\SouqBooks\obj\Debug\net6.0\refint\SouqBooks.dll
 F:\DotNetProjects\SouqBooks\SouqBooks\obj\Debug\net6.0\SouqBooks.pdb
 F:\DotNetProjects\SouqBooks\SouqBooks\obj\Debug\net6.0\SouqBooks.genruntimeconfig.cache
 F:\DotNetProjects\SouqBooks\SouqBooks\obj\Debug\net6.0\ref\SouqBooks.dll
+F:\DotNetProjects\SouqBooks\SouqBooks\bin\Debug\net6.0\Stripe.net.dll

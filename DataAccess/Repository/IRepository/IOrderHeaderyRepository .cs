@@ -11,7 +11,8 @@ namespace DataAccess.Repository.IRepository
 	public interface IOrderHeaderRepository :IRepository<OrderHeader>
 	{
 		void Update(OrderHeader orderHeader);
-		void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
+		void UpdateStatus(int id, string orderStatus, string paymentId, string? paymentStatus = null  );
+		void UpdateStripePayment(int id, string sessionId, string PaymentId );
 	}
 	
 }

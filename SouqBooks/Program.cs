@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using SouqBooks.DataAccess.Data;
 using SouqBooks.Utilities;
+using Stripe;
+using Utilities;
 
 namespace SouqBooks
 {
@@ -22,8 +24,8 @@ namespace SouqBooks
                 builder.Configuration.GetConnectionString("DefaultConnection")
                 ));
 
-            
-
+            //automatic binding stripe values to Stripe setting proprties 
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 
@@ -62,6 +64,7 @@ namespace SouqBooks
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
             app.UseRouting();
 

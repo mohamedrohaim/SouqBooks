@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bzu2/2rC2gkxRJWMtfTmmMs+pnsnpzdQdFT1zGEpwQKPxlB5eeYDXiBEFNoQ77LKozO3ReNUdBZiz/a9BhQl8w==",
+  "dgSpecHash": "7+PYxvQYdSV5RjP49sLWivENbW+EBSlEulOQQbW3Z4tuIeIRrZuKs3vX2D4nBzNFuPKggFyKVtriErHDf0xSiQ==",
   "success": true,
   "projectFilePath": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\SouqBooks.csproj",
   "expectedPackageFiles": [
@@ -183,6 +183,7 @@
     "C:\\Users\\tiger\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\tiger\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\tiger\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\tiger\\.nuget\\packages\\stripe.net\\41.26.0\\stripe.net.41.26.0.nupkg.sha512",
     "C:\\Users\\tiger\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\tiger\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\tiger\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

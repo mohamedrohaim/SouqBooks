@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\assets\\order.jpg",
+      "PackagePath": "staticwebassets\\Images\\assets\\order.jpg"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\css\\AccountLayout.css",
       "PackagePath": "staticwebassets\\css\\AccountLayout.css"
     },

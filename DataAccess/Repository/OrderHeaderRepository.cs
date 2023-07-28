@@ -23,17 +23,28 @@ namespace DataAccess.Repository
 			_context.Update(orderHeader);
 		}
 
-        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+        public void UpdateStatus(int id, string orderStatus, string paymentId, string? paymentStatus = null)
         {
            var orderFromDatabase= _context.orderHeaders.FirstOrDefault(o => o.Id == id);
 			if (orderFromDatabase != null)
 			{
 				orderFromDatabase.OrderStatus= orderStatus;
-				if (paymentStatus!= null) {
-					orderFromDatabase.PaymentStatus= paymentStatus;
-				}
+				orderFromDatabase.PaymentStatus= paymentStatus;
+				orderFromDatabase.PaymentId= paymentId;
+				
 				
 			}
         }
+
+       
+
+        public void UpdateStripePayment(int id, string sessionId, string PaymentId)
+		{
+			var orderHeader=_context.orderHeaders.First(o => o.Id == id);
+			orderHeader.SessionId= sessionId;
+			orderHeader.PaymentId= PaymentId;
+		}
+
+      
     }
 }
