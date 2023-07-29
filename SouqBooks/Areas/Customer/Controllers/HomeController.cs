@@ -32,7 +32,7 @@ namespace SouqBooks.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType");
+            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType,applicationUser");
 
             return View(producs);
         }

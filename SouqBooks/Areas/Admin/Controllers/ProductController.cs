@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Models;
 using Models.ViewModel;
 using SouqBooks.Utilities;
+using System.Security.Claims;
 
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin,Employee")]
+    [Authorize(Roles = "Admin,Vendor")]
 
     public class ProductController : Controller
     {
@@ -72,6 +73,9 @@ namespace SouqBooks.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProductViewModel productViewModel, IFormFile? file) {
             if (ModelState.IsValid) {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                productViewModel.product.applicationUserId = claim.Value;
                 productViewModel.product.ImageUrl = _imageUploader.UploadImage(file,"Products");
                 try
                 {
@@ -95,6 +99,9 @@ namespace SouqBooks.Areas.Admin.Controllers
             
 			if (ModelState.IsValid)
 			{
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                productViewModel.product.applicationUserId = claim.Value;
                 if (file != null ) {
                     _imageUploader.DeleteFile(productViewModel.product.ImageUrl);
 					productViewModel.product.ImageUrl = _imageUploader.UploadImage(file, "Products");
@@ -171,10 +178,16 @@ namespace SouqBooks.Areas.Admin.Controllers
         #region Api Calls
 
         [HttpGet]
-        public IActionResult GetAll() { 
-            var producs=_unitOfWork.product.GetAll(includePropererities:"category,coverType");
+        public IActionResult GetAll() {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var producs=_unitOfWork.product.GetAll(includePropererities:"category,coverType").Where(
+                p=>p.applicationUserId==claim.Value
+                );
             return Json(new { data=producs});
         }
+
+      
 
 
 		#endregion

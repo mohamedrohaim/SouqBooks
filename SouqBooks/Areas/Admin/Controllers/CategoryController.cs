@@ -8,7 +8,7 @@ using SouqBooks.DataAccess.Data;
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin,Employee")]
+    [Authorize(Roles = "Admin,Vendor")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

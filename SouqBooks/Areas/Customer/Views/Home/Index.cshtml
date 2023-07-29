@@ -22,6 +22,12 @@
                             Category: @product.category.Name
                         </p>
                         <p class="card-text">
+                            @{
+                                var vendore = $"{product.applicationUser.FirstName} {product.applicationUser.LastName} ";
+                            }
+                            Vendore: @vendore
+                        </p>
+                        <p class="card-text">
                             Author: @product.Author
                         </p>
                         <p class="card-text">

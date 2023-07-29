@@ -18,6 +18,7 @@ namespace Utilities
          };
         public const string AdminRole = "Admin";
 		public const string CompanyRole = "Company";
+		public const string Vendor = "Vendor";
 		public const string UserRole = "User";
 		public const string EmployeeRole = "Employee";
         

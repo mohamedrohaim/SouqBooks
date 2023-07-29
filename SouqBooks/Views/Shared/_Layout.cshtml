@@ -37,23 +37,40 @@
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
-                        
-                        
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Managment</a>
-                                <div class="dropdown-menu" data-bs-popper="static">
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Covers Type</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Company">Companies</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Roles">Roles</a>
-                                    <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Users">Users</a>
 
-                                </div>
-                            </li>
+                            var userManager = (UserManager<IdentityUser>)ViewContext.HttpContext.RequestServices.GetService(typeof(UserManager<IdentityUser>));
+                            var user = await _um.FindByNameAsync(User.Identity.Name);
+                            var userRole = await _um.GetRolesAsync(user);
+
+                            @if (userRole.Contains("Admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Management</a>
+                                    <div class="dropdown-menu" data-bs-popper="static">
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Covers Type</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Company">Companies</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Roles">Roles</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Users">Users</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (userRole.Contains("Vendor"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
+                                </li>
+                            }
+                            <!-- If the role is "User", nothing will be displayed for them. -->
                         }
+                        
+                        
 
                     </ul>
                     </div>
@@ -61,7 +78,7 @@
 
                     @{
                         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                         var user =await _um.FindByIdAsync(userId);
+                         var userData =await _um.FindByIdAsync(userId);
                          
 
                     }
@@ -79,7 +96,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">
-                                    @user.FirstName @user.LastName
+                                    @userData.FirstName @userData.LastName
                                 </a>
                             </li>
                             <li>
