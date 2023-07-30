@@ -19,8 +19,6 @@ namespace SouqBooks.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
        
-       
-
       
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
@@ -32,12 +30,12 @@ namespace SouqBooks.Areas.Customer.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType,applicationUser");
+            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType");
 
             return View(producs);
         }
 
-        
+       
         public IActionResult Details(int productId)
         {
             ShoppingCart cart = new ShoppingCart() {

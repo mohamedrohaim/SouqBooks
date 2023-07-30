@@ -35,5 +35,8 @@ namespace Models.ViewModel
         public string PhoneNumber { get; set; }
         [Required]
         public string Name { get; set; }
+
+        [ValidateNever]
+        public List<OrderDetails> orderDetails { get; set; }
     }
 }

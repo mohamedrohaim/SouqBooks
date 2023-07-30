@@ -18,15 +18,14 @@ namespace Utilities
          };
         public const string AdminRole = "Admin";
 		public const string CompanyRole = "Company";
-		public const string Vendor = "Vendor";
 		public const string UserRole = "User";
 		public const string EmployeeRole = "Employee";
-        
-        //order managment
+
+
         public const string StautsPending = "Pending";
-		public const string StatusaApproved = "Approved";
-		public const string StatusInProcess = "InProcess";
+		public const string StatusaProcessing = "Processing";
 		public const string StatusShipped = "Shipped";
+		public const string StatusOutForDelivery = "Out for Delivery";
 		public const string StatusCanceled= "Canceled";
 		public const string StatusRefused = "Refused";
 

@@ -362,16 +362,11 @@ namespace SouqBooks.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("applicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CoverTypeId");
-
-                    b.HasIndex("applicationUserId");
 
                     b.ToTable("products");
                 });
@@ -578,12 +573,6 @@ namespace SouqBooks.Migrations
                         .HasForeignKey("CoverTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Models.ApplicationUser", "applicationUser")
-                        .WithMany()
-                        .HasForeignKey("applicationUserId");
-
-                    b.Navigation("applicationUser");
 
                     b.Navigation("category");
 

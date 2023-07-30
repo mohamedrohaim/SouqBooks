@@ -48,12 +48,6 @@ namespace Models
 		[ValidateNever]
 		public Category category { get; set; }
 
-        [ValidateNever]
-        public ApplicationUser applicationUser { get; set; }
-        //vendore role
-        [ValidateNever]
-        [ForeignKey("applicationUserId")]
-        public string? applicationUserId { get; set; }
-
+      
     }
 }

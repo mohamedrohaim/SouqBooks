@@ -178,14 +178,21 @@ namespace SouqBooks.Areas.Customer.Controllers
         public IActionResult orderConfirmation(int id)
         {
             OrderHeader orderHeader=_unitOfWork.orderHeader.GetFirstOrDefault(x => x.Id == id);
+			orderHeader.PaymentDueDate = DateTime.Now.AddDays(5);
 			var servise = new SessionService();
             Session session = servise.Get(orderHeader.SessionId);
 
             //stripe status
-            if (session.PaymentStatus.ToLower() == "paid") {
-                _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StatusaApproved, session.PaymentIntentId,StaticDetails.PaymentStatusaApproved);
-                _unitOfWork.Save();
+            if (session.PaymentStatus.ToLower() == "paid")
+            {
+                _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StautsPending, session.PaymentIntentId, StaticDetails.PaymentStatusaApproved);
             }
+            else {
+				_unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StautsPending, session.PaymentIntentId, StaticDetails.PaymentStautsPending);
+				
+			}
+            
+            _unitOfWork.Save();
             List<ShoppingCart> shoppingCarts=_unitOfWork.shopingCart.GetAll(
                 u=>u.ApplicationUserId==orderHeader.ApplicationUserId.ToString()
                 ).ToList();

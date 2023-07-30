@@ -11,7 +11,7 @@ using System.Security.Claims;
 namespace SouqBooks.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin,Vendor")]
+    [Authorize(Roles = "Admin,Employee")]
 
     public class ProductController : Controller
     {
@@ -73,9 +73,7 @@ namespace SouqBooks.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProductViewModel productViewModel, IFormFile? file) {
             if (ModelState.IsValid) {
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                productViewModel.product.applicationUserId = claim.Value;
+               
                 productViewModel.product.ImageUrl = _imageUploader.UploadImage(file,"Products");
                 try
                 {
@@ -96,12 +94,9 @@ namespace SouqBooks.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductViewModel productViewModel,IFormFile? file)
         {
-            
-			if (ModelState.IsValid)
+			if (ModelState.IsValid )
 			{
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                productViewModel.product.applicationUserId = claim.Value;
+               
                 if (file != null ) {
                     _imageUploader.DeleteFile(productViewModel.product.ImageUrl);
 					productViewModel.product.ImageUrl = _imageUploader.UploadImage(file, "Products");
@@ -133,8 +128,6 @@ namespace SouqBooks.Areas.Admin.Controllers
                 {
                     product = _unitOfWork.product.GetFirstOrDefault(filter:c => c.Id == id,includePropererities: "category,coverType"),
                     
-				    
-
                 };
 				ViewBag.categoryList = prductViewModel.CatecoryList;
 				ViewBag.coverType = prductViewModel.CoverTypeList;
@@ -179,11 +172,8 @@ namespace SouqBooks.Areas.Admin.Controllers
 
         [HttpGet]
         public IActionResult GetAll() {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var producs=_unitOfWork.product.GetAll(includePropererities:"category,coverType").Where(
-                p=>p.applicationUserId==claim.Value
-                );
+
+            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType");
             return Json(new { data=producs});
         }
 

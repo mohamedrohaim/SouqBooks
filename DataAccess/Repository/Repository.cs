@@ -57,7 +57,19 @@ namespace DataAccess.Repository
             {
                 foreach (var includeProp in includePropererities.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(includeProp);
+                    if (includeProp.Contains("."))
+                    {
+                        string[] nestedProperties = includeProp.Split('.');
+                        var currentQuery = query;
+                        foreach (var nestedProp in nestedProperties)
+                        {
+                            currentQuery = currentQuery.Include(nestedProp);
+                        }
+                    }
+                    else
+                    {
+                        query = query.Include(includeProp);
+                    }
                 }
             }
             query =query.Where(filter);

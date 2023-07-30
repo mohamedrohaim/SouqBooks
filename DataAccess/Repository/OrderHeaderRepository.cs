@@ -31,6 +31,7 @@ namespace DataAccess.Repository
 				orderFromDatabase.OrderStatus= orderStatus;
 				orderFromDatabase.PaymentStatus= paymentStatus;
 				orderFromDatabase.PaymentId= paymentId;
+				orderFromDatabase.PaymentDate = DateTime.Now;
 				
 				
 			}
