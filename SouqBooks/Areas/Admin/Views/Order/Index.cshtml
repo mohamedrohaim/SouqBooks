@@ -1,10 +1,58 @@
-﻿@model IEnumerable<OrderHeader>
+﻿@using Utilities;
+@model IEnumerable<OrderHeader>
+
+@{
+    var status = Context.Request.Query["status"];
+    var pendingClass = "btn-outline-light";
+    var inProcessClass = "btn-outline-light";
+    var shippedClass = "btn-outline-light";
+    var outForDeliveryClass = "btn-outline-light";
+    var canceledClass = "btn-outline-light";
+    var allClass = "btn-outline-light";
+
+    switch (status)
+    {
+        case StaticDetails.StautsPending:
+            pendingClass = "btn-light";
+            break;
+        case StaticDetails.StatusaProcessing:
+            inProcessClass = "btn-light";
+            break;
+        case StaticDetails.StatusShipped:
+            shippedClass = "btn-light";
+            break;
+        case StaticDetails.StatusOutForDelivery:
+            outForDeliveryClass = "btn-light";
+            break;
+        case StaticDetails.StatusCanceled:
+            canceledClass = "btn-light";
+            break;
+        case "All":
+            allClass = "btn-light";
+            break;
+        default:
+            allClass = "btn-light";
+            break;
+    }
+}
+
+
+
+     <div class="row mt-5">
+
+    <div class="col-md-12 mb-2 float-end">
+        <form method="post" asp-action="Index">
+           
+            <button type="submit" asp-route-status="All" class="btn @allClass m-1 ">All</button>
+            <button type="submit"  asp-route-status="@StaticDetails.StatusaProcessing" class="btn @inProcessClass m-1 ">In Processing</button>
+            <button type="submit"  asp-route-status="@StaticDetails.StatusShipped" class="btn @shippedClass m-1">Shipped Orders</button>
+            <button type="submit"  asp-route-status="@StaticDetails.StatusOutForDelivery" class="btn @outForDeliveryClass m-1">Out For Delivery</button>
+            <button type="submit"  asp-route-status="@StaticDetails.StatusCanceled" class="btn @canceledClass m-1">Canceled Order</button>
+        </form>
+    </div>
+  </div>
     <div class="w-100 mt-3 ">
-        <div class="w-100">
-        <a asp-action="filterOrders">
-            <button class="btn btn-danger">Payment Pending</button>
-        </a>
-        </div>
+        
     <table class="table table-hover">
         <thead>
             <tr>
@@ -14,27 +62,41 @@
                 <th scope="col">Address</th>
                 <th scope="col">OrderDate</th>
                 <th scope="col">Order Status</th>
-                <th scope="col">Payment Status</th>
+                
                 <th scope="col">OrderDetils</th>
 
             </tr>
         </thead>
+
         <tbody>
             @if (Model.Count() > 0)
             {
                 @foreach (var order in Model)
                 {
-                    <tr class="table-primary">
+                    var classStatus=order.OrderStatus switch
+                    {
+                        StaticDetails.StautsPending => "table-light",
+                        StaticDetails.StatusaProcessing => "table-info",
+                        StaticDetails.StatusShipped => "table-warning",
+                        StaticDetails.StatusOutForDelivery => "table-success",
+                        StaticDetails.StatusCanceled => "table-danger",
+
+                    };
+
+
+
+                    <tr class="@classStatus">
                         <th >@order.Name</th>
                         <th >@order.PhoneNumber</th>
                         <td>@order.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</td>
                         <td >@order.Address</td>
                         <td>@order.OrderDate.ToString("dddd, dd MMMM yyyy")</td>
-                        <td >@order.OrderStatus</td>
-                        <td >@order.PaymentStatus</td>
+
+                        <td class="@classStatus">@order.OrderStatus</td>
+                       
                         <td >
                             <a asp-action="OrderDetails" asp-route-id="@order.Id" class="text-center">
-                                <i class="fa-solid fa-pen-to-square w-100"></i>
+                                <i class="fa-solid fa-pen-to-square w-100 text-white"></i>
 							</a>
                         </td>
                     </tr>
@@ -46,3 +108,6 @@
         </tbody>
     </table>
     </div>
+
+
+

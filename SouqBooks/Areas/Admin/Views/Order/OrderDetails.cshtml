@@ -3,7 +3,6 @@
 @model OrderHeader
 
 
-<form method="post" asp-action="Summary">
 	<br />
 	<div class="container">
 		<div class="card shadow border-0">
@@ -123,19 +122,30 @@
 									<strong class="text-info">@Model.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US")) </strong>
 								</li>
 							</ul>
+							
+							<form method="post" asp-action="UpdateOrderStatus">
+							<input type="hidden" asp-for="Id" />
 							@if (Model.OrderStatus == StaticDetails.StautsPending)
 							{
-								<button class="btn btn-success form-control">Start Processing</button>
+									<button type="submit" name="status" value="@StaticDetails.StatusaProcessing" class="btn btn-success form-control">Start Processing</button>
 							}
 							@if (Model.OrderStatus == StaticDetails.StatusaProcessing)
 							{
-								<button class="btn btn-success form-control">Shipp Order</button>
+									<button type="submit" name="status" value="@StaticDetails.StatusShipped" class="btn btn-primary form-control">Shipp Order</button>
 							}
 							@if (Model.OrderStatus == StaticDetails.StatusShipped)
 							{
-								<button class="btn btn-success form-control ">Out For Delivery</button>
+									<button type="submit" name="status" value="@StaticDetails.StatusOutForDelivery" class="btn btn-warning form-control ">Out For Delivery</button>
 							}
-							<button class="btn btn-danger form-control mt-3">Cancel Order</button>
+							@if (Model.OrderStatus != StaticDetails.StatusCanceled && Model.OrderStatus != StaticDetails.StatusCanceled)
+							{
+								<button type="submit" name="status" value="@StaticDetails.StatusCanceled" class="btn btn-danger form-control mt-3">Cancel Order</button>
+							}
+							else
+							{
+								<button type="button"  class="btn btn-outline-danger form-control mt-3">Cancelled Order</button>
+							}	
+						</form>
 						</div>
 					</div>
 				</div>
@@ -154,4 +164,3 @@
 			</div>
 		</div>
 	</div>
-</form>

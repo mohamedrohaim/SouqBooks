@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using Models;
 using Models.ViewModel;
 using System.Security.Claims;
+using Utilities;
 
 namespace SouqBooks.Areas.Admin.Controllers
 {
@@ -22,11 +23,21 @@ namespace SouqBooks.Areas.Admin.Controllers
 
 
         // display orders
-        public IActionResult Index()
+        public IActionResult Index(string status)
         {
           
             IEnumerable<OrderHeader> orders= new List<OrderHeader>();
-            orders = _unitOfWork.orderHeader.GetAll();
+            if (string.IsNullOrEmpty(status) || status == "All")
+            {
+                orders = _unitOfWork.orderHeader.GetAll();
+
+            }
+            else
+            {
+                orders = _unitOfWork.orderHeader.GetAll(
+                    filter:o=>o.OrderStatus==status
+                    );
+            }
 
             return View(orders);
         }
@@ -49,7 +60,38 @@ namespace SouqBooks.Areas.Admin.Controllers
         
         }
 
+		public IActionResult UpdateOrderStatus(int id,string status)
+		{
+            var order = GetOrderData(id);
+            order.OrderStatus = status;
+            _unitOfWork.orderHeader.Update(order);
+            _unitOfWork.Save();
+			TempData["success"] = $"order status is {order.OrderStatus}";
+			return RedirectToAction("OrderDetails", new { id = id });
+		}
 
 
-    }
+
+        private OrderHeader GetOrderData(int id) {
+           
+            OrderHeader order = _unitOfWork.orderHeader.GetFirstOrDefault(
+			   filter: o => o.Id == id,
+
+				includePropererities: "orderDetails"
+				);
+			foreach (var product in order.orderDetails)
+			{
+				product.Product = _unitOfWork.product.GetFirstOrDefault(
+					p => p.Id == product.ProductId,
+					"category,coverType"
+					);
+			}
+
+            return order;
+
+		}
+
+
+
+	}
 }
