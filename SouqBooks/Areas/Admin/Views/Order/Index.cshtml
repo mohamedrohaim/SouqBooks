@@ -39,7 +39,17 @@
 
 
      <div class="row mt-5">
+         
 
+    <div class="col-md-12 mb-2 float-end ">
+        <form method="get" asp-action="Index">
+            <div class="d-flex">
+                <input type="text" class="form-control me-2 w-75" name="search" placeholder="Search by customer name or order number" value="@ViewBag.search" />
+                <button type="submit" class="rounded">Search</button>
+            </div>
+        </form>
+
+        </div>
     <div class="col-md-12 mb-2 float-end">
         <form method="post" asp-action="Index">
            

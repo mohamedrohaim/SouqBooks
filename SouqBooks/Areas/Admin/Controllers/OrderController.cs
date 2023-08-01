@@ -23,10 +23,11 @@ namespace SouqBooks.Areas.Admin.Controllers
 
 
         // display orders
-        public IActionResult Index(string status)
+        public IActionResult Index(string status,string? search)
         {
           
             IEnumerable<OrderHeader> orders= new List<OrderHeader>();
+            
             if (string.IsNullOrEmpty(status) || status == "All")
             {
                 orders = _unitOfWork.orderHeader.GetAll();
@@ -38,7 +39,18 @@ namespace SouqBooks.Areas.Admin.Controllers
                     filter:o=>o.OrderStatus==status
                     );
             }
+            if (search != null)
+            {
+                orders = _unitOfWork.orderHeader.GetAll(
+                    filter:o=>
+                    o.OrderStatus.Contains(search) ||
+                    o.Name.Contains(search) ||
+                    o.Address.Contains(search) ||
+                    o.PhoneNumber.Contains(search)
 
+                    );
+            }
+            ViewBag.search = search;
             return View(orders);
         }
 
