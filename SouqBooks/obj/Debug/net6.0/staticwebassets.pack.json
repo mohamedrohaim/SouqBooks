@@ -89,6 +89,38 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\assets\\demo\\chart-area-demo.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\assets\\demo\\chart-area-demo.js"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\assets\\demo\\chart-bar-demo.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\assets\\demo\\chart-bar-demo.js"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\assets\\demo\\chart-pie-demo.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\assets\\demo\\chart-pie-demo.js"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\assets\\demo\\datatables-demo.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\assets\\demo\\datatables-demo.js"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\assets\\img\\error-404-monochrome.svg",
+      "PackagePath": "staticwebassets\\dashboardStyle\\assets\\img\\error-404-monochrome.svg"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\css\\styles.css",
+      "PackagePath": "staticwebassets\\dashboardStyle\\css\\styles.css"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\js\\datatables-simple-demo.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\js\\datatables-simple-demo.js"
+    },
+    {
+      "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\dashboardStyle\\js\\scripts.js",
+      "PackagePath": "staticwebassets\\dashboardStyle\\js\\scripts.js"
+    },
+    {
       "Id": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

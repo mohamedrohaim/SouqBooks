@@ -1,7 +1,10 @@
 ﻿@model Category
 
 
-
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Views/Shared/_Admin.cshtml";
+}
 
 <form method="post" asp-action="Delete">
 	<div class="border p-3 mt-4 d-flex flex-column align-items-center justify-content-center w-100">

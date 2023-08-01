@@ -1,6 +1,9 @@
 ﻿@model ProductViewModel
 
-
+@{
+	ViewData["Title"] = "Product";
+	Layout = "~/Views/Shared/_Admin.cshtml";
+}
 
 <form method="post" asp-action=@(Model.product.Id!=0? "Edit":"Create") enctype="multipart/form-data">
 	<div class="border p-3 mt-4 row">

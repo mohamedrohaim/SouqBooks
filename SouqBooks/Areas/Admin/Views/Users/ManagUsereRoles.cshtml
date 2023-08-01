@@ -2,7 +2,10 @@
 @model UserViewModel
 @using Microsoft.AspNetCore.Identity
 @inject RoleManager<IdentityRole> RoleManager
-
+@{
+    ViewData["Title"] = "Mange Roles";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
 
 @{
     var allRoles = RoleManager.Roles.ToList();

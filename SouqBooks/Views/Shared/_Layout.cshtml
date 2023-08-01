@@ -6,6 +6,14 @@
 @inject SignInManager<ApplicationUser> _sm
 
 @inject UserManager<ApplicationUser> _um
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var userData = await _um.FindByIdAsync(userId);
+    var userRole = await _um.GetRolesAsync(userData);
+
+
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,79 +39,40 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-area="Customer" asp-action="Index" asp-controller="Home" >
-                                Home
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-
-                            var userManager = (UserManager<IdentityUser>)ViewContext.HttpContext.RequestServices.GetService(typeof(UserManager<IdentityUser>));
-                            var user = await _um.FindByNameAsync(User.Identity.Name);
-                            var userRole = await _um.GetRolesAsync(user);
-
-                            @if (userRole.Contains("Admin"))
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Management</a>
-                                    <div class="dropdown-menu" data-bs-popper="static">
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="CoverType">Covers Type</a>
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Company">Companies</a>
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Roles">Roles</a>
-                                        <a class="dropdown-item" asp-area="Admin" asp-action="Index" asp-controller="Users">Users</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " asp-area="Admin" asp-action="Index" asp-controller="Order">
-                                        Orders
-                                        <span class="visually-hidden">(current)</span>
-                                    </a>
-                                </li>
-                            }
-                            else if (userRole.Contains("Employee"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Product">Products</a>
-                                </li>
-                                 <a class="nav-link " asp-area="Admin" asp-action="Index" asp-controller="Order">
-                                        Orders
-                                        <span class="visually-hidden">(current)</span>
-                                 </a>
-                            }
-                            <!-- If the role is "User", nothing will be displayed for them. -->
-                        }
-                        
-                        
-
-                    </ul>
-                    </div>
-
-
-                    @{
-                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                         var userData =await _um.FindByIdAsync(userId);
-                         
-
-                    }
-
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
+                             <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="ShoppingCart" asp-area="Customer">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 Cart
                             </a>
                             </li>
+                            @if (userRole.Contains("Admin") || userRole.Contains("Employee"))
+                            {
+                             <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Order">
+                                    <i class="fa-solid fa-gauge"></i>
+                                Dashboard
+                            </a> 
+                            
+                            }
+
+
+                        }
+                        <li class="nav-item">
+                            <form class="d-flex" asp-area="Customer" asp-action="Index" asp-controller="Home">
+                                <input class="form-control ms-2" type="search" placeholder="Search" value="@ViewBag.search">
+                            </form>
+                        </li>
+
+
+                    </ul>
+                    
+
+                    <div class="d-flex">
+                     @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">
                                     @userData.FirstName @userData.LastName
@@ -131,7 +100,7 @@
 
                     </ul>
                     }
-                   
+                    </div>
                 </div>
             </div>
         </nav>

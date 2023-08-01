@@ -2,7 +2,10 @@
 
 @model ProductViewModel
 
-
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Views/Shared/_Admin.cshtml";
+}
 
 <form method="post" asp-action="Delete" enctype="multipart/form-data">
 	<div class="border p-3 mt-4 row">

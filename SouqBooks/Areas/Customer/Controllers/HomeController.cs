@@ -9,6 +9,7 @@ using Models.ViewModel;
 using SouqBooks.Utilities;
 using System.Diagnostics;
 using System.Security.Claims;
+using static NuGet.Packaging.PackagingConstants;
 
 namespace SouqBooks.Areas.Customer.Controllers
 {
@@ -28,8 +29,21 @@ namespace SouqBooks.Areas.Customer.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string? search)
         {
+            IEnumerable<Product> products;
+            if (search != null)
+            {
+                products = _unitOfWork.product.GetAll(
+                    filter: p =>
+                    p.Title.Contains(search) ||
+                    p.Author.Contains(search) ||
+                    p.category.Name.Contains(search) ||
+                    p.ISBN.Contains(search) 
+                    
+
+                    );
+            }
             var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType");
 
             return View(producs);

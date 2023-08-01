@@ -50,7 +50,42 @@ namespace SouqBooks.Areas.Admin.Controllers
 
                     );
             }
+
+            int  Inprogress=0,Shipped=0,outforDelivery = 0,cancelled = 0,pinded = 0;
+            double priceInprogress = 0, priceShipped = 0, priceOutforDelivery = 0, priceCancelled = 0,pricePinded = 0;
+            foreach (var order in orders) {
+                if (order.OrderStatus == StaticDetails.StautsPending)
+                {
+                    pinded++;
+                    pricePinded += order.OrderTotal;
+                }
+                else if (order.OrderStatus == StaticDetails.StatusaProcessing) {
+                    Inprogress++;
+                    priceInprogress+= order.OrderTotal;
+                }else if (order.OrderStatus == StaticDetails.StatusShipped)
+                {
+                    Shipped++;
+                    priceShipped += order.OrderTotal;
+                }else if (order.OrderStatus == StaticDetails.StatusOutForDelivery)
+                {
+                    outforDelivery++;
+                    priceOutforDelivery += order.OrderTotal;
+                }else if (order.OrderStatus==StaticDetails.StatusCanceled) {
+                    cancelled++;
+                    priceCancelled += order.OrderTotal;
+                }
+            }
             ViewBag.search = search;
+            ViewBag.pinded = pinded;
+            ViewBag.Shipped = Shipped;
+            ViewBag.Inprogress = Inprogress;
+            ViewBag.outforDelivery = outforDelivery;
+            ViewBag.cancelled = cancelled;
+            ViewBag.pricePinded = pricePinded;
+            ViewBag.priceInprogress = priceInprogress;
+            ViewBag.priceOutforDelivery = priceOutforDelivery;
+            ViewBag.priceShipped = priceShipped;
+            ViewBag.priceCancelled = priceCancelled;
             return View(orders);
         }
 
