@@ -6,14 +6,7 @@
 @inject SignInManager<ApplicationUser> _sm
 
 @inject UserManager<ApplicationUser> _um
-@{
-    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    var userData = await _um.FindByIdAsync(userId);
-    var userRole = await _um.GetRolesAsync(userData);
 
-
-
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +34,11 @@
                     <ul class="navbar-nav me-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
+                           
+                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            var userData = await _um.FindByIdAsync(userId);
+                            var userRole = await _um.GetRolesAsync(userData);
+
                              <li class="nav-item">
                             <a class="nav-link" asp-action="Index" asp-controller="ShoppingCart" asp-area="Customer">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -71,6 +69,8 @@
                     <div class="d-flex">
                      @if (User.Identity.IsAuthenticated)
                     {
+                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                            var userData = await _um.FindByIdAsync(userId);
 
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
