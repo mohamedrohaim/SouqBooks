@@ -1,3 +1,5 @@
 *.css
 *.json
 /SouqBooks/appsettings.json
+/SouqBooks/wwwroot/dashboardStyle/css/styles.css
+/SouqBooks/wwwroot/dashboardStyle/css/styles.css
