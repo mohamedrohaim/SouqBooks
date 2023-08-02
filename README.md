@@ -6,7 +6,7 @@ SouqBooks is an Ecommerce website built using ASP.NET MVC 5. It offers various f
 
 ### Features <a name="features"></a>
 
-#### User Registration and Login with Authentication useing Identity
+#### User Registration and Login with Authentication using Identity
 - The website offers user registration and login functionality with secure authentication.
 - New users can sign up with their email and password to create an account.
 - The password is encrypted and requires a strong combination of characters, including at least one uppercase letter, one lowercase letter, and special characters.
@@ -48,7 +48,7 @@ SouqBooks is an Ecommerce website built using ASP.NET MVC 5. It offers various f
 - Appropriate error messages are displayed to users in case of invalid or missing data.
 ![Admin Dashboard](https://i.postimg.cc/vGQMq1kv/Product-With-Validation.png)
 
-#### Payment Integration using Stripe
+#### Payment Integration with Stripe
 - SouqBooks integrates with Stripe to securely handle online payments.
 - Users can choose Stripe as the payment method during checkout.
 ![Payment Integration](https://i.postimg.cc/wvMFS5K3/Payment.png)
