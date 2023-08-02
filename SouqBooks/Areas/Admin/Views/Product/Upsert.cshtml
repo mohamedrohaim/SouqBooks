@@ -6,10 +6,10 @@
 }
 
 <form method="post" asp-action=@(Model.product.Id!=0? "Edit":"Create") enctype="multipart/form-data">
-	<div class="border p-3 mt-4 row">
+	<div class=" p-3 mt-4 row">
 		<div class="row pb-2">
 			<h2> Product</h2>
-			<hr />
+			
 		</div>
 		<input hidden asp-for="product.Id" class="form-control w-100" />
 

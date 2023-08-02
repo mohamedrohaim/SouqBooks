@@ -1,83 +1,101 @@
 ﻿@using Models.ViewModel;
 @model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
-    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-          <h3>Register</h3>
-<form asp-action="Register" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="All"></div>
-            <div class="form-group">
-              <label >First Name</label>
-              <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter your First Name" required>
-              <span class="text-danger" asp-validation-for="FirstName"></span>
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" class="form-control" asp-for="LastName"  placeholder="Enter your Last Name" required>
-              <span class="text-danger" asp-validation-for="LastName"></span>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-7">
+			<div class="card shadow-lg border-0 rounded-lg mt-5">
+				<div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+				<div class="card-body">
+					<form asp-action="Register" method="post" enctype="multipart/form-data">
+						<div class="row mb-3">
+							<div class="col-md-6">
+								<div class="form-floating mb-3 mb-md-0">
+									<input class="form-control" asp-for="FirstName" type="text" placeholder="Enter your first name" />
+									<label asp-for="FirstName"></label>
+									<span class="text-danger" asp-validation-for="FirstName"></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input class="form-control" asp-for="LastName" type="text" placeholder="Enter your last name" />
+									<label asp-for="LastName"></label>
+									<span class="text-danger" asp-validation-for="LastName"></span>
 
-            </div>
-            <div class="form-group">
-              <label for="Email">Email</label>
-              <input type="email" class="form-control" asp-for="Email" placeholder="Enter your Email" required>
-              <span class="text-danger" asp-validation-for="Email"></span>
-            </div>
-            <div class="form-group">
-              <label >Address</label>
-              <input type="text" class="form-control" asp-for="Address" placeholder="Enter your Address" required>
-              <span class="text-danger" asp-validation-for="Address"></span>
-            </div>
-            <div class="form-group">
-              <label for="Password">Password</label>
-              <input type="password" class="form-control" asp-for="Password" placeholder="Enter your Password" required>
-                <span class="text-danger" asp-validation-for="Password"></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control" asp-for="Email" type="email" placeholder="name@example.com" />
+							<label asp-for="Email"></label>
+							<span class="text-danger" asp-validation-for="Email"></span>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control" asp-for="Address" type="text" placeholder="123-cairo-egypt" />
+							<label asp-for="Address"></label>
+							<span class="text-danger" asp-validation-for="Address"></span>
+						</div>
+						<div class="row mb-3">
+							<div class="col-md-6">
+								<div class="form-floating mb-3 mb-md-0">
+									<input class="form-control" asp-for="Password" type="password" placeholder="Create a password" />
+									<label asp-for="Password"></label>
+									<span class="text-danger" asp-validation-for="Password"></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating mb-3 mb-md-0">
+									<input class="form-control" asp-for="ConfirmPassword" type="password" placeholder="Confirm password" />
+									<label asp-for="ConfirmPassword">Confirm Password</label>
+									<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
 
-            </div>
-            <div class="form-group">
-              <label for="VerifyPassword">Verify Password</label>
-              <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Verify your Password" required>
-                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+								</div>
+							</div>
+							<div class="col-md-6 mt-3">
+								<div class=" mb-3 mb-md-0">
+									<label>Profile Image</label>
+									<input type="file" id="uploadBox" name="file" />
+									<input hidden asp-for="ProfileimageUrl" />
 
-            </div>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-around mt-3">
+							<button type="submit" onclick="return checkImageInput()" class="btn btn-primary w-50">Register</button>
+						</div>
+					</form>
 
-                <div class="mt-3 col-8">
-                    <label >Profile Image</label>
-                    <input type="file" id="uploadBox" class="form-control w-100" name="file" />
-                    <input hidden asp-for="ProfileimageUrl" />
-                </div>
-
-            <div class="form-group form-check mt-2">
-              <input type="checkbox" class="form-check-input" id="Agree" required>
-              <label class="form-check-label" asp-for="IsAgree">I agree to the Terms and Conditions</label>
-            </div>
-
-             
-            <div class="d-flex justify-content-around mt-3">
-        <button type="submit" onclick="return checkImageInput()" class="btn btn-danger w-25">Register</button>
-                <span>Have an account ? <a asp-action="Login" class="text-info text-decoration-none">Login Now</a></span>
-            </div>
-          </form>
+				</div>
+				<div class="card-footer text-center py-3">
+					<div class="small"><a asp-action="Login">Have an account? Go to login</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 @section scripts{
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}
-			<script>
+	<script>
 
-			function checkImageInput() {
-				const imageInput = document.getElementById('uploadBox');
+		function checkImageInput() {
+			const imageInput = document.getElementById('uploadBox');
 			if (document.getElementById("uploadBox").value == "") {
 				swal("Oops!", "please select image.!", "error");
 
 				return false;
-					}
-					return true;
-				
-
 			}
-		</script>
+			return true;
+
+
+		}
+	</script>
 
 
    }

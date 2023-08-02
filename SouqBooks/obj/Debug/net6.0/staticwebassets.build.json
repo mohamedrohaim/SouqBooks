@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "d5YLIToetQVBwZVC1A01HgenrxhI6ynQQ3MXH8ouCyE=",
+  "Hash": "0GLzmRjcll6LFPKnSYApVI/nGVSTVEwCjJ4kYym7WzQ=",
   "Source": "SouqBooks",
   "BasePath": "_content/SouqBooks",
   "Mode": "Default",
@@ -1086,6 +1086,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Users\\a212b535-5434-4d59-b1c9-fc2b8a9ad41b.jpeg"
+    },
+    {
+      "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\b1ad3d97-bda8-4f51-bc61-6b0766c2361d.jpeg",
+      "SourceId": "SouqBooks",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\",
+      "BasePath": "_content/SouqBooks",
+      "RelativePath": "Images/Users/b1ad3d97-bda8-4f51-bc61-6b0766c2361d.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Users\\b1ad3d97-bda8-4f51-bc61-6b0766c2361d.jpeg"
     },
     {
       "Identity": "F:\\DotNetProjects\\SouqBooks\\SouqBooks\\wwwroot\\Images\\Users\\f6f87d12-2e91-478a-9031-66bc07909d8d.jpeg",

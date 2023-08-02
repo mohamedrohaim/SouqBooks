@@ -6,33 +6,31 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<div class="mt-5 pb-3 pt-5 d-flex justify-content-between">
+<div class="m-5 pb-3 pt-5 d-flex justify-content-between">
     <h2>Roles List</h2>
-    <a asp-action="Create" class="btn btn-warning align-text-center mt-2"><i class="fa-solid fa-plus  "></i> Create Role</a>
+    <a asp-action="Create" class="btn btn-primary align-text-center "><i class="fa-solid fa-plus  "></i> Create Role</a>
 </div>
-<table class="table table-bordered table-striped w-100">
+<table class="table  w-100 m-5 me-5">
     <thead>
         <tr>
-            <th class="w-50">Role Id</th>
-            <th class="w-50">Role Name</th>
+            
+            <th class="">Role Name</th>
             <th class="">Role Users</th>
 
        
         </tr>
     </thead>
     <tbody>
-        @foreach (var category in Model)
+        @foreach (var role in Model)
         {
             <tr>
+                
                 <td data="w-50">
-                    @category.Id
-                </td>
-                <td data="w-50">
-                    @category.Name
+                    <strong class="text-center"> @role.Name</strong>
                 </td>
                 <td >
-                    <div class="text-center">
-                    <a href="#">
+                    <div class="">
+                    <a asp-action="RoleUsers" asp-route-role="@role.Name">
                         <i class="fa-solid fa-users"> </i>
                     </a>
                     </div>

@@ -1,0 +1,37 @@
+﻿@model List<ApplicationUser>
+
+@{
+    ViewBag.Title = "Users List";
+    Layout = "~/Views/Shared/_Admin.cshtml"; // Assuming you have a shared layout
+}
+<div class="d-flex m-5 justify-content-between">
+    <h2 >Users List</h2>
+    <a asp-action="Index" class="btn btn-outline-danger align-text-center "><i class="fa-solid fa-arrow-left"></i> Back to Roles</a>
+
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table mx-5">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName  @user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Address</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="mx-5">No users found.</p>
+}

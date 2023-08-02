@@ -1,190 +1,190 @@
 ﻿@using Utilities;
 @model IEnumerable<OrderHeader>
 @{
-    ViewData["Title"] = "Orders";
-    Layout = "~/Views/Shared/_Admin.cshtml";
+	ViewData["Title"] = "Orders";
+	Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
 @{
-    var status = Context.Request.Query["status"];
-    var pendingClass = "btn-outline-primary";
-    var inProcessClass = "btn-outline-primary";
-    var shippedClass = "btn-outline-primary";
-    var outForDeliveryClass = "btn-outline-primary";
-    var canceledClass = "btn-outline-primary";
-    var allClass = "btn-outline-primary";
+	var status = Context.Request.Query["status"];
+	var pendingClass = "btn-outline-primary";
+	var inProcessClass = "btn-outline-primary";
+	var shippedClass = "btn-outline-primary";
+	var outForDeliveryClass = "btn-outline-primary";
+	var canceledClass = "btn-outline-primary";
+	var allClass = "btn-outline-primary";
 
-    switch (status)
-    {
-        case StaticDetails.StautsPending:
-            pendingClass = "btn-primary";
-            break;
-        case StaticDetails.StatusaProcessing:
-            inProcessClass = "btn-primary";
-            break;
-        case StaticDetails.StatusShipped:
-            shippedClass = "btn-primary";
-            break;
-        case StaticDetails.StatusOutForDelivery:
-            outForDeliveryClass = "btn-primary";
-            break;
-        case StaticDetails.StatusCanceled:
-            canceledClass = "btn-primary";
-            break;
-        case "All":
-            allClass = "btn-primary";
-            break;
-        default:
-            allClass = "btn-primary";
-            break;
-    }
+	switch (status)
+	{
+		case StaticDetails.StautsPending:
+			pendingClass = "btn-primary";
+			break;
+		case StaticDetails.StatusaProcessing:
+			inProcessClass = "btn-primary";
+			break;
+		case StaticDetails.StatusShipped:
+			shippedClass = "btn-primary";
+			break;
+		case StaticDetails.StatusOutForDelivery:
+			outForDeliveryClass = "btn-primary";
+			break;
+		case StaticDetails.StatusCanceled:
+			canceledClass = "btn-primary";
+			break;
+		case "All":
+			allClass = "btn-primary";
+			break;
+		default:
+			allClass = "btn-primary";
+			break;
+	}
 }
 
 
 <div class="row mt-5 d-flex align-items-center justify-content-start m-1">
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-info text-white mb-4">
-            <div class="card-body">Pended Orders</div>
-            <div class="card-footer d-flex flex-column ">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>orders</p>
-                    <p>@ViewBag.pinded</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>price</p>
-                    <p>@ViewBag.pricePinded.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary text-white mb-4">
-            <div class="card-body">Orders In Progress</div>
-            <div class="card-footer d-flex flex-column ">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>orders</p>
-                    <p>@ViewBag.Inprogress</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>price</p>
-                    <p>@ViewBag.priceInprogress.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning text-white mb-4">
-            <div class="card-body">Shipped Orders</div>
-            <div class="card-footer d-flex flex-column ">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>orders</p>
-                    <p>@ViewBag.Shipped</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>price</p>
-                    <p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-success text-white mb-4">
-            <div class="card-body">Out For  Dellivery</div>
-            <div class="card-footer d-flex flex-column ">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>orders</p>
-                    <p>@ViewBag.outforDelivery</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>price</p>
-                    <p>@ViewBag.priceOutforDelivery.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger text-white mb-4">
-            <div class="card-body">Cancelled Orders</div>
-            <div class="card-footer d-flex flex-column ">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>orders</p>
-                    <p>@ViewBag.cancelled</p>
-                </div>
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <p>price</p>
-                    <p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="col-xl-3 col-md-6">
+		<div class="card bg-info text-white mb-4">
+			<div class="card-body">Pended Orders</div>
+			<div class="card-footer d-flex flex-column ">
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>orders</p>
+					<p>@ViewBag.pinded</p>
+				</div>
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>price</p>
+					<p>@ViewBag.pricePinded.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-md-6">
+		<div class="card bg-primary text-white mb-4">
+			<div class="card-body">Orders In Progress</div>
+			<div class="card-footer d-flex flex-column ">
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>orders</p>
+					<p>@ViewBag.Inprogress</p>
+				</div>
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>price</p>
+					<p>@ViewBag.priceInprogress.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-md-6">
+		<div class="card bg-warning text-white mb-4">
+			<div class="card-body">Shipped Orders</div>
+			<div class="card-footer d-flex flex-column ">
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>orders</p>
+					<p>@ViewBag.Shipped</p>
+				</div>
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>price</p>
+					<p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-md-6">
+		<div class="card bg-success text-white mb-4">
+			<div class="card-body">Out For  Dellivery</div>
+			<div class="card-footer d-flex flex-column ">
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>orders</p>
+					<p>@ViewBag.outforDelivery</p>
+				</div>
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>price</p>
+					<p>@ViewBag.priceOutforDelivery.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-3 col-md-6">
+		<div class="card bg-danger text-white mb-4">
+			<div class="card-body">Cancelled Orders</div>
+			<div class="card-footer d-flex flex-column ">
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>orders</p>
+					<p>@ViewBag.cancelled</p>
+				</div>
+				<div class="d-flex align-items-center justify-content-between w-100">
+					<p>price</p>
+					<p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
- <div class="row mt-5">
-    <div class="col-md-12 mb-2 float-end">
-        <form method="post" asp-action="Index">
-            <button type="submit" asp-route-status="All" class="btn @allClass m-1 ">All</button>
-            <button type="submit"  asp-route-status="@StaticDetails.StatusaProcessing" class="btn @inProcessClass m-1 ">In Processing</button>
-            <button type="submit"  asp-route-status="@StaticDetails.StatusShipped" class="btn @shippedClass m-1">Shipped Orders</button>
-            <button type="submit"  asp-route-status="@StaticDetails.StatusOutForDelivery" class="btn @outForDeliveryClass m-1">Out For Delivery</button>
-            <button type="submit"  asp-route-status="@StaticDetails.StatusCanceled" class="btn @canceledClass m-1">Canceled Order</button>
-        </form>
-    </div>
-  </div>
-    <div class="w-100 mt-3 ">
-        
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Number</th>
-                <th scope="col">price</th>
-                <th scope="col">Address</th>
-                <th scope="col">OrderDate</th>
-                <th scope="col">Order Status</th>
-                <th scope="col">OrderDetils</th>
+<div class="row mt-5">
+	<div class="col-md-12 mb-2 float-end">
+		<form method="post" asp-action="Index">
+			<button type="submit" asp-route-status="All" class="btn @allClass m-1 ">All</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusaProcessing" class="btn @inProcessClass m-1 ">In Processing</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusShipped" class="btn @shippedClass m-1">Shipped Orders</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusOutForDelivery" class="btn @outForDeliveryClass m-1">Out For Delivery</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusCanceled" class="btn @canceledClass m-1">Canceled Order</button>
+		</form>
+	</div>
+</div>
+<div class="w-100 mt-3 ">
 
-            </tr>
-        </thead>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Number</th>
+				<th scope="col">price</th>
+				<th scope="col">Address</th>
+				<th scope="col">OrderDate</th>
+				<th scope="col">Order Status</th>
+				<th scope="col">OrderDetils</th>
 
-        <tbody>
-            @if (Model.Count() > 0)
-            {
-                @foreach (var order in Model)
-                {
-                    var classStatus=order.OrderStatus switch
-                    {
-                        StaticDetails.StautsPending => "table-light",
-                        StaticDetails.StatusaProcessing => "table-info",
-                        StaticDetails.StatusShipped => "table-warning",
-                        StaticDetails.StatusOutForDelivery => "table-success",
-                        StaticDetails.StatusCanceled => "table-danger",
+			</tr>
+		</thead>
 
-                    };
+		<tbody>
+			@if (Model.Count() > 0)
+			{
+				@foreach (var order in Model)
+				{
+					var classStatus = order.OrderStatus switch
+					{
+						StaticDetails.StautsPending => "table-light",
+						StaticDetails.StatusaProcessing => "table-info",
+						StaticDetails.StatusShipped => "table-warning",
+						StaticDetails.StatusOutForDelivery => "table-success",
+						StaticDetails.StatusCanceled => "table-danger",
+
+					};
 
 
 
-                    <tr >
-                        <th >@order.Name</th>
-                        <th >@order.PhoneNumber</th>
-                        <td>@order.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</td>
-                        <td >@order.Address</td>
-                        <td>@order.OrderDate.ToString("dddd, dd MMMM yyyy")</td>
+					<tr>
+						<th>@order.Name</th>
+						<th>@order.PhoneNumber</th>
+						<td>@order.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</td>
+						<td>@order.Address</td>
+						<td>@order.OrderDate.ToString("dddd, dd MMMM yyyy")</td>
 
-                        <td class="@classStatus">@order.OrderStatus</td>
-                       
-                        <td >
-                            <a asp-action="OrderDetails" asp-route-id="@order.Id" class="text-center">
-                                <i class="fa-solid fa-pen-to-square w-100 text-primary"></i>
+						<td class="@classStatus">@order.OrderStatus</td>
+
+						<td>
+							<a asp-action="OrderDetails" asp-route-id="@order.Id" class="text-center">
+								<i class="fa-solid fa-pen-to-square w-100 text-primary"></i>
 							</a>
-                        </td>
-                    </tr>
+						</td>
+					</tr>
 
-                }
+				}
 
-            }
+			}
 
-        </tbody>
-    </table>
-    </div>
+		</tbody>
+	</table>
+</div>
 
 
 

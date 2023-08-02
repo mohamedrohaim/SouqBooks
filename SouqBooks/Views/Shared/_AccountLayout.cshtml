@@ -1,42 +1,31 @@
 ﻿<!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Register - SB Admin</title>
+    <link href="~/dashboardStyle/css/styles.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
 	<link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link href="~/css/accountlayout.css" rel="stylesheet" />
-
+    
 </head>
-<body class="">
+<body class="bg-primary">
     <partial name="_Toast" />
-  <div class="container mt-5">
-    <div class="row justify-content-center ">
-             
-      <div class="col-md-8 AccountCard">
-        <div class="w-100">
-            <h3 class="w-100 text-center bg-black p-2">
-                Welcome to SouqeBooks!
-           </h3>
-           <div class="justify-content-center align-items-center p-4">
-             @RenderBody()
-           </div>
-
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+                @RenderBody()
         </div>
-      </div>
+
     </div>
-  </div>
-
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/39n60yjjplstuc4hlty4507f9dp7ji3oe6n8q76h6rmw4uf0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -44,8 +33,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </script>@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

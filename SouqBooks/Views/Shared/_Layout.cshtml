@@ -57,8 +57,9 @@
 
                         }
                         <li class="nav-item">
-                            <form class="d-flex" asp-area="Customer" asp-action="Index" asp-controller="Home">
-                                <input class="form-control ms-2" type="search" placeholder="Search" value="@ViewBag.search">
+                            <form class="d-flex" asp-area="Customer" asp-action="Index" asp-controller="Home" method="post">
+                                <input type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" class="form-control ms-2" name="search" value="@ViewBag.search" />
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                             </form>
                         </li>
 

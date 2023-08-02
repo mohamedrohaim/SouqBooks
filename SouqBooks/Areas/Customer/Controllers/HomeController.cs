@@ -28,8 +28,8 @@ namespace SouqBooks.Areas.Customer.Controllers
            
         }
 
-        [HttpGet]
-        public IActionResult Index(string? search)
+        
+        public IActionResult Index(string search= null)
         {
             IEnumerable<Product> products;
             if (search != null)
@@ -39,14 +39,19 @@ namespace SouqBooks.Areas.Customer.Controllers
                     p.Title.Contains(search) ||
                     p.Author.Contains(search) ||
                     p.category.Name.Contains(search) ||
-                    p.ISBN.Contains(search) 
-                    
+                    p.ISBN.Contains(search),
+                    includePropererities: "category,coverType"
+
 
                     );
+                ViewBag.search = search;
             }
-            var producs = _unitOfWork.product.GetAll(includePropererities: "category,coverType");
+            else {
+              products= _unitOfWork.product.GetAll(includePropererities: "category,coverType");
+            }
+             
 
-            return View(producs);
+            return View(products);
         }
 
        

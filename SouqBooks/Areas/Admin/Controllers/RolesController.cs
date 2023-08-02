@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Models;
 using Models.ViewModel;
+using Stripe.Radar;
 using System.Data;
 
 namespace SouqBooks.Areas.Admin.Controllers
@@ -13,9 +15,11 @@ namespace SouqBooks.Areas.Admin.Controllers
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManger;
-        public RolesController(RoleManager<IdentityRole> roleManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public RolesController(RoleManager<IdentityRole> roleManager,UserManager<ApplicationUser> userManager)
         {
             _roleManger= roleManager;
+            _userManager= userManager;
         }
 
 
@@ -54,6 +58,15 @@ namespace SouqBooks.Areas.Admin.Controllers
 
             }
             return View(roleViewModel);
+        }
+
+
+        
+        public async Task<ActionResult> RoleUsers(string role) {
+
+            var users =await _userManager.GetUsersInRoleAsync(role);
+
+            return View(users);
         }
     }
 }
