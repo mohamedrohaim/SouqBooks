@@ -22,12 +22,10 @@ namespace Utilities
 		public const string EmployeeRole = "Employee";
 
 
-        public const string StautsPending = "Pending";
-		public const string StatusaProcessing = "Processing";
-		public const string StatusShipped = "Shipped";
-		public const string StatusOutForDelivery = "Out for Delivery";
+		public const string StatusaInProgress = "In Progress";
+		public const string StatusInTransit = "being delivered";
 		public const string StatusCanceled= "Canceled";
-		public const string StatusRefused = "Refused";
+		public const string StatusCompleted = "Completed";
 
 
         //payment status

@@ -89,7 +89,7 @@ namespace SouqBooks.Areas.Customer.Controllers
 			var orderHeader = new OrderHeader
 			{
 				PaymentStatus = payment == "payNow" ? StaticDetails.PaymentStautsPending : StaticDetails.PaymentStatusPayOnReciving,
-				OrderStatus = StaticDetails.StautsPending,
+				OrderStatus = StaticDetails.StatusaInProgress,
 				ApplicationUserId = claim.Value,
 				OrderDate = DateTime.Now,
 				Address = shoppingCartViewModel.OrderHeader.Address,
@@ -188,11 +188,11 @@ namespace SouqBooks.Areas.Customer.Controllers
                 //stripe status
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
-                    _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StautsPending, session.PaymentIntentId, StaticDetails.PaymentStatusaApproved);
+                    _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StatusaInProgress, session.PaymentIntentId, StaticDetails.PaymentStatusaApproved);
                 }
                 else
                 {
-                    _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StautsPending, session.PaymentIntentId, StaticDetails.PaymentStatusRejected);
+                    _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StatusaInProgress, session.PaymentIntentId, StaticDetails.PaymentStatusRejected);
 
                 }
 				_unitOfWork.Save();

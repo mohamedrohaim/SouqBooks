@@ -38,6 +38,7 @@
 					<div class="col-9">
 						<h6 class="">@Model.Address</h6>
 					</div>
+					
 				</div>
 				<div class="row my-1">
 					<div class="col-3">
@@ -63,6 +64,15 @@
 						<h6 class="">@Model.PaymentStatus</h6>
 					</div>
 				</div>
+				<div class="row my-1">
+					<div class="col-3">
+						<label>Deleivry Name</label>
+					</div>
+					<div class="col-9">
+						<h6 class="">@Model.Carrier</h6>
+					</div>
+				</div>
+
 				@if (Model.PaymentStatus == "Approved")
 				{
 					<div class="row my-1">
@@ -74,14 +84,6 @@
 						</div>
 					</div>
 				}
-				<div class="row my-1">
-					<div class="col-3">
-						<label>SessionId</label>
-					</div>
-					<div class="col-9">
-						<h6 class="">@Model.SessionId</h6>
-					</div>
-				</div>
 
 			</div>
 
@@ -110,29 +112,50 @@
 					</li>
 				</ul>
 
-				<form method="post" asp-action="UpdateOrderStatus">
-					<input type="hidden" asp-for="Id" />
-					@if (Model.OrderStatus == StaticDetails.StautsPending)
+				
+					
+					@if (Model.OrderStatus == StaticDetails.StatusaInProgress)
 					{
-						<button type="submit" name="status" value="@StaticDetails.StatusaProcessing" class="btn btn-success form-control">Start Processing</button>
+					<form method="post" asp-action="UpdateOrderStatus">
+						<input type="hidden" asp-for="Id" />
+						<div class="row my-2">
+							<div class="">
+								<h5 class="text-primary">Delevery Name</h5>
+								<input class="col-7 form-control me-2" name="carierName" required />
+							</div>
+						</div>
+						<button type="submit" name="status" value="@StaticDetails.StatusInTransit" class="btn btn-warning form-control ">Out For Delivery</button>
+					</form>
 					}
-					@if (Model.OrderStatus == StaticDetails.StatusaProcessing)
+					@if (Model.OrderStatus == StaticDetails.StatusInTransit)
 					{
-						<button type="submit" name="status" value="@StaticDetails.StatusShipped" class="btn btn-primary form-control">Shipp Order</button>
+						<form method="post" asp-action="UpdateOrderStatus">
+						<input type="hidden" asp-for="Id" />
+						<button type="submit" name="status" value="@StaticDetails.StatusCompleted" class="btn btn-success form-control ">Order Recived</button>
+						</form>
 					}
-					@if (Model.OrderStatus == StaticDetails.StatusShipped)
+					@if (Model.OrderStatus != StaticDetails.StatusCanceled && Model.OrderStatus!=StaticDetails.StatusCompleted)
 					{
-						<button type="submit" name="status" value="@StaticDetails.StatusOutForDelivery" class="btn btn-warning form-control ">Out For Delivery</button>
-					}
-					@if (Model.OrderStatus != StaticDetails.StatusCanceled && Model.OrderStatus != StaticDetails.StatusCanceled)
-					{
+						<form method="post" asp-action="UpdateOrderStatus">
+						<input type="hidden" asp-for="Id" />
 						<button type="submit" name="status" value="@StaticDetails.StatusCanceled" class="btn btn-danger form-control mt-3">Cancel Order</button>
+						</form>
 					}
-					else
+					@if (Model.OrderStatus == StaticDetails.StatusCanceled)
 					{
+						<form method="post" asp-action="UpdateOrderStatus">
+						<input type="hidden" asp-for="Id" />
 						<button type="button" class="btn btn-outline-danger form-control mt-3">Cancelled Order</button>
+					</form>
 					}
-				</form>
+					@if (Model.OrderStatus == StaticDetails.StatusCompleted)
+					{
+						<form method="post" asp-action="UpdateOrderStatus">
+						<input type="hidden" asp-for="Id" />
+						<button type="button" class="btn btn-outline-success form-control mt-3">Completed Order</button>
+					</form>
+					}
+				
 			</div>
 		</div>
 		<div class="card-footer">

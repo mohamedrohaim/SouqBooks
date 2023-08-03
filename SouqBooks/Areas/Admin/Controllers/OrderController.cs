@@ -51,41 +51,38 @@ namespace SouqBooks.Areas.Admin.Controllers
                     );
             }
 
-            int  Inprogress=0,Shipped=0,outforDelivery = 0,cancelled = 0,pinded = 0;
-            double priceInprogress = 0, priceShipped = 0, priceOutforDelivery = 0, priceCancelled = 0,pricePinded = 0;
+            int  Inprogress=0, InTransit = 0,cancelled = 0,completed = 0;
+            double priceInprogress = 0, priceCompleted = 0, priceInTransmit = 0, priceCancelled = 0;
             foreach (var order in orders) {
-                if (order.OrderStatus == StaticDetails.StautsPending)
+                if (order.OrderStatus == StaticDetails.StatusaInProgress)
                 {
-                    pinded++;
-                    pricePinded += order.OrderTotal;
-                }
-                else if (order.OrderStatus == StaticDetails.StatusaProcessing) {
                     Inprogress++;
-                    priceInprogress+= order.OrderTotal;
-                }else if (order.OrderStatus == StaticDetails.StatusShipped)
+					priceInprogress += order.OrderTotal;
+                }
+                else if (order.OrderStatus == StaticDetails.StatusInTransit) {
+					InTransit++;
+					priceInTransmit += order.OrderTotal;
+                }else if (order.OrderStatus == StaticDetails.StatusCompleted)
                 {
-                    Shipped++;
-                    priceShipped += order.OrderTotal;
-                }else if (order.OrderStatus == StaticDetails.StatusOutForDelivery)
-                {
-                    outforDelivery++;
-                    priceOutforDelivery += order.OrderTotal;
+                    completed++;
+                    priceCompleted += order.OrderTotal;
                 }else if (order.OrderStatus==StaticDetails.StatusCanceled) {
                     cancelled++;
                     priceCancelled += order.OrderTotal;
                 }
             }
             ViewBag.search = search;
-            ViewBag.pinded = pinded;
-            ViewBag.Shipped = Shipped;
             ViewBag.Inprogress = Inprogress;
-            ViewBag.outforDelivery = outforDelivery;
-            ViewBag.cancelled = cancelled;
-            ViewBag.pricePinded = pricePinded;
             ViewBag.priceInprogress = priceInprogress;
-            ViewBag.priceOutforDelivery = priceOutforDelivery;
-            ViewBag.priceShipped = priceShipped;
-            ViewBag.priceCancelled = priceCancelled;
+
+            ViewBag.InTransit = InTransit;
+            ViewBag.priceInTransmit = priceInTransmit;
+
+            ViewBag.completed = completed;
+            ViewBag.priceCompleted = priceCompleted;
+
+			ViewBag.cancelled = cancelled;
+			ViewBag.priceCancelled = priceCancelled;
             return View(orders);
         }
 
@@ -107,10 +104,13 @@ namespace SouqBooks.Areas.Admin.Controllers
         
         }
 
-		public IActionResult UpdateOrderStatus(int id,string status)
+		public IActionResult UpdateOrderStatus(int id,string status,string? carierName)
 		{
             var order = GetOrderData(id);
             order.OrderStatus = status;
+            if (status == StaticDetails.StatusInTransit && carierName != null) {
+            order.Carrier=carierName;
+            }
             _unitOfWork.orderHeader.Update(order);
             _unitOfWork.Save();
 			TempData["success"] = $"order status is {order.OrderStatus}";

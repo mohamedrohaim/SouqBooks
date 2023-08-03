@@ -7,56 +7,39 @@
 
 @{
 	var status = Context.Request.Query["status"];
-	var pendingClass = "btn-outline-primary";
-	var inProcessClass = "btn-outline-primary";
-	var shippedClass = "btn-outline-primary";
-	var outForDeliveryClass = "btn-outline-primary";
-	var canceledClass = "btn-outline-primary";
-	var allClass = "btn-outline-primary";
+	var inProgressClass = "btn-outline-primary";
+	var inTransmitClass = "btn-outline-warning";
+	var completedClass = "btn-outline-success";
+	var canceledClass = "btn-outline-danger";
+	var allClass = "btn-outline-secondary";
 
 	switch (status)
 	{
-		case StaticDetails.StautsPending:
-			pendingClass = "btn-primary";
+		case StaticDetails.StatusaInProgress:
+			inProgressClass = "btn-primary";
 			break;
-		case StaticDetails.StatusaProcessing:
-			inProcessClass = "btn-primary";
+		case StaticDetails.StatusInTransit:
+			inTransmitClass = "btn-warning";
 			break;
-		case StaticDetails.StatusShipped:
-			shippedClass = "btn-primary";
+		case StaticDetails.StatusCompleted:
+			completedClass = "btn-success";
 			break;
-		case StaticDetails.StatusOutForDelivery:
-			outForDeliveryClass = "btn-primary";
-			break;
+		
 		case StaticDetails.StatusCanceled:
-			canceledClass = "btn-primary";
+			canceledClass = "btn-danger";
 			break;
 		case "All":
-			allClass = "btn-primary";
+			allClass = "btn-secondary";
 			break;
 		default:
-			allClass = "btn-primary";
+			allClass = "btn-secondary";
 			break;
 	}
 }
 
 
 <div class="row mt-5 d-flex align-items-center justify-content-start m-1">
-	<div class="col-xl-3 col-md-6">
-		<div class="card bg-info text-white mb-4">
-			<div class="card-body">Pended Orders</div>
-			<div class="card-footer d-flex flex-column ">
-				<div class="d-flex align-items-center justify-content-between w-100">
-					<p>orders</p>
-					<p>@ViewBag.pinded</p>
-				</div>
-				<div class="d-flex align-items-center justify-content-between w-100">
-					<p>price</p>
-					<p>@ViewBag.pricePinded.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<div class="col-xl-3 col-md-6">
 		<div class="card bg-primary text-white mb-4">
 			<div class="card-body">Orders In Progress</div>
@@ -74,30 +57,30 @@
 	</div>
 	<div class="col-xl-3 col-md-6">
 		<div class="card bg-warning text-white mb-4">
-			<div class="card-body">Shipped Orders</div>
+			<div class="card-body">Deleviring Now</div>
 			<div class="card-footer d-flex flex-column ">
 				<div class="d-flex align-items-center justify-content-between w-100">
 					<p>orders</p>
-					<p>@ViewBag.Shipped</p>
+					<p>@ViewBag.InTransit</p>
 				</div>
 				<div class="d-flex align-items-center justify-content-between w-100">
 					<p>price</p>
-					<p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+					<p>@ViewBag.priceInTransmit.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-xl-3 col-md-6">
 		<div class="card bg-success text-white mb-4">
-			<div class="card-body">Out For  Dellivery</div>
+			<div class="card-body">Orders Completed</div>
 			<div class="card-footer d-flex flex-column ">
 				<div class="d-flex align-items-center justify-content-between w-100">
 					<p>orders</p>
-					<p>@ViewBag.outforDelivery</p>
+					<p>@ViewBag.completed</p>
 				</div>
 				<div class="d-flex align-items-center justify-content-between w-100">
 					<p>price</p>
-					<p>@ViewBag.priceOutforDelivery.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+					<p>@ViewBag.priceCompleted.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
 				</div>
 			</div>
 		</div>
@@ -112,20 +95,20 @@
 				</div>
 				<div class="d-flex align-items-center justify-content-between w-100">
 					<p>price</p>
-					<p>@ViewBag.priceShipped.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+					<p>@ViewBag.priceCancelled.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="row mt-5">
-	<div class="col-md-12 mb-2 float-end">
+	<div class="d-flex justify-content-end">
 		<form method="post" asp-action="Index">
 			<button type="submit" asp-route-status="All" class="btn @allClass m-1 ">All</button>
-			<button type="submit" asp-route-status="@StaticDetails.StatusaProcessing" class="btn @inProcessClass m-1 ">In Processing</button>
-			<button type="submit" asp-route-status="@StaticDetails.StatusShipped" class="btn @shippedClass m-1">Shipped Orders</button>
-			<button type="submit" asp-route-status="@StaticDetails.StatusOutForDelivery" class="btn @outForDeliveryClass m-1">Out For Delivery</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusaInProgress" class="btn @inProgressClass m-1 ">In Processing</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusInTransit" class="btn @inTransmitClass m-1 ">Deleviring Now</button>
 			<button type="submit" asp-route-status="@StaticDetails.StatusCanceled" class="btn @canceledClass m-1">Canceled Order</button>
+			<button type="submit" asp-route-status="@StaticDetails.StatusCompleted" class="btn @completedClass m-1">Completed Orders</button>
 		</form>
 	</div>
 </div>
@@ -152,11 +135,11 @@
 				{
 					var classStatus = order.OrderStatus switch
 					{
-						StaticDetails.StautsPending => "table-light",
-						StaticDetails.StatusaProcessing => "table-info",
-						StaticDetails.StatusShipped => "table-warning",
-						StaticDetails.StatusOutForDelivery => "table-success",
-						StaticDetails.StatusCanceled => "table-danger",
+						StaticDetails.StatusaInProgress => "bg-primary text-white",
+						StaticDetails.StatusInTransit => "bg-warning  text-white",
+						StaticDetails.StatusCanceled => "bg-danger  text-white",
+						StaticDetails.StatusCompleted => "bg-success  text-white",
+
 
 					};
 
