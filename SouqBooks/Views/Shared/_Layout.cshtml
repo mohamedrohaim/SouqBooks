@@ -10,118 +10,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SouqBooks</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/bootswatchTheme.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - SouqBooks</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+	<link rel="stylesheet" href="~/SouqBooks.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="Customer" asp-action="Index" asp-controller="Home">SouqBooks</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor02">
-                    <ul class="navbar-nav me-auto">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                           
-                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            var userData = await _um.FindByIdAsync(userId);
-                            var userRole = await _um.GetRolesAsync(userData);
+	<header>
+		<nav class="navbar navbar-expand-lg bg-primary" >
+			<div class="container-fluid">
+				<a class="navbar-brand text-light  active" asp-area="Customer" asp-action="Index" asp-controller="Home">
+					<strong>SouqBooks</strong>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 
-                             <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="ShoppingCart" asp-area="Customer">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                Cart
-                            </a>
-                            </li>
-                            @if (userRole.Contains("Admin") || userRole.Contains("Employee"))
-                            {
-                             <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Order">
-                                    <i class="fa-solid fa-gauge"></i>
-                                Dashboard
-                            </a> 
-                            
-                            }
+					<i class="fa-solid fa-bars navbar-toggler-icon"></i>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor02">
+					<ul class="navbar-nav me-auto">
+						@if (User.Identity.IsAuthenticated)
+						{
 
+							var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+							var userData = await _um.FindByIdAsync(userId);
+							var userRole = await _um.GetRolesAsync(userData);
 
-                        }
-                        <li class="nav-item">
-                            <form class="d-flex" asp-area="Customer" asp-action="Index" asp-controller="Home" method="post">
-                                <input type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" class="form-control ms-2" name="search" value="@ViewBag.search" />
-                                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                            </form>
-                        </li>
+							<li class="nav-item">
+								<a class="nav-link text-light" asp-action="Index" asp-controller="ShoppingCart" asp-area="Customer">
+									<i class="fa-solid fa-cart-shopping"></i>
+									Cart (3)
+								</a>
+							</li>
+							@if (userRole.Contains("Admin") || userRole.Contains("Employee"))
+							{
+
+								<a class="nav-link text-light " asp-area="Admin" asp-action="Index" asp-controller="Order">
+									<i class="fa-solid fa-gauge text-light"></i>
+									Dashboard
+								</a>
+
+							}
 
 
-                    </ul>
-                    
+						}
+						<li class="nav-item">
+							<form class="d-flex" asp-area="Customer" asp-action="Index" asp-controller="Home" method="post">
+								<input type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" class="form-control ms-2" name="search" value="@ViewBag.search" />
+								<button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+							</form>
+						</li>
 
-                    <div class="d-flex">
-                     @if (User.Identity.IsAuthenticated)
-                    {
-                            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            var userData = await _um.FindByIdAsync(userId);
 
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">
-                                    @userData.FirstName @userData.LastName
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link active" asp-area="Customer" asp-action="Logout" asp-controller="Account">
-                                    Logout
-                                </a>
-                            </li>
+					</ul>
 
-                        </ul>
-                    }else{
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-area="Customer" asp-action="Register" asp-controller="Account" >
-                                Register
-                            </a>
-                        </li>
-                        <li>
-                                <a class="nav-link active" asp-area="Customer" asp-action="Login" asp-controller="Account">
-                                Login
-                            </a>
-                        </li>
 
-                    </ul>
-                    }
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container w-100 main">
-        <main role="main" class="pb-3">
-            <partial name="_Toast" />
-            @RenderBody()
-        </main>
-    </div>
+					<div class="d-flex">
+						@if (User.Identity.IsAuthenticated)
+						{
+							var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+							var userData = await _um.FindByIdAsync(userId);
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+							<ul class="navbar-nav me-auto ">
+								<li class="nav-item  d-flex nav-link active font-weight-bold">
+									<a class="mx-2 text-decoration-none text-light" href="#">
+									<i class="fas fa-user-circle mt-1 "></i>
+										<strong >@userData.FirstName @userData.LastName</strong>
+									</a>
+								</li>
+								<li>
+									<a class="btn  nav-link text-light" asp-area="Customer" asp-action="Logout" asp-controller="Account">
+										<i class="fas fa-sign-out-alt"></i>
+										Logout
+									</a>
+
+
+
+								</li>
+
+							</ul>
+						}
+						else
+						{
+							<ul class="navbar-nav me-auto">
+								<li class="nav-item ">
+									<a class="nav-link active text-light" asp-area="Customer" asp-action="Register" asp-controller="Account">
+										Register
+									</a>
+								</li>
+								<li class=" ">
+									<a class="nav-link active text-light" asp-area="Customer" asp-action="Login" asp-controller="Account">
+										Login
+									</a>
+								</li>
+
+							</ul>
+						}
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container w-100 main">
+		<main role="main" class="pb-3">
+			<partial name="_Toast" />
+			@RenderBody()
+		</main>
+	</div>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/39n60yjjplstuc4hlty4507f9dp7ji3oe6n8q76h6rmw4uf0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.tiny.cloud/1/39n60yjjplstuc4hlty4507f9dp7ji3oe6n8q76h6rmw4uf0/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    @await RenderSectionAsync("Scripts", required: false)
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

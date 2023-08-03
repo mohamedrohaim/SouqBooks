@@ -5,18 +5,18 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="container  p-0 mw-100 w-auto ">
-    <div class="row gap-2 w-100 mw-100">
+<div class="mt-5 mx-2">
+    <div class="row ">
        @foreach (var product in Model)
         {
             var priceAfterDiscount = Math.Round((product.Price - product.Price * 0.30), 2);
 
 
-            <div class="card col-lg-2 col-md-4">
+            <div class="col-sm-6 col-md-4 col-lg-3">
 
-                <div class="card hover-zoom" >
-                    <img src="~/Images/Products/@product.ImageUrl" alt="product Image" style="height:200px">
-                    <div class="card-body w-100">
+                <div class="card mb-4 hover-zoom">
+                    <img src="~/Images/Products/@product.ImageUrl" alt="product Image" style="height:200px" class="card-img-top">
+                    <div class="card-body">
                         <h5 class="card-title">@product.Title</h5>
                         <p class="card-text">
                             Category: @product.category.Name
@@ -33,7 +33,9 @@
                                 <i  class="fa-solid fa-cart-shopping"></i>
                                 Add To Cart
                             </a>
-                            <i class="fa-regular fa-heart mt-2"></i>
+                            <a asp-action="">
+								<i class="fa-regular fa-heart mt-2"></i>
+							</a>
                         </div>
                     </div>
                 </div>
