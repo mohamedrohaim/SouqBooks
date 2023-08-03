@@ -1,0 +1,60 @@
+﻿@using Models.ViewModel;
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+@if(Model.Count()>0){
+<div class="mt-5 mx-2">
+    @{
+    var firstProduct = Model.FirstOrDefault();
+    string categoryName = firstProduct?.category.Name ?? "Unknown";
+}
+
+<h2 class="text-primary">@categoryName Category Products</h2>
+    <div class="row mt-3">
+       @foreach (var product in Model)
+        {
+            var priceAfterDiscount = Math.Round((product.Price - product.Price * 0.30), 2);
+
+
+            <div class="col-sm-6 col-md-4 col-lg-3">
+
+                <div class="card mb-4 hover-zoom">
+                    <img src="~/Images/Products/@product.ImageUrl" alt="product Image" style="height:200px" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Title</h5>
+                        <p class="card-text">
+                            Category:@product.category.Name
+                        </p>
+
+                        <p class="card-text">
+                            Author: @product.Author
+                        </p>
+                        <p class="card-text">
+                            Price: @priceAfterDiscount.ToString("c", new System.Globalization.CultureInfo("en-US"))   <del> @product.Price</del>
+                        </p>
+                        <div class="d-flex justify-content-between align-content-center" >
+                            <a  class="btn btn-primary" asp-action="Details" asp-route-productId="@product.Id">
+                                <i  class="fa-solid fa-cart-shopping"></i>
+                                Add To Cart
+                            </a>
+                            <a asp-action="">
+								<i class="fa-regular fa-heart mt-2"></i>
+							</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        }
+        
+    </div>
+</div>
+}else{
+
+<div class="container mt-5 alert alert-danger">
+    <h1>Category have no product</h1
+</div>
+}

@@ -29,7 +29,7 @@ namespace SouqBooks.Areas.Customer.Controllers
         }
 
         
-        public IActionResult Index(string search= null)
+        public IActionResult Index(string search= null, int? categoryId = null)
         {
             IEnumerable<Product> products;
             if (search != null)
@@ -46,12 +46,25 @@ namespace SouqBooks.Areas.Customer.Controllers
                     );
                 ViewBag.search = search;
             }
+            if(categoryId != null)
+            {
+                products = _unitOfWork.product.GetAll(
+                    p => p.CategoryId == categoryId,
+                     includePropererities: "category,coverType"
+                    );
+                ViewBag.categoryId = categoryId;
+            }
             else {
               products= _unitOfWork.product.GetAll(includePropererities: "category,coverType");
-            }
-             
+                ViewBag.categoryId = 0;
 
-            return View(products);
+
+            }
+			IEnumerable<Category> categories = _unitOfWork.category.GetAll();
+			ViewData["Categories"] = categories;
+
+
+			return View(products);
         }
 
        
@@ -131,6 +144,17 @@ namespace SouqBooks.Areas.Customer.Controllers
                 TempData["error"] = ex.Message;
             }
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult categoryProucts(int categoryId) {
+            IEnumerable<Product> products;
+           
+                products = _unitOfWork.product.GetAll(
+                    filter: p =>
+                    p.CategoryId==categoryId,
+                    includePropererities: "category,coverType");
+
+           return View(products);
+        
         }
                
             

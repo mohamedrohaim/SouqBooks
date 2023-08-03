@@ -1,23 +1,23 @@
 ﻿@using Models.ViewModel;
 
 @model ShoppingCartViewModel
-
+@if(Model.ShoppingCartItems.Count()>0){
 <form method="post">
     <br />
-    <div class="card ">
-        <div class="card-header ">
-            <div class="row px-4">
-                <div class="col-6">
-                    <h5 class="pt-2 text-white">
-                        Shopping Cart
-                    </h5>
-                </div>
+    <div class="contaier ">
+        <div class="">
+            <div class="d-flex justify-content-between m-5">
+                <h5 class="pt-2 text-primary">
+                    Shopping Cart
+                </h5>
+                <a class="btn btn-outline-danger">
+                    Back To Home
+                </a>
 
             </div>
         </div>
-       
-        @foreach (var shoppingCartItem in Model.ShoppingCartItems) {
-            <div class="card-body my-3">
+@foreach (var shoppingCartItem in Model.ShoppingCartItems) {
+            <div class="">
                 <div class="row mb-3 pb-3">
 
                     <div class="col-md-10 offset-md-1">
@@ -26,7 +26,7 @@
                             <div class="d-none d-lg-block col-lg-1 text-center py-2">
                                 <img src="~/Images/Products/@shoppingCartItem.product.ImageUrl" class="rounded" width="100%" />
                             </div>
-                            <div class="col-12 col-lg-6 pt-md-3">
+                            <div class="col-12 col-lg-6 pt-md-3 d-flex flex-column">
                                 <h5 class=""><strong>@shoppingCartItem.product.Title</strong></h5>
                                
                             </div>
@@ -47,15 +47,15 @@
                                 <div class="w-75 btn-group" role="group">
                                     <a asp-action="incrementOrderCount" asp-route-CartId="@shoppingCartItem.Id" class="btn btn-outline-primary bg-gradient py-2">
                                             <i class="fa-solid fa-plus"></i>
-                                    </a>
-                                        <a asp-action="decrementOrderCount" asp-route-CartId="@shoppingCartItem.Id" class="btn btn-outline-primary bg-gradient py-2">
-                                          <i class="fa-solid fa-minus"></i>
+                                    </a >
+                                        <a asp-action="decrementOrderCount" asp-route-CartId="@shoppingCartItem.Id" class="btn btn-outline-danger bg-gradient py-2">
+                                          <i class="fa-solid fa-minus "></i>
                                     </a>
                                 </div>
 
                             </div>
                             <div class="col-3 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
-                                <a href="#" class="btn btn-danger bg-gradient py-2 ">
+                                        <a asp-action="DeleteCartItem" asp-route-CartId="@shoppingCartItem.Id" class="btn btn-danger bg-gradient py-2 ">
                                         <i class="fa-solid fa-trash-can"></i>
                                 </a>
                             </div>
@@ -65,9 +65,9 @@
             </div>
 			</div>
        }
-                <div class="card-footer border-0">
+                <div class="border-0">
                     <div class="row">
-                        <div class="col-md-4 offset-md-4">
+                        <div class="col-md-4 offset-md-4 text-success">
                             <ul class="list-group mb-4">
                                 <li class="d-flex justify-content-between align-items-center">
                                     <h5 > Total (USD $)</h5>
@@ -77,10 +77,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2 offset-md-5">
-                            <a asp-action="Summary" class="btn btn-primary border-0 bg-gradient w-100 py-2">Cart Summary</a>
+                        <div class="col-md-2 offset-md-5 d-flex">
+                    
+                            <a asp-action="Summary" class="btn btn-success border-0 bg-gradient w-100 py-2">
+                        <i class="fa fa-truck"></i> Order
+                    </a>
                         </div>
                     </div>
                 </div>
            
 </form>
+}else{
+<div class="container mt-5 alert alert-danger">
+	<h1>Not Items Found1</h1>
+</div>
+}

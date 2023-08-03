@@ -120,6 +120,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/Home/categoryProucts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxjYXRlZ29yeVByb3VjdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/Home/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

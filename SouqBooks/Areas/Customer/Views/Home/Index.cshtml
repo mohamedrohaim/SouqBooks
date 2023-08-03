@@ -1,10 +1,37 @@
 ﻿@using Models.ViewModel;
+@using Utilities;
 @model IEnumerable<Product>
 
 @{
     ViewData["Title"] = "Home";
+
+}
+@{
+    var categoryId = (int)ViewBag.categoryId;
+    var selectedCategory = "btn-primary";
+    var unselectedCategory = "btn-outline-primary";
 }
 
+<div class=" d-flex m-5 justify-content-end">
+    @{
+        var allClass =categoryId==0 ? selectedCategory : unselectedCategory;;
+
+    }
+     <form method="get" asp-action="Index" >
+           <button type="submit" class="btn @allClass me-2">All</button>
+     </form>
+      @foreach (var category in ViewData["Categories"] as IEnumerable<Category>)
+            {
+                var categoriesClass = category.Id == categoryId ? selectedCategory : unselectedCategory;
+               
+              <form method="get" asp-action="Index" >
+                        <input type="hidden" name="categoryId" value="@category.Id" />
+                        <button type="submit" class="btn @categoriesClass me-2">@category.Name</button>
+                    </form>
+            }
+</div>
+
+@if(Model.Count()>0){
 <div class="mt-5 mx-2">
     <div class="row ">
        @foreach (var product in Model)
@@ -19,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@product.Title</h5>
                         <p class="card-text">
-                            Category: @product.category.Name
+                            Category: <a asp-action="categoryProucts" asp-route-categoryId="@product.CategoryId" class="text-primary text-decoration-none">@product.category.Name</a> 
                         </p>
 
                         <p class="card-text">
@@ -46,3 +73,9 @@
         
     </div>
 </div>
+}else{
+
+<div class="container mt-5 alert alert-danger">
+    <h1>No Product Found</h1
+</div>
+}

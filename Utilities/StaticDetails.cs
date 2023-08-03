@@ -34,7 +34,7 @@ namespace Utilities
 
         public const string PaymentStautsPending = "Pending";
         public const string PaymentStatusaApproved = "Approved";
-        public const string PaymentStatusDelayedPayment = "ApprovedForDelayPayment";
+        public const string PaymentStatusPayOnReciving = "Pay on receiving";
         public const string PaymentStatusRejected = "Rejected";
 
     }

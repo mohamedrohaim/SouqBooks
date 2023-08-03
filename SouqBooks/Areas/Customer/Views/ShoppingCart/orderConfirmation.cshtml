@@ -1,16 +1,41 @@
 ﻿@using Models.ViewModel;
 @model OrderHeader
-<div class="container row">
-
-	<div class="col-12 text-center">
-		<h1 class="text-primart text-center">Order Submitted Successfully! </h1>
-		
-		<h4 >Order Number : @Model.Id</h4>
-		<h4 >Address : @Model.Address</h4>
-		<h4 >payment status : @Model.PaymentStatus</h4>
-		<h4>Order Status : @Model.OrderStatus</h4>
-		<img src="~/Images/assets/order.jpg" width="75%">
-	</div>
-
-
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h5>Order Submitted Successfully</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>Name:</h6>
+                    <p>@Model.Name</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Address:</h6>
+                    <p>@Model.Address</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Status:</h6>
+                    <p>@Model.OrderStatus</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h6>Order Payment:</h6>
+                    <p>@Model.PaymentStatus</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <img src="~/Images/assets/order.jpg" class="img-fluid" alt="Order Image">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-outline-primary">Back to Orders</a>
+        </div>
+    </div>
 </div>
+
