@@ -128,6 +128,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/Home/categoryProucts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxjYXRlZ29yeVByb3VjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

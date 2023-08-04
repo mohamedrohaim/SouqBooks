@@ -184,6 +184,38 @@ namespace SouqBooks.Areas.Customer.Controllers
             return View();
         }
 
+        
+        public IActionResult ResetPassword(string email,string token)
+        {
+            TempData["token"] = token;
+            TempData["email"] = email;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            var token = TempData["token"] as string;
+			var email=TempData["email"] as string;
+            var user=await _userManager.FindByEmailAsync(email);
+            if (ModelState.IsValid)
+            {
+                var result=await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+                else {
+                foreach(var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        
+
 
     }
 }
