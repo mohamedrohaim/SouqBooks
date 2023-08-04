@@ -116,7 +116,7 @@
 					
 					@if (Model.OrderStatus == StaticDetails.StatusaInProgress)
 					{
-					<form method="post" asp-action="UpdateOrderStatus">
+						<form method="post" asp-action="UpdateOrderStatus">
 						<input type="hidden" asp-for="Id" />
 						<div class="row my-2">
 							<div class="">
@@ -125,7 +125,7 @@
 							</div>
 						</div>
 						<button type="submit" name="status" value="@StaticDetails.StatusInTransit" class="btn btn-warning form-control ">Out For Delivery</button>
-					</form>
+						</form>
 					}
 					@if (Model.OrderStatus == StaticDetails.StatusInTransit)
 					{

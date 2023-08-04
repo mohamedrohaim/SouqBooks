@@ -5,3 +5,5 @@
 /SouqBooks/wwwroot/dashboardStyle/css/styles.css
 /SouqBooks/appsettings.json
 /SouqBooks/appsettings.json
+/SouqBooks/Areas/Customer/Views/Account/CheckYourEmai.cshtml
+/SouqBooks/Utilities/EmailSettings.cs

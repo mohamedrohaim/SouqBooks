@@ -146,6 +146,44 @@ namespace SouqBooks.Areas.Customer.Controllers
         }
 
 
+        public IActionResult ForgetPassword() {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SendEmail(ForgetPasswordViewModel model) {
+            if (ModelState.IsValid) {
+                ApplicationUser user=await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var token=await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var resetPasswordLink = Url.Action("ResetPassword", "Account", new
+                    {
+                        Email= model.Email,
+                        Token=token
+                    },Request.Scheme);
+                    var email = new Email() {
+                    Subject="Reset Password",
+                    Reciver= model.Email,
+					Body = $"Hello {user.FirstName} {user.LastName},\n\nYou have requested to reset your password. Please click the link below to proceed:\n\n{resetPasswordLink}\n\nThank you!\nSouqBooks"
+
+					};
+                    EmailSettings.SendEmail(email);
+                    return RedirectToAction(nameof(CheckYourEmai));
+
+                }
+                ModelState.AddModelError(string.Empty,"Email Not Found"); 
+               
+            }
+             return View("ForgetPassword", model);
+        }
+
+
+        public IActionResult CheckYourEmai()
+        {
+            return View();
+        }
+
 
     }
 }

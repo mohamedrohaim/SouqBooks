@@ -113,7 +113,6 @@ namespace SouqBooks.Areas.Admin.Controllers
             }
             _unitOfWork.orderHeader.Update(order);
             _unitOfWork.Save();
-			TempData["success"] = $"order status is {order.OrderStatus}";
 			return RedirectToAction("OrderDetails", new { id = id });
 		}
 
