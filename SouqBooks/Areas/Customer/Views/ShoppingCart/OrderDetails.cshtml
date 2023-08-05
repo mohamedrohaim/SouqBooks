@@ -1,0 +1,84 @@
+﻿@using Models.ViewModel;
+@using Utilities;
+
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OrderHeader
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h5>Order Tracking </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6>Name:</h6>
+                    <p>@Model.Name</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Address:</h6>
+                    <p>@Model.Address</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Status:</h6>
+                    <p>@Model.OrderStatus</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Payment:</h6>
+                    <p>@Model.PaymentStatus</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Total Price:</h6>
+                    <p>@Model.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Date:</h6>
+                    <p>@Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Recivig Date:</h6>
+                    <p>@Model.OrderDate.AddDays(7).ToString("dd/MM/yyyy")</p>
+                </div>
+                @if (Model.Carrier != null)
+                {
+                        <div class="col-md-4">
+                        <h6>Delivery Name:</h6>
+                        <p>@Model.Carrier</p>
+                    </div>
+                }
+
+            </div>
+
+            <div class="row my-3">
+                <div >Order Products</div>
+                <div class="col-md-12 text-center">
+                    @foreach (var item in Model.orderDetails)
+								{
+
+									<li class="list-group-item d-flex justify-content-between flex-wrap">
+                                        <div class="d-flex justify-content-start">
+								            <div>
+                                              <img src="~/Images/Products/@item.Product.ImageUrl" alt="product Image" style="width:50px" >
+                                             </div>
+										    <div class="text-start ms-2 d-flex flex-column justify-content-around">
+											    <strong class="my-0">@item.Product.Title</strong>
+											    <small class="text-muted">Quantity: @item.Count</small>
+										    </div>
+                                        </div>
+										<span class=" text-success">@item.Price.ToString("c", new System.Globalization.CultureInfo("en-US")) </span>
+
+									</li>
+								}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

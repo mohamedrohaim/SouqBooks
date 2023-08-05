@@ -35,7 +35,7 @@
 									<label>Name</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" asp-for="@Model.OrderHeader.Name" />
+									<input class="form-control" asp-for="@Model.OrderHeader.Name" required />
 									<span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
 
 								</div>
@@ -45,7 +45,7 @@
 									<label>PhoneNumber</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" asp-for="@Model.OrderHeader.PhoneNumber" />
+									<input class="form-control" asp-for="@Model.OrderHeader.PhoneNumber" required/>
 									<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
 
 								</div>
@@ -55,7 +55,7 @@
 									<label>Address</label>
 								</div>
 								<div class="col-9">
-									<input class="form-control" asp-for="@Model.OrderHeader.Address" />
+									<input class="form-control" asp-for="@Model.OrderHeader.Address" required/>
 									<span asp-validation-for="OrderHeader.Address" class="text-danger"></span>
 								</div>
 							</div>

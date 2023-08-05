@@ -156,8 +156,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hvcHBpbmdDYXJ0XG9yZGVyQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/ShoppingCart/OrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hvcHBpbmdDYXJ0XE9yZGVyRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/ShoppingCart/Summary.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hvcHBpbmdDYXJ0XFN1bW1hcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/ShoppingCart/TrackOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hvcHBpbmdDYXJ0XFRyYWNrT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/DotNetProjects/SouqBooks/SouqBooks/Areas/Customer/Views/_ViewImports.cshtml]

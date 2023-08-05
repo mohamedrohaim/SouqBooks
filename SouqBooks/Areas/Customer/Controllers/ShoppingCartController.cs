@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.ViewModel;
+using SouqBooks.Utilities;
 using Stripe.Checkout;
+using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using Utilities;
@@ -59,6 +61,7 @@ namespace SouqBooks.Areas.Customer.Controllers
             var user = _unitOfWork.applicationUser.GetFirstOrDefault(
                 o=>o.Id==claim.Value
                 );
+            TempData["email"]=user.Email;
             shoppingCartViewModel.OrderHeader.ApplicationUser = user;
             shoppingCartViewModel.OrderHeader.Name = $"{user.FirstName} {user.LastName}";
             shoppingCartViewModel.OrderHeader.Address = user.Address;
@@ -86,57 +89,74 @@ namespace SouqBooks.Areas.Customer.Controllers
 			var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-			var orderHeader = new OrderHeader
-			{
-				PaymentStatus = payment == "payNow" ? StaticDetails.PaymentStautsPending : StaticDetails.PaymentStatusPayOnReciving,
-				OrderStatus = StaticDetails.StatusaInProgress,
-				ApplicationUserId = claim.Value,
-				OrderDate = DateTime.Now,
-				Address = shoppingCartViewModel.OrderHeader.Address,
-				PhoneNumber = shoppingCartViewModel.OrderHeader.PhoneNumber,
-				Name = shoppingCartViewModel.OrderHeader.Name
-			};
+        
+                var orderHeader = new OrderHeader
+                {
+                    PaymentStatus = payment == "payNow" ? StaticDetails.PaymentStautsPending : StaticDetails.PaymentStatusPayOnReciving,
+                    OrderStatus = StaticDetails.StatusaInProgress,
+                    ApplicationUserId = claim.Value,
+                    OrderDate = DateTime.Now,
+                    Address = shoppingCartViewModel.OrderHeader.Address,
+                    PhoneNumber = shoppingCartViewModel.OrderHeader.PhoneNumber,
+                    Name = shoppingCartViewModel.OrderHeader.Name,
+                    TrackingNumber = GenerateTrackingNumber()
+                };
 
-			var shoppingCartItems = _unitOfWork.shopingCart.GetAll(
-				s => s.ApplicationUserId == claim.Value,
-				includePropererities: "product"
-			);
+                var shoppingCartItems = _unitOfWork.shopingCart.GetAll(
+                    s => s.ApplicationUserId == claim.Value,
+                    includePropererities: "product"
+                );
 
+                foreach (var item in shoppingCartItems)
+                {
+                    item.PriceBasedOnCount = _unitOfWork.shopingCart.GetPriceOfOrderBasedOnQuantity(item.Count, item.product.Price);
+                    totalOrderPrice += item.PriceBasedOnCount;
+                }
+                orderHeader.OrderTotal = totalOrderPrice;
+
+                _unitOfWork.orderHeader.Add(orderHeader);
+                _unitOfWork.Save();
+			    var email = new Email()
+			    {
+				    Reciver = TempData["email"] as string,
+				    Subject = "SouqBooks Order Confirmation",
+				    Body = $"Thank you for your order! Your tracking Id is: {orderHeader.TrackingNumber}\n\n" +
+		                $"Order Details:\n" +
+		                $"Order Date: {orderHeader.OrderDate}\n" +
+		                $"Order Status: {orderHeader.OrderStatus}\n" +
+		                $"Customer Name: {orderHeader.Name}\n" +
+		                $"Shipping Address: {orderHeader.Address}\n" +
+		                $"Total Price :{orderHeader.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))}\n\n" +
+		                "SouqBooks"
+			    };
+			EmailSettings.SendEmail(email);
 			foreach (var item in shoppingCartItems)
-			{
-				item.PriceBasedOnCount = _unitOfWork.shopingCart.GetPriceOfOrderBasedOnQuantity(item.Count, item.product.Price);
-				totalOrderPrice += item.PriceBasedOnCount;
-			}
-			orderHeader.OrderTotal = totalOrderPrice;
+                {
+                    var orderDetails = new OrderDetails
+                    {
+                        ProductId = item.ProductId,
+                        OrderId = orderHeader.Id,
+                        Count = item.Count,
+                        Price = item.PriceBasedOnCount
+                    };
+                    _unitOfWork.orderDtails.Add(orderDetails);
+                    _unitOfWork.Save();
+                }
 
-			_unitOfWork.orderHeader.Add(orderHeader);
-			_unitOfWork.Save();
+                _unitOfWork.shopingCart.RemoveRange(shoppingCartItems);
+                _unitOfWork.Save();
 
-			foreach (var item in shoppingCartItems)
-			{
-				var orderDetails = new OrderDetails
-				{
-					ProductId = item.ProductId,
-					OrderId = orderHeader.Id,
-					Count = item.Count,
-					Price = item.PriceBasedOnCount
-				};
-				_unitOfWork.orderDtails.Add(orderDetails);
-				_unitOfWork.Save();
-			}
+                if (payment == "payNow")
+                {
+                    // Call the payment function
+                    ProcessPayment(orderHeader);
+                    return new StatusCodeResult(303);
+                }
 
-			_unitOfWork.shopingCart.RemoveRange(shoppingCartItems);
-			_unitOfWork.Save();
+                return RedirectToAction("OrderConfirmation", "ShoppingCart", new { id = orderHeader.Id });
+            }
 
-			if (payment == "payNow")
-			{
-				// Call the payment function
-				ProcessPayment(orderHeader);
-				return new StatusCodeResult(303);
-			}
-
-			return RedirectToAction("OrderConfirmation", "ShoppingCart", new { id = orderHeader.Id });
-		}
+		
 
 		private void ProcessPayment(OrderHeader orderHeader)
 		{
@@ -195,6 +215,8 @@ namespace SouqBooks.Areas.Customer.Controllers
                     _unitOfWork.orderHeader.UpdateStatus(id, StaticDetails.StatusaInProgress, session.PaymentIntentId, StaticDetails.PaymentStatusRejected);
 
                 }
+
+                
 				_unitOfWork.Save();
 			}
             
@@ -220,7 +242,6 @@ namespace SouqBooks.Areas.Customer.Controllers
                 ViewData["error"] = $"count Not Updated ";
             }
             return RedirectToAction(nameof(Index));
-
 
         }
         public IActionResult decrementOrderCount(int CartId) {
@@ -258,6 +279,46 @@ namespace SouqBooks.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-
+        public IActionResult TrackOrder() {
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult TrackOrder(TrackOrderViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var order = _unitOfWork.orderHeader.GetFirstOrDefault(
+                    filter: o => o.TrackingNumber == model.TrackingId,
+                    includePropererities: "orderDetails"
+                );
+
+                if (order != null)
+                {
+                    foreach (var product in order.orderDetails)
+                    {
+                        product.Product = _unitOfWork.product.GetFirstOrDefault(
+                            p => p.Id == product.ProductId,
+                            includePropererities: "category,coverType"
+                        );
+                    }
+
+                    return View("OrderDetails", order);
+                }
+
+                ModelState.AddModelError("", "Order not found. Please check the tracking number.");
+            }
+
+            return View(model);
+        }
+
+
+        private string GenerateTrackingNumber()
+		{
+			string trackingNumber;
+			Guid guid = Guid.NewGuid();
+			trackingNumber = guid.ToString("N").Substring(0, 9);
+			return trackingNumber;
+		}
+	}
 }

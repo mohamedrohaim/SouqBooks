@@ -19,11 +19,25 @@
                     <h6>Order Status:</h6>
                     <p>@Model.OrderStatus</p>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <h6>Order Payment:</h6>
                     <p>@Model.PaymentStatus</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Total Price:</h6>
+                    <p>@Model.OrderTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Order Tracking Id</h6>
+                    <p>@Model.TrackingNumber</p>
+                </div>
+            </div>
+           
+            <div class="row my-3">
+                <div class="col-md-12 text-center">
+                    <p class="text-muted">we have send You email contain order details</p>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">check Your Inbox</a>
+
                 </div>
             </div>
             <div class="row">

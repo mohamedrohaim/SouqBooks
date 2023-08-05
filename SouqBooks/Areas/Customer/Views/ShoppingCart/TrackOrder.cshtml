@@ -1,0 +1,31 @@
+﻿@using Models.ViewModel;
+@model TrackOrderViewModel
+@{
+    ViewData["Title"] = "TrackOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Enter Order Tracking Id</h4>
+                    </div>
+                    <div class="card-body">
+                    <form asp-action="TrackOrder" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                            <div class="mb-3">
+                                <label  class="form-label">Tracking Id:</label>
+                                <input type="text" class="form-control" asp-for="TrackingId"  >
+                            </div>
+                            <button type="submit" class="btn btn-primary">Track Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -46,6 +46,12 @@
 									Cart (3)
 								</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light" asp-action="TrackOrder" asp-controller="ShoppingCart" asp-area="Customer">
+									<i class="fa-solid fa-cart-shopping"></i>
+									Track Order
+								</a>
+							</li>
 							@if (userRole.Contains("Admin") || userRole.Contains("Employee"))
 							{
 
