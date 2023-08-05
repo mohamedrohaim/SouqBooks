@@ -16,17 +16,21 @@ namespace SouqBooks.Areas.Customer.Controllers
         private readonly ImageUploader _imageUploader;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManger;
+        private ILogger<AccountController> _logger;
 
-        public AccountController(
+
+		public AccountController(
             IUnitOfWork unitOfWork,
             ImageUploader imageUploader,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ILogger<AccountController>logger)
         {
             _unitOfWork = unitOfWork;
             _imageUploader = imageUploader;
             _userManager = userManager;
             _signInManger = signInManager;
+            _logger = logger;
 
         }
         #region Register
@@ -46,7 +50,17 @@ namespace SouqBooks.Areas.Customer.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, StaticDetails.UserRole);
-                    return View(nameof(Login));
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var confirmatioLink = Url.Action("ConfirmEmail", "Account", new { userId=user.Id,token=token }, Request.Scheme);
+                    var email = new Email() {
+                    Reciver=user.Email,
+                    Subject="Confirm Email",
+                    Body= "Click the link below to confirm your email address:\n" +
+					$"<a href='{confirmatioLink}'>Confirm Email</a>"
+					};
+                    EmailSettings.SendEmail(email);
+                    
+                    return View(nameof(checkConfirmationEmail));
                 }
                 else
                 {
@@ -57,8 +71,6 @@ namespace SouqBooks.Areas.Customer.Controllers
                     return View(registerViewModel);
                 }
 
-
-
             }
             else
             {
@@ -66,10 +78,37 @@ namespace SouqBooks.Areas.Customer.Controllers
             }
 
         }
+        public IActionResult checkConfirmationEmail()
+        {
+            return View();
+        }
+
+		public async Task<IActionResult> ConfirmEmail(string userId, string token)
+		{
+			
+			var user = await _userManager.FindByIdAsync(userId);
+
+			if (user == null)
+			{
+                return NotFound();
+			}
+
+			var result = await _userManager.ConfirmEmailAsync(user, token);
+
+			if (result.Succeeded)
+			{
+				return View();
+			}
+			else
+			{
+                return BadRequest();
+			}
+		}
 
 
 
-        private ApplicationUser mappRegisterViewModelToApplicationUsers(RegisterViewModel model)
+
+		private ApplicationUser mappRegisterViewModelToApplicationUsers(RegisterViewModel model)
         {
             var user = new ApplicationUser
             {
@@ -103,7 +142,11 @@ namespace SouqBooks.Areas.Customer.Controllers
                     bool flag = await _userManager.CheckPasswordAsync(user, model.Password);
                     if (flag)
                     {
-                        var result = await _signInManger.PasswordSignInAsync(user, model.Password, model.IsAgree, false);
+                        if (!user.EmailConfirmed) {
+							ModelState.AddModelError("", "Please confirm your email address to log in.");
+                            return View(model);
+						}
+						var result = await _signInManger.PasswordSignInAsync(user, model.Password, model.IsAgree, false);
                         if (result.Succeeded)
                             return RedirectToAction("Index", "Home");
                         else
